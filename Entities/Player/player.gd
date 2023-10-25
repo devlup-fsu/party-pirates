@@ -5,6 +5,8 @@ const SPEED_DEGRADATION = 0.9
 
 var speed: float = 0
 
+var score := 0 : set = score_up
+
 func _physics_process(delta) -> void:
     # TODO: Add support for multiple players
     var input_dir: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -17,7 +19,10 @@ func _physics_process(delta) -> void:
         velocity = direction * speed
         look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
     else:
-        print("Slow down")
         velocity *= SPEED_DEGRADATION
 
     move_and_slide()
+
+func score_up(value: int) -> void:
+    score += value
+    print(score)

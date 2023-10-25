@@ -1,7 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://qgluw18jyq43"]
+[gd_scene load_steps=3 format=3 uid="uid://qgluw18jyq43"]
 
 [ext_resource type="PackedScene" uid="uid://mi527txnbjjm" path="res://Entities/Player/player.tscn" id="1_0b323"]
+[ext_resource type="PackedScene" uid="uid://dr57vkfcw5ply" path="res://Entities/Treasure/treasure.tscn" id="2_3dsan"]
 
 [node name="DebugScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0b323")]
+
+[node name="treasure" parent="." instance=ExtResource("2_3dsan")]
+position = Vector2(194, 132)
+
+[node name="treasure2" parent="." instance=ExtResource("2_3dsan")]
+position = Vector2(94, 399)
+
+[node name="treasure3" parent="." instance=ExtResource("2_3dsan")]
+position = Vector2(455, 240)
+
+[node name="treasure4" parent="." instance=ExtResource("2_3dsan")]
+position = Vector2(387, 63)
