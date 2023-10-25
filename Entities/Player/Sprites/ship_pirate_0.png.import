@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddu6x671476di"
-path="res://.godot/imported/ship (11).png-45371947aa231eecca37cac6b5caf48d.ctex"
+uid="uid://1tkhfw0ycbmx"
+path="res://.godot/imported/ship_pirate_0.png-6817767af66aa8a5ad0da9e45fcd8c0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/Ships/ship (11).png"
-dest_files=["res://.godot/imported/ship (11).png-45371947aa231eecca37cac6b5caf48d.ctex"]
+source_file="res://Entities/Player/Sprites/ship_pirate_0.png"
+dest_files=["res://.godot/imported/ship_pirate_0.png-6817767af66aa8a5ad0da9e45fcd8c0c.ctex"]
 
 [params]
 
