@@ -4,14 +4,14 @@ extends Node2D
 
 
 func _ready():
-	pass # Replace with function body.
+    pass # Replace with function body.
 
 
 func _process(delta):
-	pass
+    pass
 
 
 func _on_body_entered(body):
-	if body.has_method("score_up"):
-		body.score_up(score_value)
-	queue_free() # TODO: Disappear animation with AnimationPlayer
+    if body.has_method("score_up"):
+        body.score_up(score_value)
+    queue_free() # TODO: Disappear animation with AnimationPlayer
