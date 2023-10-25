@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr57vkfcw5ply"]
+[gd_scene load_steps=9 format=3 uid="uid://dr57vkfcw5ply"]
 
 [ext_resource type="Script" path="res://Entities/Treasure/treasure.gd" id="1_34wjc"]
 [ext_resource type="Texture2D" uid="uid://csc8fnlnwjtn6" path="res://Assets/PNG/Ship parts/crew (1).png" id="2_j20kx"]
+[ext_resource type="Texture2D" uid="uid://x0u4ov4yap1w" path="res://Assets/PNG/Ship parts/crew (5).png" id="3_ijpue"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_43wbw"]
 
@@ -14,7 +15,18 @@ animations = [{
 "loop": true,
 "name": &"chest",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ijpue")
+}],
+"loop": true,
+"name": &"coin",
+"speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_hr2gu"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_1yndv"]
 resource_name = "collected"
@@ -45,9 +57,6 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(2, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_hr2gu"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jevvr"]
 _data = {
 "RESET": SubResource("Animation_hr2gu"),
@@ -62,7 +71,7 @@ shape = SubResource("CircleShape2D_43wbw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjsx3")
-animation = &"chest"
+animation = &"coin"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
