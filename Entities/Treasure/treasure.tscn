@@ -63,7 +63,7 @@ _data = {
 "collected": SubResource("Animation_1yndv")
 }
 
-[node name="treasure" type="Area2D"]
+[node name="Treasure" type="Area2D"]
 script = ExtResource("1_34wjc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
