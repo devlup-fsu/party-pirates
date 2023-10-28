@@ -6,6 +6,10 @@
 [node name="DebugScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0b323")]
+position = Vector2(97, 210)
+
+[node name="Player2" parent="." instance=ExtResource("1_0b323")]
+position = Vector2(338, 257)
 
 [node name="treasure" parent="." instance=ExtResource("2_3dsan")]
 position = Vector2(194, 132)
