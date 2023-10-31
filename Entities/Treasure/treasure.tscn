@@ -1,9 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dr57vkfcw5ply"]
 
 [ext_resource type="Script" path="res://Entities/Treasure/treasure.gd" id="1_34wjc"]
-[ext_resource type="Texture2D" uid="uid://23tvk184yl32" path="res://Entities/Treasure/gem.png" id="2_gsv30"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_43wbw"]
+[ext_resource type="Texture2D" path="res://Entities/Treasure/gem.png" id="2_gsv30"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjsx3"]
 animations = [{
@@ -15,6 +13,9 @@ animations = [{
 "name": &"gem",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43wbw"]
+radius = 11.0
 
 [sub_resource type="Animation" id="Animation_hr2gu"]
 length = 0.001
@@ -57,12 +58,13 @@ _data = {
 [node name="Treasure" type="Area2D"]
 script = ExtResource("1_34wjc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_43wbw")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_fjsx3")
 animation = &"gem"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_43wbw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
