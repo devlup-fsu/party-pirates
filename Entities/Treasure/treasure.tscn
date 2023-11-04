@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dr57vkfcw5ply"]
 
 [ext_resource type="Script" path="res://Entities/Treasure/treasure.gd" id="1_34wjc"]
-[ext_resource type="Texture2D" path="res://Entities/Treasure/gem.png" id="2_gsv30"]
+[ext_resource type="Texture2D" uid="uid://23tvk184yl32" path="res://Entities/Treasure/gem.png" id="2_gsv30"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjsx3"]
 animations = [{
@@ -72,4 +72,4 @@ libraries = {
 "": SubResource("AnimationLibrary_jevvr")
 }
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_player_entered"]
