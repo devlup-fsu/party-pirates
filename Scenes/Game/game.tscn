@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd70viq7ixof6"]
+
+[ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
+[ext_resource type="PackedScene" uid="uid://mi527txnbjjm" path="res://Entities/Player/player.tscn" id="1_dv1t7"]
+[ext_resource type="PackedScene" uid="uid://dr57vkfcw5ply" path="res://Entities/Treasure/treasure.tscn" id="2_8bs5j"]
+[ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
+[ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bsjlv"]
+font_size = 52
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0yh8e"]
+font_size = 52
+font_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_8ljh1")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreBoard" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_jdy6b")
+
+[node name="Board" type="TextureRect" parent="UILayer/ScoreBoard"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -490.0
+offset_right = 490.0
+offset_bottom = 75.0
+grow_horizontal = 2
+size_flags_vertical = 0
+texture = ExtResource("2_gsu4w")
+
+[node name="Player0" type="Label" parent="UILayer/ScoreBoard"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = -3.0
+offset_right = 217.0
+offset_bottom = 79.0
+text = "50"
+label_settings = SubResource("LabelSettings_bsjlv")
+horizontal_alignment = 1
+
+[node name="Player1" type="Label" parent="UILayer/ScoreBoard"]
+layout_mode = 0
+offset_left = 215.0
+offset_top = -3.0
+offset_right = 335.0
+offset_bottom = 79.0
+text = "50"
+label_settings = SubResource("LabelSettings_bsjlv")
+horizontal_alignment = 1
+
+[node name="Player2" type="Label" parent="UILayer/ScoreBoard"]
+layout_mode = 0
+offset_left = 819.0
+offset_top = -2.0
+offset_right = 939.0
+offset_bottom = 80.0
+text = "50"
+label_settings = SubResource("LabelSettings_bsjlv")
+horizontal_alignment = 1
+
+[node name="Player3" type="Label" parent="UILayer/ScoreBoard"]
+layout_mode = 0
+offset_left = 933.0
+offset_top = -3.0
+offset_right = 1053.0
+offset_bottom = 79.0
+text = "50"
+label_settings = SubResource("LabelSettings_bsjlv")
+horizontal_alignment = 1
+
+[node name="Clock" type="Label" parent="UILayer/ScoreBoard"]
+layout_mode = 0
+offset_left = 421.0
+offset_top = -3.0
+offset_right = 525.0
+offset_bottom = 72.0
+text = "3:00"
+label_settings = SubResource("LabelSettings_0yh8e")
+horizontal_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("1_dv1t7")]
+position = Vector2(130, 121)
+
+[node name="Treasure" parent="." instance=ExtResource("2_8bs5j")]
+position = Vector2(333, 231)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

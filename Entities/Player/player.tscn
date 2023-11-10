@@ -10,26 +10,18 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_mm13f")
-}],
-"loop": true,
-"name": &"team_bug",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("4_hxgas")
 }],
 "loop": true,
-"name": &"team_monke",
+"name": &"player0",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_rpgsf")
+"texture": ExtResource("3_mm13f")
 }],
 "loop": true,
-"name": &"team_parrot",
+"name": &"player1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -37,7 +29,15 @@ animations = [{
 "texture": ExtResource("6_buvhv")
 }],
 "loop": true,
-"name": &"team_whale",
+"name": &"player3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rpgsf")
+}],
+"loop": true,
+"name": &"player4",
 "speed": 5.0
 }]
 
@@ -52,7 +52,7 @@ script = ExtResource("1_egvib")
 rotation = -1.57079
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_qle2r")
-animation = &"team_bug"
+animation = &"player0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
