@@ -2,7 +2,7 @@ extends Node
 
 signal score_changed
 
-var _scores: Array[int] = []
+var _scores: Array[int] = [0, 0, 0, 0]
 
 
 func get_player_score(player: int) -> int:
@@ -15,9 +15,5 @@ func add_player_score(player: int, value: int) -> void:
 
 
 func reset():
-	_scores = []
-	
-	for i in range(4):
-		_scores.append(0)
-	
+	_scores = [0, 0, 0 ,0]
 	score_changed.emit()
