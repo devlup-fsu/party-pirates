@@ -1,3 +1,4 @@
+class_name Treasure
 extends Area2D
 
 @export var score_value := 5
@@ -8,6 +9,7 @@ extends Area2D
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
+var is_collected := false
 
 func _ready() -> void:
 	var animations = anim_sprite.sprite_frames.get_animation_names()
@@ -15,11 +17,12 @@ func _ready() -> void:
 
 
 func _on_body_entered(player: Player) -> void:
-	player.score_up(score_value + randi_range(-variance, variance))
+	pass
+	#player.score_up(score_value + randi_range(-variance, variance))
 	
 	# Otherwise player may collide with this node multiple times while the animation finishes.
-	collision_shape.disabled = true
+	#collision_shape.disabled = true
 	
-	anim_player.play("collected")
-	await anim_player.animation_finished
-	queue_free()
+	#anim_player.play("collected")
+	#await anim_player.animation_finished
+	#queue_free()
