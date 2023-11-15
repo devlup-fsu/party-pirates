@@ -14,3 +14,7 @@ config/name="Party Pirates"
 run/main_scene="res://Debug/debug_scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
