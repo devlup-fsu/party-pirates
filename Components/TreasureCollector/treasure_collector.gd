@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _on_treasure_entered(treasure: Treasure) -> void:
 	if treasure.is_collected: return
-	treasure.is_collected = true
+	treasure.collect()
 	
 	collected_treasure.push_back(treasure)
 

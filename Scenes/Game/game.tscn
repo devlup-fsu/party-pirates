@@ -114,15 +114,15 @@ position = Vector2(-878, -341)
 position = Vector2(-1031, -398)
 
 [node name="Player1Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
-position = Vector2(972, -457)
+position = Vector2(-916, 526)
 player_id = 1
 
 [node name="Player2Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
-position = Vector2(909, 518)
+position = Vector2(969, -459)
 player_id = 2
 
 [node name="Player3Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
-position = Vector2(-911, 521)
+position = Vector2(911, 518)
 player_id = 3
 
 [node name="Treasure" parent="." instance=ExtResource("2_8bs5j")]
