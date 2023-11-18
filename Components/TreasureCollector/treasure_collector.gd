@@ -2,8 +2,6 @@
 class_name TreasureCollector
 extends Area2D
 
-signal treasure_collected(treasure: Treasure)
-
 ## The node that the trail of treasures should follow.
 @export var to_follow: Node2D
 ## The speed at which the treasure moves. Higher values are clunky.
@@ -31,7 +29,6 @@ func _on_treasure_entered(treasure: Treasure) -> void:
 	treasure.is_collected = true
 	
 	collected_treasure.push_back(treasure)
-	treasure_collected.emit(treasure)
 
 
 func _physics_process(delta: float) -> void:
@@ -51,3 +48,15 @@ func _physics_process(delta: float) -> void:
 		var current := collected_treasure[i]
 		if previous.global_position.distance_to(current.global_position) >= tail_padding:
 			current.global_position = direction + current.global_position.lerp(previous.global_position, follow_speed * delta)
+
+
+## Deletes the treasure nodes, removes them from the array, and returns the count of treasure.
+func empty_treasure() -> int:
+	var size = collected_treasure.size()
+	
+	for treasure in collected_treasure:
+		treasure.queue_free()
+	
+	collected_treasure = []
+	
+	return size

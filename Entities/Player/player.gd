@@ -6,9 +6,10 @@ const SPEED_DEGRADATION = 0.9
 
 @export var player = 0
 
+@onready var treasure_collector: TreasureCollector = $TreasureCollector
+
 var speed: float = 0
-# TODO: Replace this with an array of treasure that gets dragged behind the player.
-var held_treasure := 0
+
 
 func _physics_process(_delta: float) -> void:
 	# TODO: Add support for multiple players
@@ -34,10 +35,6 @@ func _process(_delta: float):
 		store_treasure()
 
 
-func collect_treasure(value: int) -> void:
-	held_treasure += value
-
-
 func store_treasure() -> void:
-	Scores.add_player_score(player, held_treasure)
-	held_treasure = 0
+	var score = treasure_collector.empty_treasure()
+	Scores.add_player_score(player, score)
