@@ -15,7 +15,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_43wbw"]
-radius = 11.0
+radius = 21.0238
 
 [sub_resource type="Animation" id="Animation_hr2gu"]
 length = 0.001
@@ -59,7 +59,6 @@ _data = {
 script = ExtResource("1_34wjc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_fjsx3")
 animation = &"gem"
 

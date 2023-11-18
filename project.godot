@@ -15,11 +15,10 @@ run/main_scene="res://Scenes/StartMenu/start_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Scores="*res://Autoloads/scores.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
-
-[autoload]
-
-Scores="*res://Autoloads/scores.gd"
