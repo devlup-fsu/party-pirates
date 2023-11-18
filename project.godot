@@ -11,10 +11,15 @@ config_version=5
 [application]
 
 config/name="Party Pirates"
-run/main_scene="res://Debug/debug_scene.tscn"
+run/main_scene="res://Scenes/StartMenu/start_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[autoload]
+
+Scores="*res://Autoloads/scores.gd"
