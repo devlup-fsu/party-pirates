@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx77fqpn7416h"
-path="res://.godot/imported/tiles_sheet.png-b212d06f371be942007dae5ae18ac3b0.ctex"
+path="res://.godot/imported/island_tile_map.png-15f1567bc5abdb769e7085447b030a44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tilesheet/tiles_sheet.png"
-dest_files=["res://.godot/imported/tiles_sheet.png-b212d06f371be942007dae5ae18ac3b0.ctex"]
+source_file="res://Entities/IslandTileMap/island_tile_map.png"
+dest_files=["res://.godot/imported/island_tile_map.png-15f1567bc5abdb769e7085447b030a44.ctex"]
 
 [params]
 
