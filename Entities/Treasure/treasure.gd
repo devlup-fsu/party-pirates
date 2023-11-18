@@ -1,9 +1,7 @@
 class_name Treasure
 extends Area2D
 
-@export var score_value := 5
-## Player will gain a score_value +- variance on collision.
-@export var variance := 0
+@export var value := 1
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -16,6 +14,7 @@ func _ready() -> void:
 	anim_sprite.animation = animations[randi() % animations.size()]
 
 
+# TODO: Uncomment all of this!
 func _on_body_entered(player: Player) -> void:
 	pass
 	#player.score_up(score_value + randi_range(-variance, variance))
