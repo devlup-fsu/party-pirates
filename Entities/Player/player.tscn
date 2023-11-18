@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dmccss23paffa" path="res://Entities/Player/Sprites/shipR.png" id="4_hxgas"]
 [ext_resource type="Texture2D" uid="uid://bv6lrmhca6bcj" path="res://Entities/Player/Sprites/shipG.png" id="4_rpgsf"]
 [ext_resource type="Texture2D" uid="uid://5tqiphd1d6by" path="res://Entities/Player/Sprites/shipB.png" id="6_buvhv"]
-[ext_resource type="PackedScene" uid="uid://coq2c4fhf8vxl" path="res://Entities/TreasureCollector/treasure_collector.tscn" id="6_g81rv"]
+[ext_resource type="PackedScene" uid="uid://coq2c4fhf8vxl" path="res://Components/TreasureCollector/treasure_collector.tscn" id="6_g81rv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qle2r"]
 animations = [{

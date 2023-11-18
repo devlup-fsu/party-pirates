@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://coq2c4fhf8vxl"]
 
-[ext_resource type="Script" path="res://Entities/TreasureCollector/treasure_collector.gd" id="1_hgmog"]
+[ext_resource type="Script" path="res://Components/TreasureCollector/treasure_collector.gd" id="1_hgmog"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tlfvq"]
-radius = 113.004
+radius = 75.0
 
 [node name="TreasureCollector" type="Area2D"]
 script = ExtResource("1_hgmog")
@@ -11,5 +11,4 @@ script = ExtResource("1_hgmog")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tlfvq")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_treasure_entered"]
