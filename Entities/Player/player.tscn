@@ -30,7 +30,7 @@ animations = [{
 "texture": ExtResource("6_buvhv")
 }],
 "loop": true,
-"name": &"player3",
+"name": &"player2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -38,7 +38,7 @@ animations = [{
 "texture": ExtResource("4_rpgsf")
 }],
 "loop": true,
-"name": &"player4",
+"name": &"player3",
 "speed": 5.0
 }]
 
@@ -52,7 +52,7 @@ script = ExtResource("1_egvib")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = -1.57079
 sprite_frames = SubResource("SpriteFrames_qle2r")
-animation = &"player0"
+animation = &"player3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
