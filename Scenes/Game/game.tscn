@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=9 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
-[ext_resource type="PackedScene" uid="uid://mi527txnbjjm" path="res://Entities/Player/player.tscn" id="1_dv1t7"]
 [ext_resource type="PackedScene" uid="uid://dr57vkfcw5ply" path="res://Entities/Treasure/treasure.tscn" id="2_8bs5j"]
 [ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
@@ -105,23 +104,34 @@ text = "3:00"
 label_settings = SubResource("LabelSettings_0yh8e")
 horizontal_alignment = 1
 
-[node name="Player" parent="." instance=ExtResource("1_dv1t7")]
-position = Vector2(-878, -341)
+[node name="SpawnPoints" type="Node2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Player0Spawn" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-929, -289)
 
-[node name="Player0Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
+[node name="Player1Spawn" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-814, 419)
+
+[node name="Player2Spawn" type="Node2D" parent="SpawnPoints"]
+position = Vector2(868, -351)
+
+[node name="Player3Spawn" type="Node2D" parent="SpawnPoints"]
+position = Vector2(819, 425)
+
+[node name="Docks" type="Node2D" parent="."]
+
+[node name="Player0Dock" parent="Docks" instance=ExtResource("6_aq2lw")]
 position = Vector2(-1031, -398)
 
-[node name="Player1Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
+[node name="Player1Dock" parent="Docks" instance=ExtResource("6_aq2lw")]
 position = Vector2(-916, 526)
 player_id = 1
 
-[node name="Player2Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
+[node name="Player2Dock" parent="Docks" instance=ExtResource("6_aq2lw")]
 position = Vector2(969, -459)
 player_id = 2
 
-[node name="Player3Dock" parent="Node2D" instance=ExtResource("6_aq2lw")]
+[node name="Player3Dock" parent="Docks" instance=ExtResource("6_aq2lw")]
 position = Vector2(911, 518)
 player_id = 3
 
