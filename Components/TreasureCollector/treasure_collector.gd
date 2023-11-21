@@ -17,7 +17,8 @@ extends Area2D
 ## Rather than targetting its exact position, it will go slightly behind.
 const LAG_BEHIND_FACTOR := 5
 var collected_treasure: Array[Treasure] = []
-
+## If true, [TreasureCollector] will automatically add encountered Treasure to itself.
+var is_collecting := true
 
 func _ready() -> void:
 	assert(to_follow != null, "TreasureCollector: property [to_follow] must not be null.")
@@ -25,7 +26,7 @@ func _ready() -> void:
 
 
 func _on_treasure_entered(treasure: Treasure) -> void:
-	if treasure.is_collected: return
+	if treasure.is_collected or not is_collecting: return
 	treasure.collect()
 	
 	collected_treasure.push_back(treasure)
@@ -50,6 +51,15 @@ func _physics_process(delta: float) -> void:
 			current.global_position = direction + current.global_position.lerp(previous.global_position, follow_speed * delta)
 
 
+func drop_treasure() -> int:
+	var size := collected_treasure.size()
+	
+	for treasure in collected_treasure:
+		treasure.drop()
+	collected_treasure = []
+	
+	return size
+
 ## Deletes the treasure nodes, removes them from the array, and returns the count of treasure.
 func empty_treasure() -> int:
 	var size = collected_treasure.size()
@@ -60,3 +70,11 @@ func empty_treasure() -> int:
 	collected_treasure = []
 	
 	return size
+
+
+func enable() -> void:
+	is_collecting = true
+
+
+func disable() -> void:
+	is_collecting = false

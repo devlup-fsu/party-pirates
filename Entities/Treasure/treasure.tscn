@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr57vkfcw5ply"]
+[gd_scene load_steps=12 format=3 uid="uid://dr57vkfcw5ply"]
 
 [ext_resource type="Script" path="res://Entities/Treasure/treasure.gd" id="1_34wjc"]
 [ext_resource type="Texture2D" uid="uid://dcc2mdh04kpms" path="res://Entities/Treasure/Sprites/booze.png" id="2_7xpd7"]
@@ -48,38 +48,44 @@ radius = 28.0179
 length = 0.001
 
 [sub_resource type="Animation" id="Animation_1yndv"]
-resource_name = "collected"
-length = 0.4
+resource_name = "collect"
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 0.5),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.141176)]
+"values": [Vector2(1, 1), Vector2(0.75, 0.75)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.5, 25.1067),
+
+[sub_resource type="Animation" id="Animation_g6urg"]
+resource_name = "drop"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2)]
+"values": [Vector2(0.75, 0.75), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jevvr"]
 _data = {
 "RESET": SubResource("Animation_hr2gu"),
-"collected": SubResource("Animation_1yndv")
+"collect": SubResource("Animation_1yndv"),
+"drop": SubResource("Animation_g6urg")
 }
 
 [node name="Treasure" type="Area2D"]
