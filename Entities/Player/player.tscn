@@ -61,3 +61,6 @@ shape = SubResource("CapsuleShape2D_vi800")
 
 [node name="TreasureCollector" parent="." node_paths=PackedStringArray("to_follow") instance=ExtResource("6_g81rv")]
 to_follow = NodePath("..")
+
+[node name="VulnerabilityTimer" type="Timer" parent="."]
+one_shot = true
