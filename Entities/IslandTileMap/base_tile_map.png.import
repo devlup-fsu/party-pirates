@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://23tvk184yl32"
-path="res://.godot/imported/gem.png-2a7397057391f988f114e5201fabbdd4.ctex"
+uid="uid://cnbxr8iimhtd7"
+path="res://.godot/imported/base_tile_map.png-1ff82cce409abcc2607fb9c841e39adc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Treasure/gem.png"
-dest_files=["res://.godot/imported/gem.png-2a7397057391f988f114e5201fabbdd4.ctex"]
+source_file="res://Entities/IslandTileMap/base_tile_map.png"
+dest_files=["res://.godot/imported/base_tile_map.png-1ff82cce409abcc2607fb9c841e39adc.ctex"]
 
 [params]
 

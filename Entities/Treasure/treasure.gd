@@ -9,6 +9,17 @@ extends Area2D
 
 var is_collected := false
 
+
 func _ready() -> void:
 	var animations = anim_sprite.sprite_frames.get_animation_names()
 	anim_sprite.animation = animations[randi() % animations.size()]
+
+
+func _process(delta: float) -> void:
+	if is_collected:
+		anim_sprite.scale = anim_sprite.scale.lerp(Vector2(0.75, 0.75), delta)
+
+
+func collect() -> void:
+	is_collected = true
+	collision_shape.disabled = true
