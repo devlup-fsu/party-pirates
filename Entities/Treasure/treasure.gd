@@ -18,8 +18,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_collected:
 		anim_sprite.scale = anim_sprite.scale.lerp(Vector2(0.75, 0.75), delta)
+	else:
+		anim_sprite.scale = anim_sprite.scale.lerp(Vector2(1.00, 1.00), delta)
 
 
 func collect() -> void:
 	is_collected = true
-	collision_shape.disabled = true
+	collision_shape.set_deferred("disabled", true)
+
+
+func drop() -> void:
+	is_collected = false
+	collision_shape.set_deferred("disabled", false)

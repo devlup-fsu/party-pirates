@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const MAX_SPEED := 300.0
-const TURN_SPEED = deg_to_rad(90)
+const TURN_SPEED := deg_to_rad(90)
 const STUNNED_SPEED := MAX_SPEED * 0.40
 const SPEED_DEGRADATION := 0.9
 
@@ -56,10 +56,10 @@ func store_treasure() -> void:
 func got_hit() -> void:
 	treasure_collector.drop_treasure()
 	current_speed = STUNNED_SPEED
-	treasure_collector.is_collecting = false
+	treasure_collector.disable()
 	
 	vulnerability_timer.start()
 	await vulnerability_timer.timeout
 	
 	current_speed = MAX_SPEED
-	treasure_collector.is_collecting = true
+	treasure_collector.enable()

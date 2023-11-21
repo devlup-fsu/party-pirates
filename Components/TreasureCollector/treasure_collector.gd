@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _on_treasure_entered(treasure: Treasure) -> void:
 	if treasure.is_collected or not is_collecting: return
-	treasure.is_collected = true
+	treasure.collect()
 	
 	collected_treasure.push_back(treasure)
 
@@ -55,7 +55,7 @@ func drop_treasure() -> int:
 	var size := collected_treasure.size()
 	
 	for treasure in collected_treasure:
-		treasure.is_collected = false
+		treasure.drop()
 	collected_treasure = []
 	
 	return size
@@ -70,3 +70,11 @@ func empty_treasure() -> int:
 	collected_treasure = []
 	
 	return size
+
+
+func enable() -> void:
+	is_collecting = true
+
+
+func disable() -> void:
+	is_collecting = false
