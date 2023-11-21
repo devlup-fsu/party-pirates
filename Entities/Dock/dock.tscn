@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqbkqt7cdy23j"]
+
+[ext_resource type="Script" path="res://Entities/Dock/dock.gd" id="1_ho1sf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjcrq"]
+radius = 175.0
+
+[node name="Dock" type="Area2D"]
+script = ExtResource("1_ho1sf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cjcrq")
+
+[connection signal="body_entered" from="." to="." method="_on_player_entered"]

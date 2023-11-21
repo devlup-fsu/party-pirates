@@ -2,6 +2,8 @@ extends Control
 
 @onready var GAME_SCENE: PackedScene = preload("res://Scenes/Game/game.tscn")
 
+func _enter_tree():
+	InputManager.game_started = false
 
 func _on_start_button_pressed():
 	var game = GAME_SCENE.instantiate()
