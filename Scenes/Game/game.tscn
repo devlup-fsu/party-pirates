@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=10 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="PackedScene" uid="uid://dr57vkfcw5ply" path="res://Entities/Treasure/treasure.tscn" id="2_8bs5j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
+[ext_resource type="PackedScene" uid="uid://cj760ipfpyqxs" path="res://Entities/Whirlpool/whirlpool.tscn" id="7_0q6ex"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsjlv"]
 font_size = 52
@@ -143,5 +144,8 @@ position = Vector2(-528, 212)
 
 [node name="Treasure3" parent="." instance=ExtResource("2_8bs5j")]
 position = Vector2(-435, 393)
+
+[node name="Whirlpool" parent="." instance=ExtResource("7_0q6ex")]
+position = Vector2(-143, -43)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
