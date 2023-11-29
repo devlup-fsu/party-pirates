@@ -26,14 +26,16 @@ enum TreasureSpawnerStrategy {
 
 @onready var treasure: PackedScene = preload("res://Entities/Treasure/treasure.tscn")
 
-@onready var spawn_markers: Array = get_children()
+@onready var spawn_markers: Array[Marker2D]
 
 ## Used with TreasureSpawnerStrategy.Sequential to track which is next.
 var index := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawn_markers.pop_front() # Remove timer from spawn_markers.
+	for child in get_children():
+		if child is Marker2D:
+			spawn_markers.append(child)
 	assert((spawn_strategy != TreasureSpawnerStrategy.Self and spawn_markers.size() > 0) 
 		or spawn_strategy == TreasureSpawnerStrategy.Self,
 		"TreasureSpawner: Add Marker2D children or set spawn_strategy to Self")
