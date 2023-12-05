@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
-[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Components/TreasureSpawner/TreasureSpawner.tscn" id="7_dots1"]
+[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/TreasureSpawner.tscn" id="7_dots1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsjlv"]
 font_size = 52

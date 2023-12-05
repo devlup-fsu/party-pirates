@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://benpi84elt7gh"]
 
-[ext_resource type="Script" path="res://Components/TreasureSpawner/TreasureSpawner.gd" id="1_80e4p"]
+[ext_resource type="Script" path="res://Entities/TreasureSpawner/treasure_spawner.gd" id="1_daesv"]
 
 [node name="TreasureSpawner" type="Node2D"]
-script = ExtResource("1_80e4p")
+script = ExtResource("1_daesv")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
