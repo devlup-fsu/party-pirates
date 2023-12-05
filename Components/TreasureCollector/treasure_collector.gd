@@ -61,11 +61,11 @@ func drop_treasure() -> int:
 	return size
 
 ## Deletes the treasure nodes, removes them from the array, and returns the count of treasure.
-func empty_treasure() -> int:
+func score_treasure() -> int:
 	var size = collected_treasure.size()
 	
 	for treasure in collected_treasure:
-		treasure.queue_free()
+		treasure.score()
 	
 	collected_treasure = []
 	

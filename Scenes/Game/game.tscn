@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=9 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
-[ext_resource type="PackedScene" uid="uid://dr57vkfcw5ply" path="res://Entities/Treasure/treasure.tscn" id="2_8bs5j"]
 [ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
-[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/TreasureSpawner.tscn" id="7_oaxjh"]
+[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsjlv"]
 font_size = 52
@@ -136,15 +135,6 @@ player_id = 2
 position = Vector2(911, 518)
 player_id = 3
 
-[node name="Treasure" parent="." instance=ExtResource("2_8bs5j")]
-position = Vector2(-692, 307)
-
-[node name="Treasure2" parent="." instance=ExtResource("2_8bs5j")]
-position = Vector2(-528, 212)
-
-[node name="Treasure3" parent="." instance=ExtResource("2_8bs5j")]
-position = Vector2(-435, 393)
-
 [node name="TreasureSpawner" parent="." instance=ExtResource("7_oaxjh")]
 
 [node name="Marker2D" type="Marker2D" parent="TreasureSpawner"]
@@ -160,4 +150,3 @@ position = Vector2(170, 368)
 position = Vector2(346, 368)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="spawn_requested" from="TreasureSpawner" to="." method="_on_treasure_spawner_spawn_requested"]

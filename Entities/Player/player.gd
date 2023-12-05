@@ -39,19 +39,15 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(_delta: float):
-	# Temporary code for sending held treasure to the scoreboard.
-	# Will eventually be called instead when you reach your base.
-	if Input.is_action_just_pressed("ui_text_submit"):
-		store_treasure()
-	
 	# Temporary code to test on hit
 	if Input.is_action_just_pressed("test"):
 		got_hit()
 
 
-func store_treasure() -> void:
-	var score = treasure_collector.empty_treasure()
+func score_treasure() -> void:
+	var score = treasure_collector.score_treasure()
 	Scores.add_player_score(player, score)
+
 
 func got_hit() -> void:
 	treasure_collector.drop_treasure()
