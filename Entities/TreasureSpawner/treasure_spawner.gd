@@ -17,12 +17,11 @@ enum SpawnStrategy {
 }
 
 @export var spawn_strategy: SpawnStrategy = SpawnStrategy.Random
-
 @export var is_timed := true
+@export var wait_time := 3
+
 @onready var spawn_timer: Timer = $SpawnTimer
-
 @onready var treasure: PackedScene = preload("res://Entities/Treasure/treasure.tscn")
-
 @onready var spawn_markers: Array[Marker2D]
 
 ## Used with TreasureSpawnerStrategy.Sequential to track which is next.
@@ -37,7 +36,10 @@ func _ready():
 	
 	assert(spawn_markers.size() > 0, "TreasureSpawner: Add Marker2D children or set spawn_strategy to Self")
 	
-	if is_timed: spawn_timer.start()
+	spawn_timer.wait_time = wait_time
+	
+	if is_timed:
+		spawn_timer.start()
 
 
 func enable_timer() -> void:

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
-[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/TreasureSpawner.tscn" id="7_dots1"]
+[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/TreasureSpawner.tscn" id="7_oaxjh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bsjlv"]
 font_size = 52
@@ -145,7 +145,7 @@ position = Vector2(-528, 212)
 [node name="Treasure3" parent="." instance=ExtResource("2_8bs5j")]
 position = Vector2(-435, 393)
 
-[node name="TreasureSpawner" parent="." instance=ExtResource("7_dots1")]
+[node name="TreasureSpawner" parent="." instance=ExtResource("7_oaxjh")]
 
 [node name="Marker2D" type="Marker2D" parent="TreasureSpawner"]
 position = Vector2(-168, 368)
