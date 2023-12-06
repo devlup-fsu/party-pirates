@@ -1,6 +1,9 @@
 class_name Treasure
 extends Area2D
 
+signal collected(treasure: Treasure)
+signal scored(treasure: Treasure)
+
 @export var value := 1
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -19,9 +22,16 @@ func collect() -> void:
 	is_collected = true
 	collision_shape.set_deferred("disabled", true)
 	anim_player.play("collect")
+	collected.emit(self)
 
 
 func drop() -> void:
 	is_collected = false
 	collision_shape.set_deferred("disabled", false)
 	anim_player.play("drop")
+
+
+# Runs when the treasure is brought to a player's base.
+func score() -> void:
+	scored.emit(self)
+	queue_free()

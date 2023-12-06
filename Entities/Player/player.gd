@@ -59,8 +59,8 @@ func _process(_delta: float):
 			right_cannon_timer.start(shoot_delay)
 
 
-func store_treasure() -> void:
-	var score = treasure_collector.empty_treasure()
+func score_treasure() -> void:
+	var score = treasure_collector.score_treasure()
 	Scores.add_player_score(player, score)
 
 
