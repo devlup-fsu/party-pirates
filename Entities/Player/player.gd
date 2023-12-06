@@ -52,11 +52,11 @@ func _process(_delta: float):
 # Cannons, probably make a function later
 	if input.is_shoot_left_pressed():
 		if left_cannon_timer.is_stopped():
-			Cannon.create(cannon_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
+			CannonBall.create(cannon_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
 			left_cannon_timer.start()
 	if input.is_shoot_right_pressed():
 		if right_cannon_timer.is_stopped():
-			Cannon.create(cannon_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+			CannonBall.create(cannon_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
 			right_cannon_timer.start()
 		
 
@@ -64,6 +64,7 @@ func _process(_delta: float):
 func store_treasure() -> void:
 	var score = treasure_collector.empty_treasure()
 	Scores.add_player_score(player, score)
+
 
 func got_hit() -> void:
 	treasure_collector.drop_treasure()
