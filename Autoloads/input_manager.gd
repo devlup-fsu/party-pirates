@@ -5,8 +5,8 @@ class InputProxy:
 	const DEADZONE = 0.25
 	
 	
-	func _init(gamepad_id : int):
-		self.gamepad_id = gamepad_id
+	func _init(_gamepad_id: int):
+		self.gamepad_id = _gamepad_id
 	
 	
 	func get_turning() -> float:

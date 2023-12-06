@@ -25,11 +25,14 @@ func _ready() -> void:
 	assert("velocity" in to_follow, "TreasureCollector: property [to_follow] must have velocity property.")
 
 
-func _on_treasure_entered(treasure: Treasure) -> void:
-	if treasure.is_collected or not is_collecting: return
-	treasure.collect()
+func _on_area_entered(area: Area2D) -> void:
+	if not area is Treasure:
+		return
 	
-	collected_treasure.push_back(treasure)
+	if area.is_collected or not is_collecting: return
+	area.collect()
+	
+	collected_treasure.push_back(area)
 
 
 func _physics_process(delta: float) -> void:

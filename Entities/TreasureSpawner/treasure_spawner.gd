@@ -24,7 +24,7 @@ enum SpawnStrategy {
 @export_range(0, 10) var max_on_screen_at_once := 5
 
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var treasure: PackedScene = preload("res://Entities/Treasure/treasure.tscn")
+@onready var treasure_scene: PackedScene = preload("res://Entities/Treasure/treasure.tscn")
 @onready var spawn_markers: Array[Marker2D]
 
 ## Used with TreasureSpawnerStrategy.Sequential to track which is next.
@@ -110,7 +110,7 @@ func _try_spawn(global_pos: Vector2) -> bool:
 		if treasure.global_position == global_pos:
 			return false
 	
-	var new_treasure: Treasure = treasure.instantiate()
+	var new_treasure: Treasure = treasure_scene.instantiate()
 	
 	add_sibling(new_treasure)
 	new_treasure.global_position = global_pos
@@ -127,5 +127,5 @@ func _on_treasure_collected(treasure: Treasure) -> void:
 	blocking_treasure.erase(treasure)
 
 
-func _on_treasure_scored(treasure: Treasure) -> void:
+func _on_treasure_scored(_treasure: Treasure) -> void:
 	treasure_spawned -= 1

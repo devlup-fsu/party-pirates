@@ -11,4 +11,4 @@ script = ExtResource("1_hgmog")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tlfvq")
 
-[connection signal="area_entered" from="." to="." method="_on_treasure_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
