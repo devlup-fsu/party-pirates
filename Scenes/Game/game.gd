@@ -26,3 +26,18 @@ func _on_timer_timeout():
 	
 	if time <= 0:
 		get_tree().paused = true
+
+
+func _on_treasure_spawner_spawn_requested(position, to_spawn):
+	# Checking if treasure already exists in that position, and if yes we stop.
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = position
+	query.collide_with_areas = true
+	var nodes_at_point = get_world_2d().direct_space_state.intersect_point(query)
+	for i in nodes_at_point:
+		if (i["collider"] is Treasure):
+			print("Game: Denied treasure spawn. Reason: Treasure already exists in that location.")
+			return
+	
+	to_spawn.global_position = position
+	add_child(to_spawn)

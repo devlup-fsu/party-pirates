@@ -12,7 +12,7 @@ const player_colors: Array[Color] = [
 
 func _on_player_entered(player: Player):
 	if player.player == player_id:
-		player.store_treasure()
+		player.score_treasure()
 
 
 func _draw():
