@@ -62,10 +62,9 @@ func _on_spawn_timer_timeout():
 	spawn_treasure(1)
 
 
-## Will spawn treasurea according to [spawn_strategy]
+## Will spawn treasure according to [spawn_strategy]
 ## Note that TreasureSpawnerStrategy.All will ignore [count]
 func spawn_treasure(count: int) -> void:
-	print("TreasureSpawner: Attempting to spawn " + str(count) + " treasures.")
 	match spawn_strategy:
 		SpawnStrategy.Sequential:
 			_spawn_sequential(count)
