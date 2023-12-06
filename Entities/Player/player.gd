@@ -7,9 +7,15 @@ const STUNNED_SPEED := MAX_SPEED * 0.40
 const SPEED_DEGRADATION := 0.9
 
 @export var player := 0
+@export var cannon_parent : Node
 
 @onready var treasure_collector: TreasureCollector = $TreasureCollector
 @onready var vulnerability_timer: Timer = $VulnerabilityTimer
+@onready var left_cannon: Marker2D = $LeftCannon
+@onready var left_cannon_timer: Timer = $LeftCannon/Timer
+@onready var right_cannon: Marker2D = $RightCannon
+@onready var right_cannon_timer: Timer = $RightCannon/Timer
+@onready var cannon_scene: PackedScene = load("res://Entities/Cannons/cannon.tscn")
 
 var speed: float = 0
 var current_speed = MAX_SPEED 
@@ -39,14 +45,20 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(_delta: float):
-	# Temporary code for sending held treasure to the scoreboard.
-	# Will eventually be called instead when you reach your base.
-	if Input.is_action_just_pressed("ui_text_submit"):
-		store_treasure()
-	
-	# Temporary code to test on hit
+	var input: InputManager.InputProxy = InputManager.get_gamepad(player)
+# Temporary code to test on hit
 	if Input.is_action_just_pressed("test"):
 		got_hit()
+# Cannons, probably make a function later
+	if input.is_shoot_left_pressed():
+		if left_cannon_timer.is_stopped():
+			Cannon.create(cannon_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
+			left_cannon_timer.start()
+	if input.is_shoot_right_pressed():
+		if right_cannon_timer.is_stopped():
+			Cannon.create(cannon_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+			right_cannon_timer.start()
+		
 
 
 func store_treasure() -> void:

@@ -16,6 +16,7 @@ func start():
 	for i in range( InputManager.get_player_count() ):
 		var player := PlayerScene.instantiate() as Player
 		player.player = i
+		player.cannon_parent = $CannonParent
 		add_child(player)
 		player.global_position = $SpawnPoints.get_child( i ).global_position
 

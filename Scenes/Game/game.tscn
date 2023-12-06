@@ -144,4 +144,6 @@ position = Vector2(-528, 212)
 [node name="Treasure3" parent="." instance=ExtResource("2_8bs5j")]
 position = Vector2(-435, 393)
 
+[node name="CannonParent" type="Node" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
