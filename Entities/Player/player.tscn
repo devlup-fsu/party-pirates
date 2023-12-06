@@ -60,7 +60,20 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_vi800")
 
 [node name="TreasureCollector" parent="." node_paths=PackedStringArray("to_follow") instance=ExtResource("6_g81rv")]
+visible = false
 to_follow = NodePath("..")
 
 [node name="VulnerabilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LeftCannon" type="Marker2D" parent="."]
+position = Vector2(0, -25)
+
+[node name="Timer" type="Timer" parent="LeftCannon"]
+one_shot = true
+
+[node name="RightCannon" type="Marker2D" parent="."]
+position = Vector2(0, 25)
+
+[node name="Timer" type="Timer" parent="RightCannon"]
 one_shot = true
