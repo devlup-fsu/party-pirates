@@ -89,7 +89,7 @@ func _spawn_random(count: int) -> void:
 			var selected_marker: Marker2D = spawn_markers.pick_random()
 			
 			if _try_spawn(selected_marker.global_position):
-				return
+				break
 
 
 func _spawn_all() -> void:

@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var TIMER: Timer = $Timer
 @onready var SCORE_BOARD = $UILayer/ScoreBoard
+@onready var TREASURE_SPAWNER: TreasureSpawner = $TreasureSpawner
 
 var PlayerScene = preload( "res://Entities/Player/player.tscn" )
 
@@ -19,6 +20,8 @@ func start():
 		player.cannon_parent = $CannonParent
 		add_child(player)
 		player.global_position = $SpawnPoints.get_child( i ).global_position
+	
+	TREASURE_SPAWNER.spawn_treasure(3)
 
 
 func _on_timer_timeout():
