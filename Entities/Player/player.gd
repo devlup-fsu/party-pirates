@@ -36,6 +36,16 @@ func _physics_process(delta: float) -> void:
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
 	move_and_collide(velocity * delta)
+	
+	if global_position.x <= -1190:
+		global_position.x = 1189
+	elif global_position.x >= 1190:
+		global_position.x = -1189
+	
+	if global_position.y <= -598:
+		global_position.y = 691
+	elif global_position.y >= 692:
+		global_position.y = -597
 
 
 func _process(_delta: float):
