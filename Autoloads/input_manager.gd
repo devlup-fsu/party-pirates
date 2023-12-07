@@ -42,6 +42,32 @@ class InputProxy:
 			return Input.is_physical_key_pressed(key)
 		else:
 			return Input.get_joy_axis(self.gamepad_id, JOY_AXIS_TRIGGER_RIGHT) > 0.75
+	
+	func get_move_vector() -> Vector2:
+		if self.gamepad_id >= 0:
+			var x = Input.get_joy_axis(self.gamepad_id, JOY_AXIS_LEFT_X)
+			var y = Input.get_joy_axis(self.gamepad_id, JOY_AXIS_LEFT_Y)
+			var direction = Vector2(x, y)
+			if (abs(direction.length()) < 0.75):
+				return Vector2()
+			else:
+				return direction.normalized()
+		
+		# TODO: Keyboard support
+		return Vector2()
+	
+	func get_shoot_vector() -> Vector2:
+		if self.gamepad_id >= 0:
+			var x = Input.get_joy_axis(self.gamepad_id, JOY_AXIS_RIGHT_X)
+			var y = Input.get_joy_axis(self.gamepad_id, JOY_AXIS_RIGHT_Y)
+			var direction = Vector2(x, y)
+			if (abs(direction.length()) < 0.75):
+				return Vector2()
+			else:
+				return direction.normalized()
+		
+		# TODO: Keyboard support
+		return Vector2()
 
 
 var gamepads: Array[InputProxy] = []
