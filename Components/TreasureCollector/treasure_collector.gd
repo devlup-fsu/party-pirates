@@ -12,6 +12,8 @@ extends Area2D
 @export var tail_padding := 20
 ## If true, followers will be added upon collision with this TreasureCollector. 
 @export var auto_collect_followers := true
+## The maximum amount of treasure that can be held at once.
+@export var max_treasure := 3
 
 ## A follower will move towards the location of the previous (or earlier) follower, but not exactly;
 ## Rather than targetting its exact position, it will go slightly behind.
@@ -29,10 +31,11 @@ func _on_area_entered(area: Area2D) -> void:
 	if not area is Treasure:
 		return
 	
-	if area.is_collected or not is_collecting: return
-	area.collect()
-	
-	collected_treasure.push_back(area)
+	if collected_treasure.size() < max_treasure:
+		if area.is_collected or not is_collecting: return
+		area.collect()
+		
+		collected_treasure.push_back(area)
 
 
 func _physics_process(delta: float) -> void:
