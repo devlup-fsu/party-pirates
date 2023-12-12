@@ -42,6 +42,21 @@ class InputProxy:
 			return Input.is_physical_key_pressed(key)
 		else:
 			return Input.get_joy_axis(self.gamepad_id, JOY_AXIS_TRIGGER_RIGHT) > 0.75
+
+	func is_move_left_pressed() -> bool:
+		if self.gamepad_id == -1 or self.gamepad_id == -2:
+			var key := KEY_W if self.gamepad_id == -1 else KEY_UP
+			return Input.is_physical_key_pressed(key)
+		else:
+			return Input.is_joy_button_pressed(self.gamepad_id, JOY_BUTTON_LEFT_SHOULDER)
+	
+	
+	func is_move_right_pressed() -> bool:
+		if self.gamepad_id == -1 or self.gamepad_id == -2:
+			var key := KEY_S if self.gamepad_id == -1 else KEY_DOWN
+			return Input.is_physical_key_pressed(key)
+		else:
+			return Input.is_joy_button_pressed(self.gamepad_id, JOY_BUTTON_RIGHT_SHOULDER)
 	
 	func get_move_vector() -> Vector2:
 		if self.gamepad_id >= 0:

@@ -136,8 +136,7 @@ position = Vector2(1028, 455)
 player_id = 3
 
 [node name="TreasureSpawner" parent="." instance=ExtResource("7_oaxjh")]
-wait_time = 7
-max_spawned_at_once = 4
+max_spawned_at_once = 100
 max_on_screen_at_once = 10
 
 [node name="Marker2D" type="Marker2D" parent="TreasureSpawner"]

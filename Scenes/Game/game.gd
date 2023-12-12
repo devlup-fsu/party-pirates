@@ -22,6 +22,7 @@ func start():
 		player.global_position = $SpawnPoints.get_child( i ).global_position
 	
 	TREASURE_SPAWNER.spawn_treasure(3)
+	TREASURE_SPAWNER.wait_time = 9 - InputManager.get_player_count()
 
 
 func _on_timer_timeout():

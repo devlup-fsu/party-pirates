@@ -17,7 +17,7 @@ static func create(parent: Node, pos: Vector2, dir: Vector2):
 
 func _ready():
 	var despawnTimer = get_tree().create_timer(ALIVE_TIME)
-	despawnTimer.timeout.connect(_on_despawn_timer_timeout)
+#	despawnTimer.timeout.connect(_on_despawn_timer_timeout)
 
 
 func _physics_process(delta: float):

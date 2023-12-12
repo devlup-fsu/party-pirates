@@ -30,8 +30,8 @@ func _physics_process(delta: float) -> void:
 	var input := InputManager.get_gamepad(player)
 	
 	var input_dir := Vector2()
-#	input_dir.x = input.get_turning()
-	input_dir.x = sign(Vector2.RIGHT.rotated(rotation).cross(input.get_move_vector()))
+	input_dir.x = input.get_turning()
+#	input_dir.x = sign(Vector2.RIGHT.rotated(rotation).cross(input.get_move_vector()))
 	input_dir.y = 1
 	
 	speed = clamp((input_dir.y * 30) + (speed), 0, current_speed)
@@ -57,26 +57,26 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(_delta: float):
+	if current_speed == STUNNED_SPEED: return
+	
 	var input: InputManager.InputProxy = InputManager.get_gamepad(player)
 	
 	var shoot_dir = input.get_shoot_vector()
 	var cross = Vector2.RIGHT.rotated(rotation).cross(shoot_dir)
 	
 #	if input.is_shoot_left_pressed():
-#	if sign(cross) == -1:
-	if sign(cross) == -1 and cross < -0.4:
+	if input.is_shoot_right_pressed():
+#	if sign(cross) == -1 and cross < -0.4:
 		if left_cannon_timer.is_stopped():
-			print("left ", cross)
-#			CannonBall.create(cannon_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
-			CannonBall.create(cannon_parent, left_cannon.global_position, shoot_dir)
+			CannonBall.create(cannon_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
+#			CannonBall.create(cannon_parent, left_cannon.global_position, shoot_dir)
 			left_cannon_timer.start(shoot_delay)
 	
-#	if input.is_shoot_right_pressed():
-	if sign(cross) == 1 and cross > 0.4:
+	if input.is_shoot_right_pressed():
+#	if sign(cross) == 1 and cross > 0.4:
 		if right_cannon_timer.is_stopped():
-			print("right ", cross)
-#			CannonBall.create(cannon_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
-			CannonBall.create(cannon_parent, right_cannon.global_position, shoot_dir)
+			CannonBall.create(cannon_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+#			CannonBall.create(cannon_parent, right_cannon.global_position, shoot_dir)
 			right_cannon_timer.start(shoot_delay)
 
 

@@ -15,13 +15,13 @@ enum SpawnStrategy {
 
 @export var spawn_strategy: SpawnStrategy = SpawnStrategy.Random
 @export var is_timed := true
-@export var wait_time := 3
+@export var wait_time := 1
 ## The maximum number of treasure that is allowed spawned at once without.
 ## being picked up. Set to 0 to not have a maximum.
-@export_range(0, 10) var max_spawned_at_once := 3
+@export_range(0, 1000) var max_spawned_at_once := 3
 ## The maximum number of treasure that is allowed on the screen at once.
 ## Set to 0 to not have a maximum.
-@export_range(0, 10) var max_on_screen_at_once := 5
+@export_range(0, 1000) var max_on_screen_at_once := 5
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var treasure_scene: PackedScene = preload("res://Entities/Treasure/treasure.tscn")
