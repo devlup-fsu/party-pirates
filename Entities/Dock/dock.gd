@@ -10,11 +10,11 @@ const player_colors: Array[Color] = [
 ]
 
 
-func _on_body_entered(body: Node2D):
+func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if body.player == player_id:
 			body.score_treasure()
 
 
-func _draw():
+func _draw() -> void:
 	draw_circle(Vector2(), $CollisionShape2D.shape.radius, Color(player_colors[player_id], 0.25))

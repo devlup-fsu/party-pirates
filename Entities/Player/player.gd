@@ -1,13 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
-const MAX_SPEED := 300.0
-const TURN_SPEED := deg_to_rad(90)
-const STUNNED_SPEED := MAX_SPEED * 0.40
-const SPEED_DEGRADATION := 0.9
+@export var max_speed := 300.0
+@export var turn_speed := deg_to_rad(90)
+@export var strunned_speed := max_speed * 0.40
+@export var speed_degredation := 0.9
 
 @export var player := 0
-@export var cannon_parent : Node
+@export var cannon_ball_parent: Node
 @export var shoot_delay := 0.5
 
 @onready var treasure_collector: TreasureCollector = $TreasureCollector
@@ -18,15 +18,16 @@ const SPEED_DEGRADATION := 0.9
 @onready var right_cannon_timer: Timer = $RightCannon/Timer
 
 var speed: float = 0
-var current_speed = MAX_SPEED 
+var current_speed: float = max_speed 
 
 
 func _ready() -> void:
+	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
+	
 	$AnimatedSprite2D.play("player" + str(self.player))
 
 
 func _physics_process(delta: float) -> void:
-	# TODO: Add support for multiple players
 	var input := InputManager.get_gamepad(player)
 	
 	var input_dir := Vector2()
@@ -35,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	
 	speed = clamp((input_dir.y * 30) + (speed), 0, current_speed)
 	
-	var target := Vector2(cos(rotation), sin(rotation)).rotated(input_dir.x * TURN_SPEED * delta * (1 + speed / MAX_SPEED * 24))
+	var target := Vector2(cos(rotation), sin(rotation)).rotated(input_dir.x * turn_speed * delta * (1 + speed / max_speed * 24))
 	var direction = lerp(target, velocity.normalized(), speed / current_speed * 0.9)
 	
 	if input_dir:
@@ -44,6 +45,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_collide(velocity * delta)
 	
+	# Loop around the screen.
 	if global_position.x <= -1190:
 		global_position.x = 1189
 	elif global_position.x >= 1190:
@@ -55,17 +57,17 @@ func _physics_process(delta: float) -> void:
 		global_position.y = -597
 
 
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	var input: InputManager.InputProxy = InputManager.get_gamepad(player)
 	
 	if input.is_shoot_left_pressed():
 		if left_cannon_timer.is_stopped():
-			CannonBall.create(cannon_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
+			CannonBall.create(cannon_ball_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
 			left_cannon_timer.start(shoot_delay)
 	
 	if input.is_shoot_right_pressed():
 		if right_cannon_timer.is_stopped():
-			CannonBall.create(cannon_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+			CannonBall.create(cannon_ball_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
 			right_cannon_timer.start(shoot_delay)
 
 
@@ -74,13 +76,13 @@ func score_treasure() -> void:
 	Scores.add_player_score(player, score)
 
 
-func got_hit() -> void:
+func hit() -> void:
 	treasure_collector.drop_treasure()
-	current_speed = STUNNED_SPEED
+	current_speed = strunned_speed
 	treasure_collector.disable()
 	
 	vulnerability_timer.start()
 	await vulnerability_timer.timeout
 	
-	current_speed = MAX_SPEED
+	current_speed = max_speed
 	treasure_collector.enable()

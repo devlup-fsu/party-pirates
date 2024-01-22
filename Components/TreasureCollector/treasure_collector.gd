@@ -57,14 +57,11 @@ func _physics_process(delta: float) -> void:
 			current.global_position = direction + current.global_position.lerp(previous.global_position, follow_speed * delta)
 
 
-func drop_treasure() -> int:
-	var size := collected_treasure.size()
-	
+func drop_treasure() -> void:
 	for treasure in collected_treasure:
 		treasure.drop()
 	collected_treasure = []
-	
-	return size
+
 
 ## Deletes the treasure nodes, removes them from the array, and returns the count of treasure.
 func score_treasure() -> int:

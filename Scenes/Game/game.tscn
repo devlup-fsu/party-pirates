@@ -157,6 +157,6 @@ position = Vector2(-151, 45)
 [node name="Marker2D6" type="Marker2D" parent="TreasureSpawner"]
 position = Vector2(145, 46)
 
-[node name="CannonParent" type="Node" parent="."]
+[node name="CannonBallParent" type="Node" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

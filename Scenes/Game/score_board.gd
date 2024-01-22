@@ -7,7 +7,7 @@ extends Control
 @onready var CLOCK: Label = $Clock
 
 
-func _ready():
+func _ready() -> void:
 	Scores.score_changed.connect(_on_scores_changed)
 
 

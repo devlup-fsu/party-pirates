@@ -42,7 +42,7 @@ func _ready():
 		if child is Marker2D:
 			spawn_markers.append(child)
 	
-	assert(spawn_markers.size() > 0, "TreasureSpawner: Add Marker2D children or set spawn_strategy to Self")
+	assert(spawn_markers.size() > 0, "TreasureSpawner: Add Marker2D children")
 	
 	spawn_timer.wait_time = wait_time
 	
@@ -58,12 +58,12 @@ func disable_timer() -> void:
 	spawn_timer.stop()
 
 
-func _on_spawn_timer_timeout():
+func _on_spawn_timer_timeout() -> void:
 	spawn_treasure(1)
 
 
 ## Will spawn treasure according to [spawn_strategy]
-## Note that TreasureSpawnerStrategy.All will ignore [count]
+## Note that TreasureSpawnerStrategy. All will ignore [count]
 func spawn_treasure(count: int) -> void:
 	match spawn_strategy:
 		SpawnStrategy.Sequential:
