@@ -1,19 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=13 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
 [ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_bsjlv"]
-font_size = 52
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_bhg0a"]
+font_size = 60
+font_color = Color(0.3, 0.03, 0.0525001, 1)
+outline_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_ag7vc"]
+font_size = 60
+font_color = Color(0.301961, 0.156863, 0.0313726, 1)
+outline_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_ax156"]
+font_size = 60
+font_color = Color(0.03, 0.12, 0.3, 1)
+outline_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_eyhvf"]
+font_size = 60
+font_color = Color(0.03, 0.3, 0.0435, 1)
+outline_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_0yh8e"]
-font_size = 52
-font_color = Color(0, 0, 0, 1)
+font_size = 58
+font_color = Color(0.301961, 0.0980392, 0.0313726, 1)
+outline_size = 12
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8ljh1")
@@ -59,8 +77,9 @@ offset_left = 97.0
 offset_top = -3.0
 offset_right = 217.0
 offset_bottom = 79.0
+theme = ExtResource("5_do7y5")
 text = "50"
-label_settings = SubResource("LabelSettings_bsjlv")
+label_settings = SubResource("LabelSettings_bhg0a")
 horizontal_alignment = 1
 
 [node name="Player1" type="Label" parent="UILayer/ScoreBoard"]
@@ -69,8 +88,9 @@ offset_left = 215.0
 offset_top = -3.0
 offset_right = 335.0
 offset_bottom = 79.0
+theme = ExtResource("5_do7y5")
 text = "50"
-label_settings = SubResource("LabelSettings_bsjlv")
+label_settings = SubResource("LabelSettings_ag7vc")
 horizontal_alignment = 1
 
 [node name="Player2" type="Label" parent="UILayer/ScoreBoard"]
@@ -79,8 +99,9 @@ offset_left = 819.0
 offset_top = -2.0
 offset_right = 939.0
 offset_bottom = 80.0
+theme = ExtResource("5_do7y5")
 text = "50"
-label_settings = SubResource("LabelSettings_bsjlv")
+label_settings = SubResource("LabelSettings_ax156")
 horizontal_alignment = 1
 
 [node name="Player3" type="Label" parent="UILayer/ScoreBoard"]
@@ -89,8 +110,9 @@ offset_left = 933.0
 offset_top = -3.0
 offset_right = 1053.0
 offset_bottom = 79.0
+theme = ExtResource("5_do7y5")
 text = "50"
-label_settings = SubResource("LabelSettings_bsjlv")
+label_settings = SubResource("LabelSettings_eyhvf")
 horizontal_alignment = 1
 
 [node name="Clock" type="Label" parent="UILayer/ScoreBoard"]
@@ -99,6 +121,7 @@ offset_left = 421.0
 offset_top = -3.0
 offset_right = 525.0
 offset_bottom = 72.0
+theme = ExtResource("5_do7y5")
 text = "3:00"
 label_settings = SubResource("LabelSettings_0yh8e")
 horizontal_alignment = 1
@@ -136,8 +159,8 @@ player_id = 3
 
 [node name="TreasureSpawner" parent="." instance=ExtResource("7_oaxjh")]
 wait_time = 7
-max_spawned_at_once = 4
-max_on_screen_at_once = 10
+max_spawned_at_once = 10
+max_on_screen_at_once = 4
 
 [node name="Marker2D" type="Marker2D" parent="TreasureSpawner"]
 position = Vector2(-447, -485)

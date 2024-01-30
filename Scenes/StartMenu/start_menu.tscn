@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds2bhpdu2wk15"]
+[gd_scene load_steps=4 format=3 uid="uid://ds2bhpdu2wk15"]
 
 [ext_resource type="Script" path="res://Scenes/StartMenu/start_menu.gd" id="1_2w4ik"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_84031"]
-font_size = 100
+[ext_resource type="Texture2D" uid="uid://cejpxsxr3r5ic" path="res://Scenes/StartMenu/logo.png" id="2_676j5"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="3_aap2y"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -14,22 +13,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2w4ik")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 70.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -314.0
+offset_top = 20.0
+offset_right = 316.0
+offset_bottom = 340.0
 grow_horizontal = 2
-text = "Party Pirates!"
-label_settings = SubResource("LabelSettings_84031")
-horizontal_alignment = 1
+texture = ExtResource("2_676j5")
 
 [node name="StartButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 363.0
-offset_right = 700.0
-offset_bottom = 438.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -195.0
+offset_right = 142.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_aap2y")
 theme_override_font_sizes/font_size = 48
 text = "Start Game!"
 
