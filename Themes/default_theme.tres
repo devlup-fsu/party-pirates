@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cl5dwigu7j6fe"]
+
+[ext_resource type="FontFile" uid="uid://sybdy3hwfd2k" path="res://Themes/PirataOne.ttf" id="1_udp0g"]
+
+[resource]
+default_font = ExtResource("1_udp0g")
