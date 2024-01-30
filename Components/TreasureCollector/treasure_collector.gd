@@ -22,9 +22,23 @@ var collected_treasure: Array[Treasure] = []
 ## If true, [TreasureCollector] will automatically add encountered Treasure to itself.
 var is_collecting := true
 
+## Used by expand_radius() and restore_radius()
+@onready var collShape: CircleShape2D = $CollisionShape2D.shape
+@onready var original_radius: float = collShape.radius
+
 func _ready() -> void:
 	assert(to_follow != null, "TreasureCollector: property [to_follow] must not be null.")
 	assert("velocity" in to_follow, "TreasureCollector: property [to_follow] must have velocity property.")
+	
+	
+	# This is for MagnetPowerup to work.
+	# Godot tries to share resources when it can, but we want each TreasureCollector to have a unique Shape.
+	var current = $CollisionShape2D.shape
+	var uniqueShape = CircleShape2D.new()
+	uniqueShape.radius = current.radius
+	$CollisionShape2D.shape = uniqueShape
+	collShape = uniqueShape
+
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -81,3 +95,10 @@ func enable() -> void:
 
 func disable() -> void:
 	is_collecting = false
+
+
+func expand_radius(amount: int) -> void:
+	collShape.radius += amount
+
+func restore_radius() -> void:
+	collShape.radius = original_radius

@@ -20,6 +20,7 @@ extends CharacterBody2D
 var speed: float = 0
 var current_speed: float = max_speed 
 
+var current_powerup: Powerup = null
 
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
@@ -74,6 +75,13 @@ func _process(_delta: float) -> void:
 func score_treasure() -> void:
 	var score = treasure_collector.score_treasure()
 	Scores.add_player_score(player, score)
+
+
+func accept_powerup(powerup: Powerup) -> void:
+	if current_powerup != null: current_powerup.remove()
+	current_powerup = powerup
+	powerup.set_target(self)
+	current_powerup.apply()
 
 
 func hit() -> void:
