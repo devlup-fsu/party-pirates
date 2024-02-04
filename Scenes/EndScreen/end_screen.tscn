@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckf6cobgo5mmq"]
+
+[ext_resource type="Script" path="res://Scenes/EndScreen/end_screen.gd" id="1_0imri"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="1_tg4ih"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0imri")
+
+[node name="PlayAgain" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -283.001
+offset_top = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_tg4ih")
+theme_override_font_sizes/font_size = 48
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -297.0
+offset_top = -213.0
+offset_right = -13.9987
+offset_bottom = -138.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_tg4ih")
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
+
+[connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

@@ -7,7 +7,7 @@ extends Node2D
 var PlayerScene = preload( "res://Entities/Player/player.tscn" )
 
 # Start the timer at 3 minutes, or 60 * 3 seconds.
-var time := 60 * 3
+var time := 3
 
 func _ready():
 	Scores.reset()
@@ -29,4 +29,4 @@ func _on_timer_timeout():
 	SCORE_BOARD.update_time(time)
 	
 	if time <= 0:
-		get_tree().paused = true
+		get_tree().change_scene_to_file("res://Scenes/EndScreen/end_screen.tscn")
