@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckf6cobgo5mmq"]
+[gd_scene load_steps=14 format=3 uid="uid://ckf6cobgo5mmq"]
 
 [ext_resource type="Script" path="res://Scenes/EndScreen/end_screen.gd" id="1_0imri"]
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="1_tg4ih"]
@@ -58,6 +58,11 @@ animations = [{
 "name": &"player3",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqd21"]
+font_size = 40
+font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+outline_size = 10
 
 [node name="EndScreen" type="Control"]
 layout_mode = 3
@@ -134,7 +139,67 @@ animation = &"player3"
 position = Vector2(940, 513)
 scale = Vector2(0.51, 0.51)
 sprite_frames = SubResource("SpriteFrames_r277e")
-animation = &"player3"
+animation = &"player1"
+
+[node name="Score0" type="Label" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 47.0
+offset_right = 294.0
+offset_bottom = 100.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[node name="Score1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 380.0
+offset_right = 542.0
+offset_bottom = 433.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 380.0
+offset_right = 776.0
+offset_bottom = 433.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[node name="Score3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 380.0
+offset_right = 1019.0
+offset_bottom = 433.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
