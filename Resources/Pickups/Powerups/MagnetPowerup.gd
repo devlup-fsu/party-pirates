@@ -1,5 +1,5 @@
 class_name MagnetPowerup
-extends Powerup
+extends Pickup
 
 
 @export var duration: float = 7.0

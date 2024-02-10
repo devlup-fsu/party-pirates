@@ -1,7 +1,10 @@
-class_name Powerup
+class_name Pickup
 extends Resource
 
 var target: Player = null
+
+func _init(target: Player = null): # = null required, as otherwise it'd interfere with .instantiate() and similar methods.
+	self.target = target
 
 func set_target(player: Player) -> void:
 	target = player
