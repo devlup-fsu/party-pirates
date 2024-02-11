@@ -1,0 +1,432 @@
+[gd_resource type="VisualShader" load_steps=33 format=3 uid="uid://djp1uj0gk42kv"]
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_f8mte"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_8p75i"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_qp0dd"]
+default_input_values = [0, 0.0, 1, 9.415]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_cdyiq"]
+default_input_values = [0, 0.4, 1, 0.34]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_kmnam"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_pwu48"]
+function = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2fvur"]
+default_input_values = [0, 0.0, 1, 6.0]
+operator = 3
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_4v3kd"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_8guyc"]
+default_input_values = [0, 0.0, 1, 20.0]
+operator = 3
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_vyyg5"]
+size = Vector2(740, 340)
+expression = "float worley = worley(UV, SCALE, SCALE);
+COLOR = vec4(vec3(worley), 1.0);"
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_5e756"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_y6da1"]
+constant = Color(0.979167, 0.983333, 1, 1)
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_7tw4m"]
+size = Vector2(740, 340)
+expression = "float worley = worley(UV, SCALE, SCALE);
+COLOR = vec4(vec3(worley), 1.0);"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_arjo1"]
+constant = 0.07
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_nrl8u"]
+constant = 0.1
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_sd4ms"]
+constant = Color(0.0765686, 0.549479, 0.524871, 1)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qfp0s"]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_wc21u"]
+constant = Color(0.354291, 0.823353, 0.833333, 1)
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_2m7gm"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1)]
+operator = 2
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_hsise"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_ejpec"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0, 0, 0)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_13dgl"]
+constant = 0.5
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_eg5cs"]
+constant = 15.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ctse6"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ue78b"]
+operator = 3
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_rfqsb"]
+size = Vector2(860, 940)
+expression = "// stolen from https://godotshaders.com/snippet/voronoi/
+
+vec2 random(vec2 uv) {
+	return vec2(fract(sin(dot(uv.xy,
+		vec2(12.9898,78.233))) * 43758.5453123));
+}
+
+float worley(vec2 uv, float columns, float rows) {
+	
+	vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+	vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+	
+	float minimum_dist = 1.0;  
+	
+	for (int y= -1; y <= 1; y++) {
+		for (int x= -1; x <= 1; x++) {
+			vec2 neighbor = vec2(float(x),float(y));
+			vec2 point = random(index_uv + neighbor);
+			
+			vec2 diff = neighbor + point - fract_uv;
+			float dist = length(diff);
+			minimum_dist = min(minimum_dist, dist);
+		}
+	}
+	
+	return minimum_dist;
+}"
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_jo4qx"]
+function = 11
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_h5cbk"]
+output_port_for_preview = 0
+default_input_values = [0, Vector2(0, 0), 1, Vector2(-0.5, -0.5)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_gx5eu"]
+default_input_values = [1, Vector2(3.3, 1), 2, Vector2(3.98, 0)]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6f3x3"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_pw513"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_yncvg"]
+function = 1
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+// GlobalExpression:0
+	// stolen from https://godotshaders.com/snippet/voronoi/
+	
+	vec2 random(vec2 uv) {
+		return vec2(fract(sin(dot(uv.xy,
+			vec2(12.9898,78.233))) * 43758.5453123));
+	}
+	
+	float worley(vec2 uv, float columns, float rows) {
+		
+		vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+		vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+		
+		float minimum_dist = 1.0;  
+		
+		for (int y= -1; y <= 1; y++) {
+			for (int x= -1; x <= 1; x++) {
+				vec2 neighbor = vec2(float(x),float(y));
+				vec2 point = random(index_uv + neighbor);
+				
+				vec2 diff = neighbor + point - fract_uv;
+				float dist = length(diff);
+				minimum_dist = min(minimum_dist, dist);
+			}
+		}
+		
+		return minimum_dist;
+	}
+
+void fragment() {
+// ColorConstant:29
+	vec4 n_out29p0 = vec4(0.076569, 0.549479, 0.524871, 1.000000);
+
+
+// ColorConstant:23
+	vec4 n_out23p0 = vec4(0.979167, 0.983333, 1.000000, 1.000000);
+
+
+// Input:3
+	vec2 n_out3p0 = UV;
+
+
+// VectorOp:45
+	vec2 n_in45p1 = vec2(-0.50000, -0.50000);
+	vec2 n_out45p0 = n_out3p0 + n_in45p1;
+
+
+// VectorDecompose:10
+	float n_out10p0 = n_out45p0.x;
+	float n_out10p1 = n_out45p0.y;
+
+
+// Input:14
+	float n_out14p0 = TIME;
+
+
+// FloatOp:19
+	float n_in19p1 = 20.00000;
+	float n_out19p0 = n_out14p0 / n_in19p1;
+
+
+// FloatFunc:16
+	float n_out16p0 = sin(n_out19p0);
+
+
+// FloatOp:17
+	float n_in17p1 = 6.00000;
+	float n_out17p0 = n_out16p0 / n_in17p1;
+
+
+// FloatOp:18
+	float n_in18p0 = 0.00000;
+	float n_out18p0 = n_in18p0 + n_out10p0;
+
+
+// FloatOp:13
+	float n_out13p0 = n_out17p0 * n_out18p0;
+
+
+// FloatFunc:9
+	float n_out9p0 = cos(n_out13p0);
+
+
+// FloatOp:12
+	float n_out12p0 = n_out9p0 + n_out10p1;
+
+
+// VectorCompose:11
+	vec2 n_out11p0 = vec2(n_out10p0, n_out12p0);
+
+
+// Input:6
+	float n_out6p0 = TIME;
+
+
+// VectorCompose:7
+	float n_in7p1 = 0.00000;
+	vec2 n_out7p0 = vec2(n_out6p0, n_in7p1);
+
+
+// UVFunc:5
+	vec2 n_in5p1 = vec2(3.30000, 1.00000);
+	vec2 n_out5p0 = n_out7p0 * n_in5p1 + n_out11p0;
+
+
+// FloatConstant:27
+	float n_out27p0 = 0.070000;
+
+
+	vec4 n_out2p0;
+// Expression:2
+	n_out2p0 = vec4(0.0, 0.0, 0.0, 0.0);
+	{
+		float worley = worley(n_out5p0, n_out27p0, n_out27p0);
+		n_out2p0 = vec4(vec3(worley), 1.0);
+	}
+
+
+// Mix:21
+	vec3 n_out21p0 = mix(vec3(n_out29p0.xyz), vec3(n_out23p0.xyz), vec3(n_out2p0.xyz));
+
+
+// ColorConstant:30
+	vec4 n_out30p0 = vec4(0.354291, 0.823353, 0.833333, 1.000000);
+
+
+// FloatConstant:28
+	float n_out28p0 = 0.100000;
+
+
+	vec4 n_out25p0;
+// Expression:25
+	n_out25p0 = vec4(0.0, 0.0, 0.0, 0.0);
+	{
+		float worley = worley(n_out5p0, n_out28p0, n_out28p0);
+		n_out25p0 = vec4(vec3(worley), 1.0);
+	}
+
+
+// ColorOp:31
+	vec3 n_in31p1 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out31p0 = min(vec3(n_out25p0.xyz), n_in31p1);
+
+
+// Mix:32
+	vec3 n_out32p0 = mix(vec3(n_out29p0.xyz), vec3(n_out30p0.xyz), n_out31p0);
+
+
+// FloatConstant:34
+	float n_out34p0 = 0.500000;
+
+
+// Mix:33
+	vec3 n_out33p0 = mix(n_out21p0, n_out32p0, vec3(n_out34p0));
+
+
+// FloatConstant:35
+	float n_out35p0 = 15.000000;
+
+
+// VectorOp:37
+	vec3 n_out37p0 = n_out33p0 * vec3(n_out35p0);
+
+
+// VectorFunc:40
+	vec3 n_out40p0 = ceil(n_out37p0);
+
+
+// VectorOp:39
+	vec3 n_out39p0 = n_out40p0 / vec3(n_out35p0);
+
+
+// Output:0
+	COLOR.rgb = n_out39p0;
+
+
+}
+"
+graph_offset = Vector2(-163.253, -102.95)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(2460, 200)
+nodes/fragment/2/node = SubResource("VisualShaderNodeExpression_vyyg5")
+nodes/fragment/2/position = Vector2(-740, 40)
+nodes/fragment/2/size = Vector2(740, 340)
+nodes/fragment/2/input_ports = "0,3,UV;1,0,SCALE;"
+nodes/fragment/2/output_ports = "0,5,COLOR;"
+nodes/fragment/2/expression = "float worley = worley(UV, SCALE, SCALE);
+COLOR = vec4(vec3(worley), 1.0);"
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_qfp0s")
+nodes/fragment/3/position = Vector2(-4100, 100)
+nodes/fragment/4/node = SubResource("VisualShaderNodeGlobalExpression_rfqsb")
+nodes/fragment/4/position = Vector2(-820, -940)
+nodes/fragment/4/size = Vector2(860, 940)
+nodes/fragment/4/input_ports = ""
+nodes/fragment/4/output_ports = ""
+nodes/fragment/4/expression = "// stolen from https://godotshaders.com/snippet/voronoi/
+
+vec2 random(vec2 uv) {
+	return vec2(fract(sin(dot(uv.xy,
+		vec2(12.9898,78.233))) * 43758.5453123));
+}
+
+float worley(vec2 uv, float columns, float rows) {
+	
+	vec2 index_uv = floor(vec2(uv.x * columns, uv.y * rows));
+	vec2 fract_uv = fract(vec2(uv.x * columns, uv.y * rows));
+	
+	float minimum_dist = 1.0;  
+	
+	for (int y= -1; y <= 1; y++) {
+		for (int x= -1; x <= 1; x++) {
+			vec2 neighbor = vec2(float(x),float(y));
+			vec2 point = random(index_uv + neighbor);
+			
+			vec2 diff = neighbor + point - fract_uv;
+			float dist = length(diff);
+			minimum_dist = min(minimum_dist, dist);
+		}
+	}
+	
+	return minimum_dist;
+}"
+nodes/fragment/5/node = SubResource("VisualShaderNodeUVFunc_gx5eu")
+nodes/fragment/5/position = Vector2(-1260, 60)
+nodes/fragment/6/node = SubResource("VisualShaderNodeInput_6f3x3")
+nodes/fragment/6/position = Vector2(-2260, 480)
+nodes/fragment/7/node = SubResource("VisualShaderNodeVectorCompose_pw513")
+nodes/fragment/7/position = Vector2(-1480, 420)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_yncvg")
+nodes/fragment/9/position = Vector2(-2160, -240)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorDecompose_f8mte")
+nodes/fragment/10/position = Vector2(-2980, 60)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorCompose_8p75i")
+nodes/fragment/11/position = Vector2(-1520, 40)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_qp0dd")
+nodes/fragment/12/position = Vector2(-1820, 220)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatOp_cdyiq")
+nodes/fragment/13/position = Vector2(-2460, -220)
+nodes/fragment/14/node = SubResource("VisualShaderNodeInput_kmnam")
+nodes/fragment/14/position = Vector2(-4000, -180)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatFunc_pwu48")
+nodes/fragment/16/position = Vector2(-3160, -280)
+nodes/fragment/17/node = SubResource("VisualShaderNodeFloatOp_2fvur")
+nodes/fragment/17/position = Vector2(-2860, -300)
+nodes/fragment/18/node = SubResource("VisualShaderNodeFloatOp_4v3kd")
+nodes/fragment/18/position = Vector2(-2720, -100)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatOp_8guyc")
+nodes/fragment/19/position = Vector2(-3460, -220)
+nodes/fragment/21/node = SubResource("VisualShaderNodeMix_5e756")
+nodes/fragment/21/position = Vector2(760, 20)
+nodes/fragment/23/node = SubResource("VisualShaderNodeColorConstant_y6da1")
+nodes/fragment/23/position = Vector2(200, 220)
+nodes/fragment/25/node = SubResource("VisualShaderNodeExpression_7tw4m")
+nodes/fragment/25/position = Vector2(-740, 360)
+nodes/fragment/25/size = Vector2(740, 340)
+nodes/fragment/25/input_ports = "0,3,UV;1,0,SCALE;"
+nodes/fragment/25/output_ports = "0,5,COLOR;"
+nodes/fragment/25/expression = "float worley = worley(UV, SCALE, SCALE);
+COLOR = vec4(vec3(worley), 1.0);"
+nodes/fragment/27/node = SubResource("VisualShaderNodeFloatConstant_arjo1")
+nodes/fragment/27/position = Vector2(-1200, 360)
+nodes/fragment/28/node = SubResource("VisualShaderNodeFloatConstant_nrl8u")
+nodes/fragment/28/position = Vector2(-1200, 520)
+nodes/fragment/29/node = SubResource("VisualShaderNodeColorConstant_sd4ms")
+nodes/fragment/29/position = Vector2(200, 340)
+nodes/fragment/30/node = SubResource("VisualShaderNodeColorConstant_wc21u")
+nodes/fragment/30/position = Vector2(200, 460)
+nodes/fragment/31/node = SubResource("VisualShaderNodeColorOp_2m7gm")
+nodes/fragment/31/position = Vector2(180, 600)
+nodes/fragment/32/node = SubResource("VisualShaderNodeMix_hsise")
+nodes/fragment/32/position = Vector2(820, 440)
+nodes/fragment/33/node = SubResource("VisualShaderNodeMix_ejpec")
+nodes/fragment/33/position = Vector2(1100, 120)
+nodes/fragment/34/node = SubResource("VisualShaderNodeFloatConstant_13dgl")
+nodes/fragment/34/position = Vector2(800, 240)
+nodes/fragment/35/node = SubResource("VisualShaderNodeFloatConstant_eg5cs")
+nodes/fragment/35/position = Vector2(1420, 300)
+nodes/fragment/37/node = SubResource("VisualShaderNodeVectorOp_ctse6")
+nodes/fragment/37/position = Vector2(1700, 100)
+nodes/fragment/39/node = SubResource("VisualShaderNodeVectorOp_ue78b")
+nodes/fragment/39/position = Vector2(2140, 100)
+nodes/fragment/40/node = SubResource("VisualShaderNodeVectorFunc_jo4qx")
+nodes/fragment/40/position = Vector2(1920, 100)
+nodes/fragment/45/node = SubResource("VisualShaderNodeVectorOp_h5cbk")
+nodes/fragment/45/position = Vector2(-3500, 140)
+nodes/fragment/connections = PackedInt32Array(5, 0, 2, 0, 7, 0, 5, 2, 11, 0, 5, 0, 9, 0, 12, 0, 10, 0, 11, 0, 10, 1, 12, 1, 12, 0, 11, 1, 16, 0, 17, 0, 10, 0, 18, 1, 14, 0, 19, 0, 19, 0, 16, 0, 13, 0, 9, 0, 5, 0, 25, 0, 31, 0, 32, 2, 25, 0, 31, 0, 21, 0, 33, 0, 32, 0, 33, 1, 34, 0, 33, 2, 2, 0, 21, 2, 35, 0, 37, 1, 35, 0, 39, 1, 33, 0, 37, 0, 37, 0, 40, 0, 40, 0, 39, 0, 27, 0, 2, 1, 3, 0, 45, 0, 28, 0, 25, 1, 39, 0, 0, 0, 45, 0, 10, 0, 18, 0, 13, 1, 6, 0, 7, 0, 17, 0, 13, 0, 29, 0, 32, 0, 30, 0, 32, 1, 29, 0, 21, 0, 23, 0, 21, 1)
