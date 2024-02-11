@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1we0a76ctbor"]
+
+[ext_resource type="Script" path="res://Entities/Pickup/pickup2d.gd" id="1_20j1i"]
+[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="2_teigq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lluv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_teigq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1m2ls"]
+radius = 26.0192
+
+[node name="Pickup" type="Area2D"]
+script = ExtResource("1_20j1i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lluv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1m2ls")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_player_contacted"]
