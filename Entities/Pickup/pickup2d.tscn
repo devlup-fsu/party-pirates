@@ -1,18 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1we0a76ctbor"]
+[gd_scene load_steps=4 format=3 uid="uid://c1we0a76ctbor"]
 
 [ext_resource type="Script" path="res://Entities/Pickup/pickup2d.gd" id="1_20j1i"]
-[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="2_teigq"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lluv2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_teigq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://bgxftglrdvuc6" path="res://Entities/Pickup/treasure_appearance.tres" id="2_rbfts"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1m2ls"]
 radius = 26.0192
@@ -21,7 +10,8 @@ radius = 26.0192
 script = ExtResource("1_20j1i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_lluv2")
+sprite_frames = ExtResource("2_rbfts")
+animation = &"booze"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1m2ls")

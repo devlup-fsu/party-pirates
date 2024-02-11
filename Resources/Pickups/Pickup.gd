@@ -1,17 +1,21 @@
 class_name Pickup
 extends Resource
 
-var target: Player = null
+@export var is_powerup := true
+@export var auto_delete := true
+@export var appearance: SpriteFrames = null
 
-func _init(target: Player = null): # = null required, as otherwise it'd interfere with .instantiate() and similar methods.
-	self.target = target
+var physical_self: Pickup2D
 
-func set_target(player: Player) -> void:
-	target = player
+# = null required, as otherwise it'd interfere with .instantiate() and similar methods.
+func _init(appearance: SpriteFrames = null): 
+	self.appearance = appearance
 
-func apply() -> void:
+
+func apply_to(target: Player) -> void:
 	assert(false, "YOU MUST OVERRIDE THIS")
 
 
-func remove() -> void:
+func remove_from(target: Player) -> void:
 	assert(false, "YOU MUST OVERRIDE THIS")
+

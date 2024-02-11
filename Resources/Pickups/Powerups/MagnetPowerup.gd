@@ -5,7 +5,7 @@ extends Pickup
 @export var duration: float = 7.0
 @export var expansion_amount: int = 20
 
-func apply() -> void:
+func apply_to(target: Player) -> void:
 	print("MagnetPowerup - APPLYING")
 	var collector = target.treasure_collector
 	collector.expand_radius(expansion_amount)
@@ -13,6 +13,6 @@ func apply() -> void:
 	print("MagnetPowerup - WAIT ENDED")
 	remove()
 
-func remove() -> void:
+func remove_from(target: Player) -> void:
 	print("MagnetPowerup - REMOVING")
 	target.treasure_collector.restore_radius()
