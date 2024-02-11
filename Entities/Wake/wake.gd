@@ -15,7 +15,6 @@ func set_to_follow(to_follow: Node2D):
 	to_follow_path = TO_FOLLOW.get_path()
 
 func _process(_delta):
-	print(get_node_or_null(to_follow_path))
 	if get_node_or_null(to_follow_path) == null or wrap:
 		TO_FOLLOW = self
 		modulate.a *= 0.95
