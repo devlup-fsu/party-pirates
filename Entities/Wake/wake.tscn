@@ -10,7 +10,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_i5cj3"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Line" type="Line2D"]
+[node name="Wake" type="Line2D"]
 z_index = -99
 scale = Vector2(1, 1.00886)
 points = PackedVector2Array(1058, -95.1569)
@@ -20,5 +20,3 @@ gradient = SubResource("Gradient_i5cj3")
 texture = ExtResource("1_amhsq")
 texture_mode = 2
 script = ExtResource("2_j8x50")
-
-[node name="Wake" type="CanvasGroup" parent="."]
