@@ -1,6 +1,8 @@
 class_name Pickup2D
 extends Area2D
 
+signal picked_up(Pickup2D)
+
 @export var pickup: Pickup
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -18,6 +20,7 @@ func _ready() -> void:
 
 func collect(target: Player) -> void:
 	pickup.set_target(target)
+	emit_signal("picked_up", self)
 
 
 func drop(target: Player) -> void:
