@@ -20,11 +20,14 @@ extends CharacterBody2D
 var speed: float = 0
 var current_speed: float = max_speed 
 
+var internal_pos: Vector2
 
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
 	
 	$AnimatedSprite2D.play("player" + str(self.player))
+	
+	internal_pos = global_position
 
 
 func _physics_process(delta: float) -> void:
@@ -43,18 +46,12 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * speed
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
+	# measure offset to add to internal position
+	var last = global_position
 	move_and_collide(velocity * delta)
-	
-	# Loop around the screen.
-	if global_position.x <= -1190:
-		global_position.x = 1189
-	elif global_position.x >= 1190:
-		global_position.x = -1189
-	
-	if global_position.y <= -598:
-		global_position.y = 691
-	elif global_position.y >= 692:
-		global_position.y = -597
+	internal_pos += global_position - last
+
+	global_position = ModCoord.get_external_pos(internal_pos)
 
 
 func _process(_delta: float) -> void:

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Scores="*res://Autoloads/scores.gd"
 InputManager="*res://Autoloads/input_manager.gd"
+ModCoord="*res://Autoloads/modular_coordianates.gd"
 
 [display]
 

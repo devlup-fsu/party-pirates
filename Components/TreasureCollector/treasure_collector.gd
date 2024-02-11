@@ -35,26 +35,30 @@ func _on_area_entered(area: Area2D) -> void:
 		if area.is_collected or not is_collecting: return
 		area.collect()
 		
+		area.internal_pos = to_follow.internal_pos
 		collected_treasure.push_back(area)
 
 
 func _physics_process(delta: float) -> void:
 	if collected_treasure.is_empty(): return
-	if collected_treasure[0].global_position.distance_to(to_follow.global_position) < following_distance: return
+	if collected_treasure[0].internal_pos.distance_to(to_follow.internal_pos) < following_distance: return
 	
 	var direction: Vector2 = to_follow.velocity.normalized() * delta
 	direction *= -LAG_BEHIND_FACTOR
 	
 	# Move the first treasure closer to to_follow.
 	var first = collected_treasure[0]
-	first.global_position = direction + first.global_position.lerp(to_follow.global_position, follow_speed * delta)
+	first.internal_pos = direction + first.internal_pos.lerp(to_follow.internal_pos, follow_speed * delta)
 	
 	# Move the rest of the treasure to the previous treasure.
 	for i in range(1, collected_treasure.size()):
 		var previous := collected_treasure[i - 1]
 		var current := collected_treasure[i]
-		if previous.global_position.distance_to(current.global_position) >= tail_padding:
-			current.global_position = direction + current.global_position.lerp(previous.global_position, follow_speed * delta)
+		if previous.internal_pos.distance_to(current.internal_pos) >= tail_padding:
+			current.internal_pos = direction + current.internal_pos.lerp(previous.internal_pos, follow_speed * delta)
+	
+	for item in collected_treasure:
+		item.position = ModCoord.get_external_pos(item.internal_pos)
 
 
 func drop_treasure() -> void:

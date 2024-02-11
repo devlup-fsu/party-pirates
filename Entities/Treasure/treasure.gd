@@ -12,6 +12,7 @@ signal scored(treasure: Treasure)
 
 var is_collected := false
 
+var internal_pos: Vector2
 
 func _ready() -> void:
 	var animations = anim_sprite.sprite_frames.get_animation_names()

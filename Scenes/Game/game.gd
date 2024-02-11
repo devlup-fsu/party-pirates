@@ -18,8 +18,8 @@ func start():
 		var player := PlayerScene.instantiate() as Player
 		player.player = i
 		player.cannon_ball_parent = $CannonBallParent
-		add_child(player)
 		player.global_position = $SpawnPoints.get_child( i ).global_position
+		add_child(player)
 	
 	TREASURE_SPAWNER.spawn_treasure(3)
 
