@@ -11,6 +11,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
+shader_parameter/CurrentDirection = Vector2(-4, -4)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7llos"]
 width = 2527
