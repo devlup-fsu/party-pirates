@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
 [ext_resource type="Script" path="res://Scenes/Game/score_board.gd" id="2_jdy6b"]
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
-[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/pirate_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
 [ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
 

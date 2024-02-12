@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/StartMenu/start_menu.gd" id="1_2w4ik"]
 [ext_resource type="Texture2D" uid="uid://cejpxsxr3r5ic" path="res://Scenes/StartMenu/logo.png" id="2_676j5"]
-[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="3_aap2y"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/pirate_theme.tres" id="3_aap2y"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3

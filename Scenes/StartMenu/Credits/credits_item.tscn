@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://df7bmm1oupa4i"]
 
 [ext_resource type="Script" path="res://Scenes/StartMenu/Credits/credits_item.gd" id="1_iv8a7"]
-[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="2_go8e8"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/pirate_theme.tres" id="2_go8e8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3n5v"]
 
