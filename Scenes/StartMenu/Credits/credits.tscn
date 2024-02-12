@@ -51,7 +51,7 @@ vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="CreditsContainer"]
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 80
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ffub6")
 
 [node name="ThanksLabel" type="Label" parent="."]

@@ -6,6 +6,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3n5v"]
 
 [node name="CreditsItem" type="VBoxContainer"]
+offset_right = 390.0
+offset_bottom = 234.0
 alignment = 1
 script = ExtResource("1_iv8a7")
 
@@ -28,5 +30,5 @@ vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 100
 theme_override_styles/separator = SubResource("StyleBoxEmpty_x3n5v")
