@@ -1,7 +1,8 @@
 extends Control
 
 var credits_dict = JSON.parse_string(FileAccess.get_file_as_string("res://credits.json"))
-var credits_item: PackedScene = preload("res://Scenes/StartMenu/Credits/credits_item.tscn")
+var credits_item_scene: PackedScene = load("res://Scenes/StartMenu/Credits/credits_item.tscn")
+var start_menu_scene: PackedScene = load("res://Scenes/StartMenu/start_menu.tscn")
 
 @onready var credits_container = $CreditsContainer
 @onready var thanks_label = $ThanksLabel
@@ -13,7 +14,7 @@ func _ready() -> void:
 	credits_dict.shuffle()
 	
 	for contributor in credits_dict:
-		var contributor_item = credits_item.instantiate()
+		var contributor_item = credits_item_scene.instantiate()
 		contributor_item.set_labels(contributor["Name"], contributor["Role"])
 		credits_container.add_child(contributor_item)
 	
@@ -32,4 +33,4 @@ func _process(_delta: float) -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		return
-	queue_free()
+	get_tree().change_scene_to_packed(start_menu_scene)

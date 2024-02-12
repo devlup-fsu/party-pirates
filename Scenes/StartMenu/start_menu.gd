@@ -1,7 +1,7 @@
 extends Control
 
-@onready var GAME_SCENE: PackedScene = preload("res://Scenes/Game/game.tscn")
-@onready var CREDITS_SCENE: PackedScene = preload("res://Scenes/StartMenu/Credits/credits.tscn")
+var game_scene: PackedScene = load("res://Scenes/Game/game.tscn")
+var credits_scene: PackedScene = load("res://Scenes/StartMenu/Credits/credits.tscn")
 
 
 func _enter_tree() -> void:
@@ -9,12 +9,11 @@ func _enter_tree() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	var game = GAME_SCENE.instantiate()
+	var game = game_scene.instantiate()
 	get_tree().root.add_child(game)
 	game.start()
 	queue_free()
 
 
 func _on_credits_button_pressed() -> void:
-	var credits = CREDITS_SCENE.instantiate()
-	get_tree().root.add_child(credits)
+	get_tree().change_scene_to_packed(credits_scene)
