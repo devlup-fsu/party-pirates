@@ -15,6 +15,6 @@ func _on_start_button_pressed() -> void:
 	queue_free()
 
 
-func _on_credits_button_pressed():
+func _on_credits_button_pressed() -> void:
 	var credits = CREDITS_SCENE.instantiate()
 	get_tree().root.add_child(credits)
