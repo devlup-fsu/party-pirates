@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=15 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
-[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
+[ext_resource type="PackedScene" uid="uid://c3saf8tf465f2" path="res://Entities/TreasureSpawner/PickupSpawner.tscn" id="7_p52sd"]
+[ext_resource type="Script" path="res://Resources/Pickups/Treasure.gd" id="8_6i31o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bhg0a"]
 font_size = 60
@@ -32,6 +33,11 @@ outline_size = 12
 font_size = 58
 font_color = Color(0.301961, 0.0980392, 0.0313726, 1)
 outline_size = 12
+
+[sub_resource type="Resource" id="Resource_ukoa7"]
+script = ExtResource("8_6i31o")
+is_powerup = true
+auto_delete = false
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8ljh1")
@@ -157,27 +163,25 @@ player_id = 2
 position = Vector2(1028, 455)
 player_id = 3
 
-[node name="TreasureSpawner" parent="." instance=ExtResource("7_oaxjh")]
-wait_time = 7
-max_spawned_at_once = 10
-max_on_screen_at_once = 4
+[node name="PickupSpawner" parent="." instance=ExtResource("7_p52sd")]
+pickup_type = SubResource("Resource_ukoa7")
 
-[node name="Marker2D" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-447, -485)
 
-[node name="Marker2D2" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D2" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-466, 565)
 
-[node name="Marker2D3" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D3" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(439, -464)
 
-[node name="Marker2D4" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D4" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(470, 559)
 
-[node name="Marker2D5" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D5" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-151, 45)
 
-[node name="Marker2D6" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D6" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(145, 46)
 
 [node name="CannonBallParent" type="Node" parent="."]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bykqakk5cqffb"]
+
+[ext_resource type="PackedScene" uid="uid://c1we0a76ctbor" path="res://Entities/Pickup/pickup2d.tscn" id="1_ypcx8"]
+[ext_resource type="Texture2D" uid="uid://dcc2mdh04kpms" path="res://Entities/Treasure/Sprites/booze.png" id="2_a64dg"]
+[ext_resource type="Texture2D" uid="uid://ddr8xkyhh0hn2" path="res://Entities/Treasure/Sprites/gem.png" id="3_w5hjr"]
+[ext_resource type="Texture2D" uid="uid://dedi8cxwe3aoe" path="res://Entities/Treasure/Sprites/gold.png" id="4_tjloq"]
+[ext_resource type="Texture2D" uid="uid://hsbyrx5yp770" path="res://Entities/Treasure/Sprites/spice.png" id="5_5lnhi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pchns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a64dg")
+}],
+"loop": true,
+"name": &"booze",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w5hjr")
+}],
+"loop": true,
+"name": &"gem",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tjloq")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5lnhi")
+}],
+"loop": true,
+"name": &"spice",
+"speed": 5.0
+}]
+
+[node name="Treasure2D" instance=ExtResource("1_ypcx8")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pchns")

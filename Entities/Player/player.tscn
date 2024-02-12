@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://mi527txnbjjm"]
+[gd_scene load_steps=10 format=3 uid="uid://mi527txnbjjm"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_egvib"]
 [ext_resource type="Texture2D" uid="uid://dacd5llvjqa0a" path="res://Entities/Player/Sprites/shipY.png" id="3_mm13f"]
 [ext_resource type="Texture2D" uid="uid://dmccss23paffa" path="res://Entities/Player/Sprites/shipR.png" id="4_hxgas"]
 [ext_resource type="Texture2D" uid="uid://bv6lrmhca6bcj" path="res://Entities/Player/Sprites/shipG.png" id="4_rpgsf"]
 [ext_resource type="Texture2D" uid="uid://5tqiphd1d6by" path="res://Entities/Player/Sprites/shipB.png" id="6_buvhv"]
-[ext_resource type="PackedScene" uid="uid://coq2c4fhf8vxl" path="res://Components/TreasureCollector/treasure_collector.tscn" id="6_g81rv"]
+[ext_resource type="PackedScene" uid="uid://cvfhddraiorth" path="res://Components/PickupCollector/PickupCollector.tscn" id="6_rn37j"]
+[ext_resource type="PackedScene" uid="uid://dqksmd5xoxk1b" path="res://Components/PickupTrail/PickupTrail.tscn" id="7_585lq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qle2r"]
 animations = [{
@@ -59,10 +60,6 @@ position = Vector2(1, 0)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_vi800")
 
-[node name="TreasureCollector" parent="." node_paths=PackedStringArray("to_follow") instance=ExtResource("6_g81rv")]
-visible = false
-to_follow = NodePath("..")
-
 [node name="VulnerabilityTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -77,3 +74,7 @@ position = Vector2(0, 25)
 
 [node name="Timer" type="Timer" parent="RightCannon"]
 one_shot = true
+
+[node name="PickupCollector" parent="." instance=ExtResource("6_rn37j")]
+
+[node name="PickupTrail" parent="." instance=ExtResource("7_585lq")]

@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var cannon_ball_parent: Node
 @export var shoot_delay := 0.5
 
-@onready var treasure_collector: TreasureCollector = $TreasureCollector
+@onready var treasure_collector: PickupCollector = $PickupCollector
 @onready var vulnerability_timer: Timer = $VulnerabilityTimer
 @onready var left_cannon: Marker2D = $LeftCannon
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
@@ -20,7 +20,7 @@ extends CharacterBody2D
 var speed: float = 0
 var current_speed: float = max_speed 
 
-var current_powerup: Pickup = null
+var current_pickup: Pickup = null
 
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
@@ -73,15 +73,16 @@ func _process(_delta: float) -> void:
 
 
 func score_treasure() -> void:
-	var score = treasure_collector.score_treasure()
+	#var score = treasure_collector.score_treasure()
+	var score = 1
 	Scores.add_player_score(player, score)
 
 
-func accept_powerup(powerup: Pickup) -> void:
-	if current_powerup != null: current_powerup.remove()
-	current_powerup = powerup
-	powerup.set_target(self)
-	current_powerup.apply()
+func accept_pickup(pickup: Pickup) -> void:
+	if current_pickup != null and pickup.is_powerup: 
+		current_pickup.remove_from(self)
+		current_pickup = pickup
+	pickup.apply_to(self)
 
 
 func hit() -> void:
