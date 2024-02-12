@@ -1,18 +1,18 @@
 [
 	{
 		"Name":"Alec Tremblay",
-		"Role":"Programmer, Accreditations"
-	},
-	{
-		"Name":"Dion Tryban",
-		"Role":"Programmer"
-	},
-	{
-		"Name":"Whalen",
-		"Role":"Art"
+		"Role":"Programmer, Shader Artist"
 	},
 	{
 		"Name":"Casey W",
+		"Role":"Programmer"
+	},
+	{
+		"Name":"Chris Swezy",
+		"Role":"Designer, Programmer"
+	},
+	{
+		"Name":"Dion Tryban",
 		"Role":"Programmer"
 	},
 	{
@@ -24,7 +24,7 @@
 		"Role":"Programmer"
 	},
 	{
-		"Name":"Chris Swezy",
-		"Role":"Programmer"
+		"Name":"Whalen",
+		"Role":"Artist"
 	}
 ]
