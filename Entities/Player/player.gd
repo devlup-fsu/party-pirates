@@ -82,6 +82,7 @@ func accept_pickup(pickup: Pickup) -> void:
 	if current_pickup != null and pickup.is_powerup: 
 		current_pickup.remove_from(self)
 		current_pickup = pickup
+		current_pickup.apply_to(self)
 	pickup.apply_to(self)
 
 

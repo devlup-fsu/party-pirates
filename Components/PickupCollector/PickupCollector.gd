@@ -27,6 +27,7 @@ func _on_area_entered(pickup: Pickup2D) -> void:
 	if collected.size() < max_pickups:
 		if pickup.is_collected or not is_collecting: return
 		pickup.collect()
+		player.accept_pickup(pickup.pickup)
 		collected.append(pickup)
 
 

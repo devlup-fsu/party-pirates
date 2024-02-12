@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=17 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Texture2D" uid="uid://nj84p7n2s2bx" path="res://Scenes/Game/score_board.png" id="2_gsu4w"]
@@ -7,7 +7,8 @@
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
 [ext_resource type="PackedScene" uid="uid://c3saf8tf465f2" path="res://Entities/TreasureSpawner/PickupSpawner.tscn" id="7_p52sd"]
-[ext_resource type="Script" path="res://Resources/Pickups/Treasure.gd" id="8_6i31o"]
+[ext_resource type="Script" path="res://Resources/Pickups/Powerups/MagnetPowerup.gd" id="8_7c3ms"]
+[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="8_e0r5c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bhg0a"]
 font_size = 60
@@ -34,10 +35,24 @@ font_size = 58
 font_color = Color(0.301961, 0.0980392, 0.0313726, 1)
 outline_size = 12
 
-[sub_resource type="Resource" id="Resource_ukoa7"]
-script = ExtResource("8_6i31o")
+[sub_resource type="SpriteFrames" id="SpriteFrames_4hr67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_e0r5c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_dbk5d"]
+script = ExtResource("8_7c3ms")
+duration = 7.0
+expansion_amount = 20
 is_powerup = true
-auto_delete = false
+auto_delete = true
+appearance = SubResource("SpriteFrames_4hr67")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8ljh1")
@@ -164,7 +179,7 @@ position = Vector2(1028, 455)
 player_id = 3
 
 [node name="PickupSpawner" parent="." instance=ExtResource("7_p52sd")]
-pickup_type = SubResource("Resource_ukoa7")
+pickup_type = SubResource("Resource_dbk5d")
 
 [node name="Marker2D" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-447, -485)

@@ -35,3 +35,9 @@ func drop() -> void:
 	is_collected = false
 	collision_shape.set_deferred("disabled", false)
 	anim_player.play("drop")
+
+
+
+
+func _on_player_contacted(body: Player):
+	body.accept_pickup(pickup)

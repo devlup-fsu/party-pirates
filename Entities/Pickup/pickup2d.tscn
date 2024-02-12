@@ -19,3 +19,4 @@ shape = SubResource("CircleShape2D_1m2ls")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_player_contacted"]
+[connection signal="body_entered" from="." to="." method="_on_player_contacted"]

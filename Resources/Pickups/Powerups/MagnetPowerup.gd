@@ -11,7 +11,7 @@ func apply_to(target: Player) -> void:
 	collector.expand_radius(expansion_amount)
 	await target.get_tree().create_timer(duration).timeout
 	print("MagnetPowerup - WAIT ENDED")
-	remove()
+	remove_from(target)
 
 func remove_from(target: Player) -> void:
 	print("MagnetPowerup - REMOVING")
