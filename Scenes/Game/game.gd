@@ -23,9 +23,9 @@ func _ready():
 		player.global_position = $SpawnPoints.get_child( i ).global_position
 		add_child(player)
 	
-		var wake := _wake_scene.instantiate() as Wake
+		var wake: Wake = _wake_scene.instantiate()
 		wake.set_to_follow(player)
-		add_child(wake)
+		player.add_child(wake)
 	
 	#_treasure_spawner.spawn_treasure(3)
 

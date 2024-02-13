@@ -72,15 +72,19 @@ func score() -> int:
 
 class TrailingTreasure extends Sprite2D:
 	@export var treasure: Treasure
-
+	
 	var internal_pos: Vector2
+	
+	var _wake_scene: PackedScene = load("res://Entities/Wake/wake.tscn")
+	
 	
 	func _init(_treasure: Treasure = null, global_pos: Vector2 = Vector2.ZERO):
 		if _treasure != null:
 			treasure = _treasure
 		
 		internal_pos = global_pos
-
+	
+	
 	func _ready():
 		assert(treasure != null, "treasure must be set on TrailingTreasure")
 		
@@ -88,6 +92,11 @@ class TrailingTreasure extends Sprite2D:
 		
 		# Have its position not be relative to the player.
 		top_level = true
+		
+		var wake: Wake = _wake_scene.instantiate()
+		wake.set_to_follow(self)
+		add_child(wake)
+	
 	
 	func _physics_process(_delta):
 		global_position = ModCoord.get_modular_pos(internal_pos)
