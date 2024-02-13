@@ -12,7 +12,7 @@ func _ready() -> void:
 	$Sprite2D.texture = pickup.texture
 
 
-func pick_up() -> Pickup:
+func pick_up(player: Player) -> void:
 	picked_up.emit(self)
+	pickup.apply(player)
 	queue_free()
-	return pickup

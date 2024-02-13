@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvllb3t8qa4up"]
+
+[ext_resource type="Script" path="res://Entities/Player/PickupCollector/pickup_collector.gd" id="1_r4fh8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hkhl"]
+radius = 75.0
+
+[node name="PickupCollector" type="Area2D"]
+script = ExtResource("1_r4fh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0hkhl")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
