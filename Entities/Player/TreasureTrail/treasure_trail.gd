@@ -12,6 +12,7 @@ class_name TreasureTrail extends Node2D
 
 @onready var _player: Player = get_parent()
 
+var _dropped_pickup_scene: PackedScene = load("res://Entities/DroppedPickup/dropped_pickup.tscn")
 var _trail: Array[TrailingTreasure] = []
 
 
@@ -38,9 +39,6 @@ func _physics_process(delta: float) -> void:
 		var current := _trail[i]
 		if previous.internal_pos.distance_to(current.internal_pos) >= tail_padding:
 			current.internal_pos = direction + current.internal_pos.lerp(previous.internal_pos, follow_speed * delta)
-	
-	for trailing in _trail:
-		trailing.global_position = ModCoord.get_modular_pos(trailing.internal_pos)
 
 
 func append(treasure: Treasure, global_pos: Vector2) -> void:
@@ -50,7 +48,14 @@ func append(treasure: Treasure, global_pos: Vector2) -> void:
 
 
 func drop() -> void:
-	pass
+	for trailing in _trail:
+		var dropped_pickup = _dropped_pickup_scene.instantiate()
+		dropped_pickup.pickup = trailing.treasure
+		dropped_pickup.global_position = trailing.global_position
+		get_parent().add_sibling(dropped_pickup)
+		trailing.queue_free()
+	
+	_trail.clear()
 
 
 func score() -> void:
@@ -75,3 +80,6 @@ class TrailingTreasure extends Sprite2D:
 		
 		# Have its position not be relative to the player.
 		top_level = true
+	
+	func _physics_process(delta):
+		global_position = ModCoord.get_modular_pos(internal_pos)

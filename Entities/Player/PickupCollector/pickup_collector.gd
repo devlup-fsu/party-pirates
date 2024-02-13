@@ -1,4 +1,4 @@
-extends Area2D
+class_name PickupCollector extends Area2D
 
 @export var enabled: bool = true
 
