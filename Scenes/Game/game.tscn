@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://ddr8xkyhh0hn2" path="res://Resources/Pickup/Sprites/gem.png" id="11_3hfoj"]
 [ext_resource type="Texture2D" uid="uid://dedi8cxwe3aoe" path="res://Resources/Pickup/Sprites/gold.png" id="12_garc3"]
 [ext_resource type="Texture2D" uid="uid://hsbyrx5yp770" path="res://Resources/Pickup/Sprites/spice.png" id="13_mhigq"]
-[ext_resource type="Script" path="res://Resources/Pickup/powerup.gd" id="14_6w1y0"]
-[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="15_pbq5e"]
+[ext_resource type="Script" path="res://Resources/Pickup/magnet_powerup.gd" id="14_uri82"]
+[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="15_didbe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
@@ -69,9 +69,10 @@ script = ExtResource("9_w11ia")
 value = 1
 texture = ExtResource("13_mhigq")
 
-[sub_resource type="Resource" id="Resource_wvm4x"]
-script = ExtResource("14_6w1y0")
-texture = ExtResource("15_pbq5e")
+[sub_resource type="Resource" id="Resource_4d4ea"]
+script = ExtResource("14_uri82")
+time_active = 10
+texture = ExtResource("15_didbe")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8ljh1")
@@ -206,7 +207,7 @@ player_id = 3
 
 [node name="PickupSpawner" parent="." instance=ExtResource("8_g781u")]
 treasure = Array[ExtResource("9_w11ia")]([SubResource("Resource_n7eym"), SubResource("Resource_476dn"), SubResource("Resource_4c5ft"), SubResource("Resource_xtaa5")])
-powerups = Array[ExtResource("14_6w1y0")]([SubResource("Resource_wvm4x")])
+powerups = Array[Resource("res://Resources/Pickup/powerup.gd")]([SubResource("Resource_4d4ea")])
 
 [node name="Marker2D" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-447, -485)

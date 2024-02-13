@@ -1,8 +1,7 @@
-class_name Pickup
-extends Resource
+class_name Pickup extends Resource
 
 @export var texture: Texture2D
 
 
-func apply(_player: Player) -> void:
-	assert(false, "apply() must be overridden from Pickup")
+func pick_up(_player: Player) -> void:
+	assert(false, "pick_up() must be overridden from Pickup")

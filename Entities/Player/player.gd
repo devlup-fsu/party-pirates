@@ -1,5 +1,4 @@
-class_name Player
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var max_speed := 300.0
 @export var turn_speed := deg_to_rad(90)
@@ -13,6 +12,7 @@ extends CharacterBody2D
 @onready var pickup_collector: PickupCollector = $PickupCollector
 @onready var treasure_trail: TreasureTrail = $TreasureTrail
 @onready var vulnerability_timer: Timer = $VulnerabilityTimer
+@onready var powerup_timer: Timer = $PowerupTimer
 @onready var left_cannon: Marker2D = $LeftCannon
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
 @onready var right_cannon: Marker2D = $RightCannon
@@ -20,8 +20,8 @@ extends CharacterBody2D
 
 var speed: float = 0
 var current_speed: float = max_speed 
-
 var internal_pos: Vector2
+
 
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")

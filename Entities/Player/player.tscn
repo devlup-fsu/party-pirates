@@ -63,8 +63,10 @@ shape = SubResource("CapsuleShape2D_vi800")
 [node name="VulnerabilityTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PowerupTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="PickupCollector" parent="." instance=ExtResource("6_mpgn0")]
-enabled = null
 
 [node name="TreasureTrail" parent="." instance=ExtResource("7_nrybl")]
 
