@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	move_and_collide(velocity * delta)
 	internal_pos += global_position - last
 
-	global_position = ModCoord.get_external_pos(internal_pos)
+	global_position = ModCoord.get_modular_pos(internal_pos)
 
 
 func _process(_delta: float) -> void:

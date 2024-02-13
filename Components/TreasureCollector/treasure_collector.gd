@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 			current.internal_pos = direction + current.internal_pos.lerp(previous.internal_pos, follow_speed * delta)
 	
 	for item in collected_treasure:
-		item.position = ModCoord.get_external_pos(item.internal_pos)
+		item.position = ModCoord.get_modular_pos(item.internal_pos)
 
 
 func drop_treasure() -> void:
