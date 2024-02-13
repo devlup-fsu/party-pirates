@@ -6,7 +6,7 @@ class_name TreasureTrail extends Node2D
 @export_range(0, 10.0) var follow_speed = 4.0
 ## A follower will move towards the location of the previous (or earlier) follower, but not exactly;
 ## Rather than targetting its exact position, it will go slightly behind.
-@export var lag_behind_factor: int = 5
+@export var lag_behind_factor: int = 50
 ## The distance between nodes in the tail. Note that the constant LAG_BEHIND_FACTOR also affects it.
 @export var tail_padding := 20
 
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	if _trail.is_empty():
 		return
 	
-	if _trail[0].internal_pos.distance_to(_player.internal_pos) < following_distance:
+	if _trail[0].internal_pos.distance_to(_player.internal_pos) < following_distance + tail_padding:
 		return
 	
 	var direction: Vector2 = _player.velocity.normalized() * delta
@@ -41,8 +41,8 @@ func _physics_process(delta: float) -> void:
 			current.internal_pos = direction + current.internal_pos.lerp(previous.internal_pos, follow_speed * delta)
 
 
-func append(treasure: Treasure, global_pos: Vector2) -> void:
-	var trailing = TrailingTreasure.new(treasure, global_pos)
+func append(treasure: Treasure) -> void:
+	var trailing = TrailingTreasure.new(treasure, _player.internal_pos)
 	add_child(trailing)
 	_trail.append(trailing)
 

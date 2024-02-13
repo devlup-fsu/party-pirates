@@ -4,5 +4,5 @@ extends Pickup
 @export var value: int = 1
 
 
-func apply(player: Player, global_pos: Vector2) -> void:
-	player.add_treasure_to_trail(self, global_pos)
+func apply(player: Player) -> void:
+	player.add_treasure_to_trail(self)
