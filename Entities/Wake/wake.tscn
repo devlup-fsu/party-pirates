@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://1bcbkjfckj6v"]
+
+[ext_resource type="Texture2D" uid="uid://chslaoy5racs2" path="res://Scenes/Game/wake.png" id="1_amhsq"]
+[ext_resource type="Script" path="res://Entities/Wake/wake.gd" id="2_j8x50"]
+
+[sub_resource type="Curve" id="Curve_y71fr"]
+_data = [Vector2(0.0013986, 0.0634431), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_i5cj3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Wake" type="Line2D"]
+z_index = -99
+scale = Vector2(1, 1.00886)
+points = PackedVector2Array(1058, -95.1569)
+width = 100.0
+width_curve = SubResource("Curve_y71fr")
+gradient = SubResource("Gradient_i5cj3")
+texture = ExtResource("1_amhsq")
+texture_mode = 2
+script = ExtResource("2_j8x50")
