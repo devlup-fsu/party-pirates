@@ -81,5 +81,9 @@ func hit() -> void:
 	pickup_collector.enabled = true
 
 
+func score() -> void:
+	Scores.add_player_score(player, treasure_trail.score())
+
+
 func add_treasure_to_trail(treasure: Treasure, global_pos: Vector2) -> void:
 	treasure_trail.append(treasure, global_pos)

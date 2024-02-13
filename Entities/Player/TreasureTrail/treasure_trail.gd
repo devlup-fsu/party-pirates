@@ -58,8 +58,16 @@ func drop() -> void:
 	_trail.clear()
 
 
-func score() -> void:
-	pass
+func score() -> int:
+	var value = 0
+	
+	for trailing in _trail:
+		value += trailing.treasure.value
+		trailing.queue_free()
+	
+	_trail.clear()
+	
+	return value
 
 
 class TrailingTreasure extends Sprite2D:
@@ -81,5 +89,5 @@ class TrailingTreasure extends Sprite2D:
 		# Have its position not be relative to the player.
 		top_level = true
 	
-	func _physics_process(delta):
+	func _physics_process(_delta):
 		global_position = ModCoord.get_modular_pos(internal_pos)
