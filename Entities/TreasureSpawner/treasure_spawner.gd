@@ -1,8 +1,6 @@
 class_name TreasureSpawner
 extends Node2D
 
-var WakeScene = preload( "res://Entities/Wake/wake.tscn")
-
 ## Determines how much treasure is spawned, and where. Dependent on the [spawn_markers] array.
 enum SpawnStrategy {
 	## Each call to spawn() will place the newly created treasure in the next Marker2D's location,
@@ -26,8 +24,10 @@ enum SpawnStrategy {
 @export_range(0, 10) var max_on_screen_at_once := 5
 
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var treasure_scene: PackedScene = preload("res://Entities/Treasure/treasure.tscn")
 @onready var spawn_markers: Array[Marker2D]
+
+var treasure_scene: PackedScene = load("res://Entities/Treasure/treasure.tscn")
+var wake_scene: PackedScene = load("res://Entities/Wake/wake.tscn")
 
 ## Used with TreasureSpawnerStrategy.Sequential to track which is next.
 var index := 0
@@ -122,7 +122,7 @@ func _try_spawn(global_pos: Vector2) -> bool:
 	blocking_treasure.push_back(new_treasure)
 	treasure_spawned += 1
 	
-	var wake := WakeScene.instantiate() as Wake
+	var wake := wake_scene.instantiate() as Wake
 	wake.set_to_follow(new_treasure)
 	add_child(wake)
 	
