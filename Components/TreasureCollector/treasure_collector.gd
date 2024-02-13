@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if not area is Treasure:
+	if not area is TreasureOld:
 		return
 	
 	if collected_treasure.size() < max_treasure:

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var _timer: Timer = $Timer
 @onready var _score_board = $UILayer/ScoreBoard
-@onready var _treasure_spawner: TreasureSpawner = $TreasureSpawner
+#@onready var _treasure_spawner: TreasureSpawner = $TreasureSpawner
 
 var _player_scene = load( "res://Entities/Player/player.tscn" )
 var _wake_scene = load( "res://Entities/Wake/wake.tscn")
@@ -27,7 +27,7 @@ func _ready():
 		wake.set_to_follow(player)
 		add_child(wake)
 	
-	_treasure_spawner.spawn_treasure(3)
+	#_treasure_spawner.spawn_treasure(3)
 
 
 func _on_timer_timeout():

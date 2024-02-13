@@ -69,8 +69,9 @@ func _process(_delta: float) -> void:
 
 
 func score_treasure() -> void:
-	var score = treasure_collector.score_treasure()
-	Scores.add_player_score(player, score)
+	#var score = treasure_collector.score_treasure()
+	#Scores.add_player_score(player, score)
+	pass
 
 
 func hit() -> void:

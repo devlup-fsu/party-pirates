@@ -1,4 +1,4 @@
-class_name Treasure
+class_name TreasureOld
 extends Area2D
 
 signal collected(treasure: Treasure)

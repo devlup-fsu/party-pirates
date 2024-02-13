@@ -112,7 +112,7 @@ func _try_spawn(global_pos: Vector2) -> bool:
 		if treasure.global_position == global_pos:
 			return false
 	
-	var new_treasure: Treasure = treasure_scene.instantiate()
+	var new_treasure: TreasureOld = treasure_scene.instantiate()
 	
 	add_sibling(new_treasure)
 	new_treasure.global_position = global_pos
