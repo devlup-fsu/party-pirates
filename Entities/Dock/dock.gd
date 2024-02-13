@@ -13,7 +13,8 @@ const player_colors: Array[Color] = [
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		if body.player == player_id:
-			body.score_treasure()
+			#body.score_treasure()
+			pass
 
 
 func _draw() -> void:

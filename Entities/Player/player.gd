@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var shoot_delay := 0.5
 
 @onready var treasure_collector: TreasureCollector = $TreasureCollector
+@onready var treasure_trail: TreasureTrail = $TreasureTrail
 @onready var vulnerability_timer: Timer = $VulnerabilityTimer
 @onready var left_cannon: Marker2D = $LeftCannon
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
@@ -68,12 +69,6 @@ func _process(_delta: float) -> void:
 			right_cannon_timer.start(shoot_delay)
 
 
-func score_treasure() -> void:
-	#var score = treasure_collector.score_treasure()
-	#Scores.add_player_score(player, score)
-	pass
-
-
 func hit() -> void:
 	treasure_collector.drop_treasure()
 	current_speed = strunned_speed
@@ -84,3 +79,7 @@ func hit() -> void:
 	
 	current_speed = max_speed
 	treasure_collector.enable()
+
+
+func add_treasure_to_trail(treasure: Treasure, global_pos: Vector2) -> void:
+	treasure_trail.append(treasure, global_pos)

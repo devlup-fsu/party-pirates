@@ -14,5 +14,5 @@ func _ready() -> void:
 
 func pick_up(player: Player) -> void:
 	picked_up.emit(self)
-	pickup.apply(player)
+	pickup.apply(player, global_position)
 	queue_free()
