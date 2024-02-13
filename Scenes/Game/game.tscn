@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=17 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Shader" uid="uid://djp1uj0gk42kv" path="res://Scenes/Game/water.tres" id="2_066rc"]
@@ -8,10 +8,11 @@
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
 [ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
+[ext_resource type="Script" path="res://Scenes/Game/CurrentManager.gd" id="9_r2nq2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
-shader_parameter/CurrentDirection = Vector2(0, -30)
+shader_parameter/CurrentDirection = Vector2(-100, 100)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7llos"]
 width = 2527
@@ -195,6 +196,10 @@ position = Vector2(-151, 45)
 
 [node name="Marker2D6" type="Marker2D" parent="TreasureSpawner"]
 position = Vector2(145, 46)
+
+[node name="CurrentManager" type="Node2D" parent="." node_paths=PackedStringArray("water_node")]
+script = ExtResource("9_r2nq2")
+water_node = NodePath("../Water")
 
 [node name="CannonBallParent" type="Node" parent="."]
 

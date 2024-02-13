@@ -22,6 +22,8 @@ var current_speed: float = max_speed
 
 var internal_pos: Vector2
 
+var current_manager: Node
+
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
 	
@@ -36,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Vector2()
 	input_dir.x = input.get_turning()
 	input_dir.y = 1
-	
+
 	speed = clamp((input_dir.y * 30) + (speed), 0, current_speed)
 	
 	var target := Vector2(cos(rotation), sin(rotation)).rotated(input_dir.x * turn_speed * delta * (1 + speed / max_speed * 24))
@@ -46,21 +48,25 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * speed
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
-	var current = Vector2(0,10)
-
-	current = current * (clamp(velocity.normalized().dot(current.normalized()), 0, 1) * 30)
+	# print(current.normalized(), direction)
+	var current = current_manager.current
+	current *= lerp(abs(direction.normalized().rotated(-90).dot(current.normalized() * -1) ), 0.1, 3)
+	# current = Vector2(current.y, current.x)
+	print(current)
+	
+	# current = current * (clamp(velocity.normalized().dot(current.normalized()), 0, 1) * 30)
 	#if current < Vector2.ZERO:a
 		#current *= 2
 		#velocity = lerp(velocity, current, 0.25)
 	#else:
 		#velocity += current
-	print(current)
+	# direction.normalized().dot(current.normalized())
 
-	
+	# print(direction.normalized().dot(current.normalized()))
 
 	# measure offset to add to internal position
 	var last = global_position
-	move_and_collide((velocity + current) * delta)
+	move_and_collide((velocity + current * -1) * delta )
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
