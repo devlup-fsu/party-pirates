@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://boggwsmqinlhu"]
+
+[ext_resource type="Script" path="res://Scenes/StartMenu/Credits/credits.gd" id="1_6kiqf"]
+[ext_resource type="Texture2D" uid="uid://cejpxsxr3r5ic" path="res://Scenes/StartMenu/logo.png" id="2_mgxpd"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="2_vmu60"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ffub6"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6kiqf")
+
+[node name="BackgroundColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -129.0
+offset_top = -99.0
+offset_right = 1275.0
+offset_bottom = 759.0
+color = Color(0, 0, 0, 1)
+
+[node name="CreditsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 1153.0
+offset_bottom = 647.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CreditsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_mgxpd")
+stretch_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CreditsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ffub6")
+
+[node name="OrderLabel" type="Label" parent="CreditsContainer"]
+layout_mode = 2
+theme = ExtResource("2_vmu60")
+theme_override_colors/font_color = Color(0.654902, 0.654902, 0.654902, 1)
+theme_override_font_sizes/font_size = 48
+text = "Credited in Random Order:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CreditsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ffub6")
+
+[node name="ThanksLabel" type="Label" parent="."]
+layout_mode = 0
+theme = ExtResource("2_vmu60")
+theme_override_font_sizes/font_size = 64
+text = "Thank you for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
