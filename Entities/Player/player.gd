@@ -46,6 +46,18 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * speed
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
+	var current = Vector2(0,10)
+
+	current = current * (velocity.normalized().dot(current.normalized()) * 2)
+	if current < Vector2.ZERO:
+		current *= 2
+		velocity = lerp(velocity, current, 0.25)
+	else:
+		velocity += current
+	print(current)
+
+	
+
 	# measure offset to add to internal position
 	var last = global_position
 	move_and_collide(velocity * delta)
