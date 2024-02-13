@@ -7,7 +7,7 @@ extends Node2D
 var PlayerScene = preload( "res://Entities/Player/player.tscn" )
 
 # Start the timer at 3 minutes, or 60 * 3 seconds.
-var time := 20
+var time := 60 * 3
 
 func _ready():
 	Scores.reset()

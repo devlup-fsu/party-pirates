@@ -60,7 +60,7 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qqd21"]
-font_size = 40
+font_size = 60
 font_color = Color(0.87451, 0.572549, 0.0705882, 1)
 outline_size = 10
 
@@ -121,32 +121,32 @@ text = "Main Menu"
 position = Vector2(217, 175)
 scale = Vector2(0.51, 0.51)
 sprite_frames = SubResource("SpriteFrames_r277e")
-animation = &"player2"
+animation = &"player0"
 
 [node name="SecondPlace" type="AnimatedSprite2D" parent="."]
-position = Vector2(462, 508)
+position = Vector2(460, 514)
 scale = Vector2(0.51, 0.51)
 sprite_frames = SubResource("SpriteFrames_r277e")
-animation = &"player3"
+animation = &"player1"
 
 [node name="ThirdPlace" type="AnimatedSprite2D" parent="."]
-position = Vector2(697, 508)
+position = Vector2(703, 514)
 scale = Vector2(0.51, 0.51)
 sprite_frames = SubResource("SpriteFrames_r277e")
-animation = &"player3"
+animation = &"player2"
 
 [node name="FourthPlace" type="AnimatedSprite2D" parent="."]
 position = Vector2(940, 513)
 scale = Vector2(0.51, 0.51)
 sprite_frames = SubResource("SpriteFrames_r277e")
-animation = &"player1"
+animation = &"player3"
 
 [node name="Score0" type="Label" parent="."]
 layout_mode = 0
-offset_left = 140.0
-offset_top = 47.0
-offset_right = 294.0
-offset_bottom = 100.0
+offset_left = 141.0
+offset_top = 19.0
+offset_right = 295.0
+offset_bottom = 97.0
 theme = ExtResource("1_tg4ih")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
@@ -158,10 +158,10 @@ horizontal_alignment = 1
 
 [node name="Score1" type="Label" parent="."]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 380.0
-offset_right = 542.0
-offset_bottom = 433.0
+offset_left = 380.0
+offset_top = 356.0
+offset_right = 538.0
+offset_bottom = 434.0
 theme = ExtResource("1_tg4ih")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
@@ -173,10 +173,10 @@ horizontal_alignment = 1
 
 [node name="Score2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 618.0
-offset_top = 380.0
-offset_right = 776.0
-offset_bottom = 433.0
+offset_left = 622.0
+offset_top = 358.0
+offset_right = 780.0
+offset_bottom = 436.0
 theme = ExtResource("1_tg4ih")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
@@ -188,10 +188,10 @@ horizontal_alignment = 1
 
 [node name="Score3" type="Label" parent="."]
 layout_mode = 0
-offset_left = 862.0
-offset_top = 380.0
-offset_right = 1019.0
-offset_bottom = 433.0
+offset_left = 860.0
+offset_top = 359.0
+offset_right = 1017.0
+offset_bottom = 437.0
 theme = ExtResource("1_tg4ih")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
