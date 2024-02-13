@@ -1,8 +1,10 @@
-extends Node2D
+class_name PickupSpawner extends Node2D
 
 @export var wait_time: float = 3.0
 @export_range(0, 1) var powerup_chance: float = 0.05
 @export_range(0, 10) var max_spawned_at_once: int = 3
+## The number of pickups that should be spawned at the start of the game.
+@export var spawn_at_start: int = 3
 @export var treasure: Array[Treasure] = []
 @export var powerups: Array[Powerup] = []
 
@@ -26,6 +28,9 @@ func _ready() -> void:
 			_spawn_markers.append(child)
 	
 	assert(_spawn_markers.size() > 0, "PickupSpawner must have at least one Marker2D as a child.")
+	
+	for i in range(spawn_at_start):
+		try_spawn_pickup()
 
 
 func try_spawn_pickup() -> void:
@@ -46,7 +51,7 @@ func try_spawn_pickup() -> void:
 	var dropped_pickup: DroppedPickup = _dropped_pickup_scene.instantiate()
 	dropped_pickup.pickup = pickup
 	dropped_pickup.global_position = pickup_global_pos
-	add_sibling(dropped_pickup)
+	add_sibling.call_deferred(dropped_pickup)
 	
 	_dropped_pickups.append(dropped_pickup)
 	dropped_pickup.picked_up.connect(_on_dropped_pickup_picked_up)
