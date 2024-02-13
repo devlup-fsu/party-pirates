@@ -20,8 +20,8 @@ func _ready():
 		var player := _player_scene.instantiate() as Player
 		player.player = i
 		player.cannon_ball_parent = $CannonBallParent
-		add_child(player)
 		player.global_position = $SpawnPoints.get_child( i ).global_position
+		add_child(player)
 	
 		var wake := _wake_scene.instantiate() as Wake
 		wake.set_to_follow(player)
