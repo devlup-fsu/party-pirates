@@ -36,15 +36,17 @@ func _process(_delta):
 
 			for point in _queue:
 				add_point(point)
+
+		var res = ModCoord.resolution * 0.99
+		print(res)
 		
-		# TODO: Use modularity code from PR #38 when it is merged.
-		if pos.x <= -1100:
+		if pos.x <= -res.x:
 			_wrap_wake()
-		elif pos.x >= 1100:
+		elif pos.x >= res.x:
 			_wrap_wake()
-		if pos.y <= -580:
+		if pos.y <= -res.y:
 			_wrap_wake()
-		elif pos.y >= 580:
+		elif pos.y >= res.y:
 			_wrap_wake()
 
 
