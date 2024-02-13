@@ -1,0 +1,205 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckf6cobgo5mmq"]
+
+[ext_resource type="Script" path="res://Scenes/EndScreen/end_screen.gd" id="1_0imri"]
+[ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="1_tg4ih"]
+[ext_resource type="Texture2D" uid="uid://p0jubxmxrh7p" path="res://Scenes/EndScreen/endscreen_bg.png" id="2_jgcdm"]
+[ext_resource type="Texture2D" uid="uid://b3mar4w8rdkea" path="res://Scenes/EndScreen/charR-select1.png" id="4_u0w0h"]
+[ext_resource type="Texture2D" uid="uid://pv85t1sstytg" path="res://Scenes/EndScreen/charR-select2.png" id="5_2dbmr"]
+[ext_resource type="Texture2D" uid="uid://cqmot4v7d53fe" path="res://Scenes/EndScreen/charY-select1.png" id="6_pge62"]
+[ext_resource type="Texture2D" uid="uid://dq30asx7vsvjd" path="res://Scenes/EndScreen/charY-select2.png" id="7_8w2tg"]
+[ext_resource type="Texture2D" uid="uid://dt5rrovoyr5uw" path="res://Scenes/EndScreen/charB-select1.png" id="8_rvicr"]
+[ext_resource type="Texture2D" uid="uid://uk3unvsjj4io" path="res://Scenes/EndScreen/charB-select2.png" id="9_gj1cn"]
+[ext_resource type="Texture2D" uid="uid://bdxbq6vj0ngcj" path="res://Scenes/EndScreen/charG-select1.png" id="10_mcbg0"]
+[ext_resource type="Texture2D" uid="uid://buyf1jyf1dj4o" path="res://Scenes/EndScreen/charG-select2.png" id="11_5a10x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r277e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_u0w0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2dbmr")
+}],
+"loop": true,
+"name": &"player0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pge62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8w2tg")
+}],
+"loop": true,
+"name": &"player1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_rvicr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gj1cn")
+}],
+"loop": true,
+"name": &"player2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_mcbg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5a10x")
+}],
+"loop": true,
+"name": &"player3",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqd21"]
+font_size = 60
+font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+outline_size = 10
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0imri")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jgcdm")
+expand_mode = 1
+
+[node name="PlayAgain" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -744.0
+offset_top = -369.0
+offset_right = -460.999
+offset_bottom = -294.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_tg4ih")
+theme_override_font_sizes/font_size = 48
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -416.0
+offset_top = -368.0
+offset_right = -132.999
+offset_bottom = -293.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_tg4ih")
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
+
+[node name="FirstPlace" type="AnimatedSprite2D" parent="."]
+position = Vector2(217, 175)
+scale = Vector2(0.51, 0.51)
+sprite_frames = SubResource("SpriteFrames_r277e")
+animation = &"player0"
+
+[node name="SecondPlace" type="AnimatedSprite2D" parent="."]
+position = Vector2(460, 514)
+scale = Vector2(0.51, 0.51)
+sprite_frames = SubResource("SpriteFrames_r277e")
+animation = &"player1"
+
+[node name="ThirdPlace" type="AnimatedSprite2D" parent="."]
+position = Vector2(703, 514)
+scale = Vector2(0.51, 0.51)
+sprite_frames = SubResource("SpriteFrames_r277e")
+animation = &"player2"
+
+[node name="FourthPlace" type="AnimatedSprite2D" parent="."]
+position = Vector2(940, 513)
+scale = Vector2(0.51, 0.51)
+sprite_frames = SubResource("SpriteFrames_r277e")
+animation = &"player3"
+
+[node name="Score0" type="Label" parent="."]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 19.0
+offset_right = 295.0
+offset_bottom = 97.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[node name="Score1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 356.0
+offset_right = 538.0
+offset_bottom = 434.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 622.0
+offset_top = 358.0
+offset_right = 780.0
+offset_bottom = 436.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[node name="Score3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 359.0
+offset_right = 1017.0
+offset_bottom = 437.0
+theme = ExtResource("1_tg4ih")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.87451, 0.572549, 0.0705882, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "24"
+label_settings = SubResource("LabelSettings_qqd21")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

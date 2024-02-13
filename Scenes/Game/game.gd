@@ -11,7 +11,7 @@ var _wake_scene = load( "res://Entities/Wake/wake.tscn")
 var _time: float = 60 * 3
 
 
-func start():
+func _ready():
 	Scores.reset()
 	_timer.start()
 	InputManager.game_started = true
@@ -34,5 +34,5 @@ func _on_timer_timeout():
 	_time -= 1
 	_score_board.update_time(_time)
 	
-	if _time <= 0:
-		get_tree().paused = true
+	if time <= 0:
+		get_tree().change_scene_to_file("res://Scenes/EndScreen/end_screen.tscn")
