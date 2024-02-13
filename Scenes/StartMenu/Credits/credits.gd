@@ -2,7 +2,6 @@ extends Control
 
 var credits_dict = JSON.parse_string(FileAccess.get_file_as_string("res://credits.json"))
 var credits_item_scene: PackedScene = load("res://Scenes/StartMenu/Credits/credits_item.tscn")
-var start_menu_scene: PackedScene = load("res://Scenes/StartMenu/start_menu.tscn")
 
 @onready var credits_container = $CreditsContainer
 @onready var thanks_label = $ThanksLabel
@@ -27,10 +26,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	credits_container.position.y -= 1
 	if credits_container.position.y < credits_container.size.y * -1:
-		queue_free()
+		get_tree().change_scene_to_file("res://Scenes/StartMenu/start_menu.tscn")
 
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		return
-	get_tree().change_scene_to_packed(start_menu_scene)
+	get_tree().change_scene_to_file("res://Scenes/StartMenu/start_menu.tscn")
