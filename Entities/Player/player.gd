@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 	# print(current.normalized(), direction)
 	var current = current_manager.current
-	current *= lerp(abs(direction.normalized().rotated(-90).dot(current.normalized() * -1) ), 0.1, 3)
+	current *= 3 #lerp(abs(direction.normalized().dot(current.normalized()) ), 2.0, 2.0)
 	# current = Vector2(current.y, current.x)
 	print(current)
 	
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 
 	# measure offset to add to internal position
 	var last = global_position
-	move_and_collide((velocity + current * -1) * delta )
+	move_and_collide((velocity + current) * delta )
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
