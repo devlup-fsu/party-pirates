@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var turn_speed := deg_to_rad(90)
 @export var strunned_speed := max_speed * 0.40
 @export var speed_degredation := 0.9
+@export var current_influence := 3.0
 
 @export var player := 0
 @export var cannon_ball_parent: Node
@@ -48,25 +49,8 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * speed
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
-	# print(current.normalized(), direction)
-	var current = current_manager.current
-	current *= 3 #lerp(abs(direction.normalized().dot(current.normalized()) ), 2.0, 2.0)
-	# current = Vector2(current.y, current.x)
-	print(current)
-	
-	# current = current * (clamp(velocity.normalized().dot(current.normalized()), 0, 1) * 30)
-	#if current < Vector2.ZERO:a
-		#current *= 2
-		#velocity = lerp(velocity, current, 0.25)
-	#else:
-		#velocity += current
-	# direction.normalized().dot(current.normalized())
-
-	# print(direction.normalized().dot(current.normalized()))
-
-	# measure offset to add to internal position
 	var last = global_position
-	move_and_collide((velocity + current) * delta )
+	move_and_collide((velocity + current_manager.current * current_influence) * delta )
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)

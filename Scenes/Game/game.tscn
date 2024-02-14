@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=18 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Shader" uid="uid://djp1uj0gk42kv" path="res://Scenes/Game/water.tres" id="2_066rc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
+[ext_resource type="PackedScene" uid="uid://cy5gjt7j67vox" path="res://Scenes/Game/Compass/compass.tscn" id="7_mytti"]
 [ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
 [ext_resource type="Script" path="res://Scenes/Game/CurrentManager.gd" id="9_r2nq2"]
 
@@ -143,6 +144,10 @@ text = "3:00"
 label_settings = SubResource("LabelSettings_0yh8e")
 horizontal_alignment = 1
 
+[node name="Compass" parent="UILayer/ScoreBoard" instance=ExtResource("7_mytti")]
+position = Vector2(754, 34)
+scale = Vector2(0.24, 0.24)
+
 [node name="SpawnPoints" type="Node2D" parent="."]
 
 [node name="Player0Spawn" type="Node2D" parent="SpawnPoints"]
@@ -197,9 +202,10 @@ position = Vector2(-151, 45)
 [node name="Marker2D6" type="Marker2D" parent="TreasureSpawner"]
 position = Vector2(145, 46)
 
-[node name="CurrentManager" type="Node2D" parent="." node_paths=PackedStringArray("water_node")]
+[node name="CurrentManager" type="Node2D" parent="." node_paths=PackedStringArray("water_node", "compass_node")]
 script = ExtResource("9_r2nq2")
 water_node = NodePath("../Water")
+compass_node = NodePath("../UILayer/ScoreBoard/Compass")
 
 [node name="CannonBallParent" type="Node" parent="."]
 
