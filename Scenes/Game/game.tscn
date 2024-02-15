@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ddr8xkyhh0hn2" path="res://Resources/Pickup/Sprites/gem.png" id="11_3hfoj"]
 [ext_resource type="Texture2D" uid="uid://dedi8cxwe3aoe" path="res://Resources/Pickup/Sprites/gold.png" id="12_garc3"]
 [ext_resource type="Texture2D" uid="uid://hsbyrx5yp770" path="res://Resources/Pickup/Sprites/spice.png" id="13_mhigq"]
-[ext_resource type="Script" path="res://Resources/Pickup/magnet_powerup.gd" id="14_uri82"]
 [ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="15_didbe"]
+[ext_resource type="Script" path="res://Resources/Pickup/grape_shot_powerup.gd" id="15_tidpx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
@@ -71,9 +71,9 @@ script = ExtResource("9_w11ia")
 value = 1
 texture = ExtResource("13_mhigq")
 
-[sub_resource type="Resource" id="Resource_4d4ea"]
-script = ExtResource("14_uri82")
-time_active = 10
+[sub_resource type="Resource" id="Resource_qi74q"]
+script = ExtResource("15_tidpx")
+time_active = 5
 texture = ExtResource("15_didbe")
 
 [node name="Game" type="Node2D"]
@@ -213,8 +213,9 @@ position = Vector2(1028, 455)
 player_id = 3
 
 [node name="PickupSpawner" parent="." instance=ExtResource("8_g781u")]
+powerup_chance = 0.5
 treasure = Array[ExtResource("9_w11ia")]([SubResource("Resource_n7eym"), SubResource("Resource_476dn"), SubResource("Resource_4c5ft"), SubResource("Resource_xtaa5")])
-powerups = Array[Resource("res://Resources/Pickup/powerup.gd")]([SubResource("Resource_4d4ea")])
+powerups = Array[Resource("res://Resources/Pickup/powerup.gd")]([SubResource("Resource_qi74q")])
 
 [node name="Marker2D" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-447, -485)
@@ -238,7 +239,5 @@ position = Vector2(145, 46)
 script = ExtResource("9_r2nq2")
 water_node = NodePath("../Water")
 compass_node = NodePath("../UILayer/ScoreBoard/Compass")
-
-[node name="CannonBallParent" type="Node" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
