@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgrgja4h846bd"]
+[gd_scene load_steps=3 format=3 uid="uid://cgrgja4h846bd"]
 
 [ext_resource type="PackedScene" uid="uid://c3hj6qs1av7te" path="res://Resources/ShootBehavior/Default/default_cannon_ball.tscn" id="1_mixgf"]
+[ext_resource type="Texture2D" uid="uid://diak4smbchsmy" path="res://Resources/ShootBehavior/GrapeShot/grape.png" id="2_qvpb0"]
 
 [node name="DefaultCannonBall" instance=ExtResource("1_mixgf")]
 
 [node name="Sprite2D" parent="." index="1"]
-self_modulate = Color(1, 0, 1, 1)
+texture = ExtResource("2_qvpb0")

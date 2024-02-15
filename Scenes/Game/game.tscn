@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=33 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Shader" uid="uid://djp1uj0gk42kv" path="res://Scenes/Game/water.tres" id="2_066rc"]
@@ -15,8 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://ddr8xkyhh0hn2" path="res://Resources/Pickup/Sprites/gem.png" id="11_3hfoj"]
 [ext_resource type="Texture2D" uid="uid://dedi8cxwe3aoe" path="res://Resources/Pickup/Sprites/gold.png" id="12_garc3"]
 [ext_resource type="Texture2D" uid="uid://hsbyrx5yp770" path="res://Resources/Pickup/Sprites/spice.png" id="13_mhigq"]
-[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="15_didbe"]
 [ext_resource type="Script" path="res://Resources/Pickup/grape_shot_powerup.gd" id="15_tidpx"]
+[ext_resource type="Texture2D" uid="uid://vaurijfke5vb" path="res://Resources/Pickup/grape_shot.png" id="16_3p8il"]
+[ext_resource type="Script" path="res://Resources/Pickup/magnet_powerup.gd" id="17_h7iyx"]
+[ext_resource type="Texture2D" uid="uid://dkwpqvko3k6t0" path="res://Resources/Pickup/magnet.png" id="18_xqxbq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
@@ -73,8 +75,13 @@ texture = ExtResource("13_mhigq")
 
 [sub_resource type="Resource" id="Resource_qi74q"]
 script = ExtResource("15_tidpx")
+time_active = 10
+texture = ExtResource("16_3p8il")
+
+[sub_resource type="Resource" id="Resource_us6w3"]
+script = ExtResource("17_h7iyx")
 time_active = 5
-texture = ExtResource("15_didbe")
+texture = ExtResource("18_xqxbq")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8ljh1")
@@ -215,7 +222,7 @@ player_id = 3
 [node name="PickupSpawner" parent="." instance=ExtResource("8_g781u")]
 powerup_chance = 0.5
 treasure = Array[ExtResource("9_w11ia")]([SubResource("Resource_n7eym"), SubResource("Resource_476dn"), SubResource("Resource_4c5ft"), SubResource("Resource_xtaa5")])
-powerups = Array[Resource("res://Resources/Pickup/powerup.gd")]([SubResource("Resource_qi74q")])
+powerups = Array[Resource("res://Resources/Pickup/powerup.gd")]([SubResource("Resource_qi74q"), SubResource("Resource_us6w3")])
 
 [node name="Marker2D" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-447, -485)
