@@ -10,7 +10,7 @@ var _wake_scene = load( "res://Entities/Wake/wake.tscn")
 var _time: float = 3 * 60
 
 
-func _ready():
+func _ready() -> void:
 	Scores.reset()
 	_timer.start()
 	InputManager.game_started = true
@@ -20,6 +20,7 @@ func _ready():
 		player.player = i
 		player.cannon_ball_parent = $CannonBallParent
 		player.global_position = $SpawnPoints.get_child( i ).global_position
+		player.current_manager = $CurrentManager
 		add_child(player)
 	
 		var wake: Wake = _wake_scene.instantiate()
@@ -27,7 +28,7 @@ func _ready():
 		player.add_child(wake)
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	_time -= 1
 	_score_board.update_time(_time)
 	
