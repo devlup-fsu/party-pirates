@@ -15,11 +15,14 @@ func _ready() -> void:
 	_timer.start()
 	InputManager.game_started = true
 	
+	var level = load("res://Levels/level_honeypot.tscn")
+	add_child(level.instantiate())
+	
 	for i in range( InputManager.get_player_count() ):
 		var player := _player_scene.instantiate() as Player
 		player.player = i
 		player.cannon_ball_parent = $CannonBallParent
-		player.global_position = $SpawnPoints.get_child( i ).global_position
+		player.global_position = $Level/SpawnPoints.get_child( i ).global_position
 		player.current_manager = $CurrentManager
 		add_child(player)
 	
