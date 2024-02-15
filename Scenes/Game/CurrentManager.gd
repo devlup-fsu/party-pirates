@@ -19,9 +19,9 @@ func _process(delta):
 	var dir_speed = 10
 	var gust_duration = 5
 	# not this one, this one is just bigger means bigger
-	var magni = 50
-	current.y = sin(time / dir_speed) * magni
-	current.x = cos(time / dir_speed) * magni
+	var magnitude = 50
+	current.y = sin(time / dir_speed) * magnitude
+	current.x = cos(time / dir_speed) * magnitude
 	current *= clamp(sin(time / gust_duration) / 2 + 0.5, 0, 1)
 
 	tot_current += current * -delta

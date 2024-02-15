@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=30 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Shader" uid="uid://djp1uj0gk42kv" path="res://Scenes/Game/water.tres" id="2_066rc"]
@@ -7,10 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
-
 [ext_resource type="PackedScene" uid="uid://cy5gjt7j67vox" path="res://Scenes/Game/Compass/compass.tscn" id="7_mytti"]
-[ext_resource type="Script" path="res://Scenes/Game/CurrentManager.gd" id="9_r2nq2"]
 [ext_resource type="PackedScene" uid="uid://dxenyhg0h5k0o" path="res://Entities/PickupSpawner/pickup_spawner.tscn" id="8_g781u"]
+[ext_resource type="Script" path="res://Scenes/Game/CurrentManager.gd" id="9_r2nq2"]
 [ext_resource type="Script" path="res://Resources/Pickup/treasure.gd" id="9_w11ia"]
 [ext_resource type="Texture2D" uid="uid://dcc2mdh04kpms" path="res://Resources/Pickup/Sprites/booze.png" id="10_xaipw"]
 [ext_resource type="Texture2D" uid="uid://ddr8xkyhh0hn2" path="res://Resources/Pickup/Sprites/gem.png" id="11_3hfoj"]

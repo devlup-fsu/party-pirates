@@ -9,7 +9,8 @@ var _wake_scene = load( "res://Entities/Wake/wake.tscn")
 # Start the timer at 3 minutes, or 60 * 3 seconds.
 var _time: float = 3 * 60
 
-func _ready():
+
+func _ready() -> void:
 	Scores.reset()
 	_timer.start()
 	InputManager.game_started = true
@@ -27,7 +28,7 @@ func _ready():
 		player.add_child(wake)
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	_time -= 1
 	_score_board.update_time(_time)
 	
