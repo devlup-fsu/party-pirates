@@ -15,6 +15,8 @@ var _wake_scene = load( "res://Entities/Wake/wake.tscn")
 func set_to_follow(to_follow: Node2D):
 	_to_follow = to_follow
 	_to_follow_path = to_follow.get_path()
+	
+	top_level = true
 
 
 func _process(_delta):

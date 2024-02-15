@@ -1,5 +1,4 @@
-class_name Player
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var max_speed := 300.0
 @export var turn_speed := deg_to_rad(90)
@@ -10,8 +9,10 @@ extends CharacterBody2D
 @export var cannon_ball_parent: Node
 @export var shoot_delay := 0.5
 
-@onready var treasure_collector: TreasureCollector = $TreasureCollector
+@onready var pickup_collector: PickupCollector = $PickupCollector
+@onready var treasure_trail: TreasureTrail = $TreasureTrail
 @onready var vulnerability_timer: Timer = $VulnerabilityTimer
+@onready var powerup_timer: Timer = $PowerupTimer
 @onready var left_cannon: Marker2D = $LeftCannon
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
 @onready var right_cannon: Marker2D = $RightCannon
@@ -19,8 +20,8 @@ extends CharacterBody2D
 
 var speed: float = 0
 var current_speed: float = max_speed 
-
 var internal_pos: Vector2
+
 
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
@@ -68,18 +69,21 @@ func _process(_delta: float) -> void:
 			right_cannon_timer.start(shoot_delay)
 
 
-func score_treasure() -> void:
-	var score = treasure_collector.score_treasure()
-	Scores.add_player_score(player, score)
-
-
 func hit() -> void:
-	treasure_collector.drop_treasure()
+	treasure_trail.drop()
 	current_speed = strunned_speed
-	treasure_collector.disable()
+	pickup_collector.enabled = false
 	
 	vulnerability_timer.start()
 	await vulnerability_timer.timeout
 	
 	current_speed = max_speed
-	treasure_collector.enable()
+	pickup_collector.enabled = true
+
+
+func score() -> void:
+	Scores.add_player_score(player, treasure_trail.score())
+
+
+func add_treasure_to_trail(treasure: Treasure) -> void:
+	treasure_trail.append(treasure)
