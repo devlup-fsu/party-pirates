@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dd70viq7ixof6"]
+[gd_scene load_steps=28 format=3 uid="uid://dd70viq7ixof6"]
 
 [ext_resource type="Script" path="res://Scenes/Game/game.gd" id="1_8ljh1"]
 [ext_resource type="Shader" uid="uid://djp1uj0gk42kv" path="res://Scenes/Game/water.tres" id="2_066rc"]
@@ -7,9 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://brex3xk35rxl3" path="res://Entities/IslandTileMap/island_tile_map.tscn" id="2_wdp5l"]
 [ext_resource type="Theme" uid="uid://cl5dwigu7j6fe" path="res://Themes/default_theme.tres" id="5_do7y5"]
 [ext_resource type="PackedScene" uid="uid://bqbkqt7cdy23j" path="res://Entities/Dock/dock.tscn" id="6_aq2lw"]
+
 [ext_resource type="PackedScene" uid="uid://cy5gjt7j67vox" path="res://Scenes/Game/Compass/compass.tscn" id="7_mytti"]
-[ext_resource type="PackedScene" uid="uid://benpi84elt7gh" path="res://Entities/TreasureSpawner/treasure_spawner.tscn" id="7_oaxjh"]
 [ext_resource type="Script" path="res://Scenes/Game/CurrentManager.gd" id="9_r2nq2"]
+[ext_resource type="PackedScene" uid="uid://dxenyhg0h5k0o" path="res://Entities/PickupSpawner/pickup_spawner.tscn" id="8_g781u"]
+[ext_resource type="Script" path="res://Resources/Pickup/treasure.gd" id="9_w11ia"]
+[ext_resource type="Texture2D" uid="uid://dcc2mdh04kpms" path="res://Resources/Pickup/Sprites/booze.png" id="10_xaipw"]
+[ext_resource type="Texture2D" uid="uid://ddr8xkyhh0hn2" path="res://Resources/Pickup/Sprites/gem.png" id="11_3hfoj"]
+[ext_resource type="Texture2D" uid="uid://dedi8cxwe3aoe" path="res://Resources/Pickup/Sprites/gold.png" id="12_garc3"]
+[ext_resource type="Texture2D" uid="uid://hsbyrx5yp770" path="res://Resources/Pickup/Sprites/spice.png" id="13_mhigq"]
+[ext_resource type="Script" path="res://Resources/Pickup/magnet_powerup.gd" id="14_uri82"]
+[ext_resource type="Texture2D" uid="uid://bixqodnuyqj5w" path="res://icon.svg" id="15_didbe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
@@ -43,6 +51,31 @@ outline_size = 12
 font_size = 58
 font_color = Color(0.301961, 0.0980392, 0.0313726, 1)
 outline_size = 12
+
+[sub_resource type="Resource" id="Resource_n7eym"]
+script = ExtResource("9_w11ia")
+value = 1
+texture = ExtResource("10_xaipw")
+
+[sub_resource type="Resource" id="Resource_476dn"]
+script = ExtResource("9_w11ia")
+value = 1
+texture = ExtResource("11_3hfoj")
+
+[sub_resource type="Resource" id="Resource_4c5ft"]
+script = ExtResource("9_w11ia")
+value = 1
+texture = ExtResource("12_garc3")
+
+[sub_resource type="Resource" id="Resource_xtaa5"]
+script = ExtResource("9_w11ia")
+value = 1
+texture = ExtResource("13_mhigq")
+
+[sub_resource type="Resource" id="Resource_4d4ea"]
+script = ExtResource("14_uri82")
+time_active = 10
+texture = ExtResource("15_didbe")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8ljh1")
@@ -180,27 +213,26 @@ player_id = 2
 position = Vector2(1028, 455)
 player_id = 3
 
-[node name="TreasureSpawner" parent="." instance=ExtResource("7_oaxjh")]
-wait_time = 7
-max_spawned_at_once = 10
-max_on_screen_at_once = 4
+[node name="PickupSpawner" parent="." instance=ExtResource("8_g781u")]
+treasure = Array[ExtResource("9_w11ia")]([SubResource("Resource_n7eym"), SubResource("Resource_476dn"), SubResource("Resource_4c5ft"), SubResource("Resource_xtaa5")])
+powerups = Array[Resource("res://Resources/Pickup/powerup.gd")]([SubResource("Resource_4d4ea")])
 
-[node name="Marker2D" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-447, -485)
 
-[node name="Marker2D2" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D2" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-466, 565)
 
-[node name="Marker2D3" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D3" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(439, -464)
 
-[node name="Marker2D4" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D4" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(470, 559)
 
-[node name="Marker2D5" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D5" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(-151, 45)
 
-[node name="Marker2D6" type="Marker2D" parent="TreasureSpawner"]
+[node name="Marker2D6" type="Marker2D" parent="PickupSpawner"]
 position = Vector2(145, 46)
 
 [node name="CurrentManager" type="Node2D" parent="." node_paths=PackedStringArray("water_node", "compass_node")]
