@@ -38,7 +38,6 @@ func _process(_delta):
 				add_point(point)
 
 		var res = ModCoord.resolution * 0.99
-		print(res)
 		
 		if pos.x <= -res.x:
 			_wrap_wake()

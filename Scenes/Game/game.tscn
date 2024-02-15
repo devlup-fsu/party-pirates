@@ -145,7 +145,8 @@ label_settings = SubResource("LabelSettings_0yh8e")
 horizontal_alignment = 1
 
 [node name="Compass" parent="UILayer/ScoreBoard" instance=ExtResource("7_mytti")]
-position = Vector2(754, 34)
+visible = true
+position = Vector2(765.145, 34.825)
 scale = Vector2(0.24, 0.24)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
