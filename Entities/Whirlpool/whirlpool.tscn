@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://n8c62ma1h5f2"]
+
+[ext_resource type="Script" path="res://Entities/Whirlpool/whirlpool.gd" id="1_oa46a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejijy"]
+radius = 250.0
+
+[node name="Whirlpool" type="Area2D"]
+script = ExtResource("1_oa46a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ejijy")
+
+[node name="whirlpool_timeout" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="whirlpool_timeout" to="." method="_on_whirlpool_timeout_timeout"]

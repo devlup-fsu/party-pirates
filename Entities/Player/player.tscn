@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://mi527txnbjjm"]
+[gd_scene load_steps=12 format=3 uid="uid://mi527txnbjjm"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_egvib"]
 [ext_resource type="Shader" uid="uid://b4sfgti30vw8w" path="res://Entities/Player/player_windy_sails_mat.tres" id="2_bdf3p"]

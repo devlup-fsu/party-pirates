@@ -5,6 +5,7 @@ class_name Player extends CharacterBody2D
 @export var strunned_speed := max_speed * 0.40
 @export var speed_degredation := 0.9
 @export var current_influence := 3.0
+@export var whirlpool_influence := 300.0
 
 @export var player := 0
 @export var cannon_ball_parent: Node
@@ -24,6 +25,7 @@ var current_speed: float = max_speed
 var internal_pos: Vector2
 
 var current_manager: Node
+var whirlpool_pull: Vector2 = Vector2(0, 0)
 
 
 func _ready() -> void:
@@ -51,7 +53,8 @@ func _physics_process(delta: float) -> void:
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
 	var last = global_position
-	move_and_collide((velocity + current_manager.current * current_influence) * delta )
+	move_and_collide((velocity + (current_manager.current * current_influence) + (whirlpool_pull * whirlpool_influence)) * delta )
+	#move_and_collide((velocity + (current_manager.current * current_influence)) * delta )
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
