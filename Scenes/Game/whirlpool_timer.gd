@@ -11,5 +11,6 @@ func _ready():
 
 func _on_timeout():
 	var whirlpool = _whirlpool_scene.instantiate()
+	whirlpool.whirlpool_radius = 500
 	add_child(whirlpool)
 	start(randi_range(30, 60))

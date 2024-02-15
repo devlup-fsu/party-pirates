@@ -3,8 +3,12 @@ extends Area2D
 var player_list: Array[Player] = []
 #var direction: Vector2
 
+@export var whirlpool_radius: int = 250
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CollisionShape2D.shape.radius = whirlpool_radius
 #	direction = Vector2(0, 0)
 	$whirlpool_timeout.start(randi_range(10, 20))
 
@@ -13,7 +17,7 @@ func _process(delta):
 		player.whirlpool_pull = player.global_position.direction_to(global_position)
 
 func _draw() -> void:
-	draw_circle(Vector2(), $CollisionShape2D.shape.radius, Color(0, 0, 1, 0.25))
+	draw_circle(Vector2(), whirlpool_radius, Color(0, 0, 1, 0.25))
 
 
 func _on_whirlpool_timeout_timeout():
