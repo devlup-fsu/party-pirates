@@ -19,6 +19,13 @@ class_name Player extends CharacterBody2D
 @onready var right_cannon: Marker2D = $RightCannon
 @onready var right_cannon_timer: Timer = $RightCannon/Timer
 
+var impact: KinematicCollision2D
+
+static var s_cannon: AudioStream = preload("res://Sounds/cannon.mp3")
+static var s_pickup: AudioStream = preload("res://Sounds/pickup.mp3")
+static var s_hit: AudioStream = preload("res://Sounds/hit.mp3")
+static var s_impact: AudioStream = preload("res://Sounds/hit.mp3")
+
 var speed: float = 0
 var current_speed: float = max_speed 
 var internal_pos: Vector2
@@ -51,10 +58,17 @@ func _physics_process(delta: float) -> void:
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
 	var last = global_position
-	move_and_collide((velocity + current_manager.current * current_influence) * delta )
+	var collide = move_and_collide((velocity + current_manager.current * current_influence) * delta )
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
+	#
+	if collide is KinematicCollision2D and not collide == null:
+		#if collide.get_collider() != impact.get_collider():
+		impact = collide
+		print(collide)
+		%AudioStreamPlayer2D.stream = s_impact
+		%AudioStreamPlayer2D.play()
 
 
 func _process(_delta: float) -> void:
@@ -64,14 +78,22 @@ func _process(_delta: float) -> void:
 		if left_cannon_timer.is_stopped():
 			CannonBall.create(cannon_ball_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
 			left_cannon_timer.start(shoot_delay)
+			
+			%AudioStreamPlayer2D.stream = s_cannon
+			%AudioStreamPlayer2D.play()
 	
 	if input.is_shoot_right_pressed():
 		if right_cannon_timer.is_stopped():
 			CannonBall.create(cannon_ball_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
 			right_cannon_timer.start(shoot_delay)
-
+			
+			%AudioStreamPlayer2D.stream = s_cannon
+			%AudioStreamPlayer2D.play()
 
 func hit() -> void:
+	%AudioStreamPlayer2D.stream = s_hit
+	%AudioStreamPlayer2D.play()
+	
 	treasure_trail.drop()
 	current_speed = strunned_speed
 	pickup_collector.enabled = false
@@ -81,6 +103,8 @@ func hit() -> void:
 	
 	current_speed = max_speed
 	pickup_collector.enabled = true
+	
+	print("hit")
 
 
 func score() -> void:
@@ -89,3 +113,7 @@ func score() -> void:
 
 func add_treasure_to_trail(treasure: Treasure) -> void:
 	treasure_trail.append(treasure)
+
+	%AudioStreamPlayer2D.stream = s_pickup
+	%AudioStreamPlayer2D.play()
+
