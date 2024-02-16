@@ -19,16 +19,23 @@ class_name Player extends CharacterBody2D
 @onready var right_cannon: Marker2D = $RightCannon
 @onready var right_cannon_timer: Timer = $RightCannon/Timer
 
-var impact: KinematicCollision2D
-
 static var s_cannon: AudioStream = preload("res://Sounds/cannon.mp3")
 static var s_pickup: AudioStream = preload("res://Sounds/pickup.mp3")
 static var s_hit: AudioStream = preload("res://Sounds/hit.mp3")
 static var s_impact: AudioStream = preload("res://Sounds/hit.mp3")
 
+static var s_coins_0: AudioStream = preload("res://Sounds/coins_0.mp3")
+static var s_coins_1: AudioStream = preload("res://Sounds/coins_1.mp3")
+static var s_coins_2: AudioStream = preload("res://Sounds/coins_2.mp3")
+static var s_coins_3: AudioStream = preload("res://Sounds/coins_3.mp3")
+static var s_coins_4: AudioStream = preload("res://Sounds/coins_4.mp3")
+
+static var coins_sounds = [[10, s_coins_4], [5, s_coins_3], [3, s_coins_2], [2, s_coins_1], [0, s_coins_0]]
+
 var speed: float = 0
 var current_speed: float = max_speed 
 var internal_pos: Vector2
+var is_colliding: bool = false
 
 var current_manager: Node
 
@@ -62,13 +69,14 @@ func _physics_process(delta: float) -> void:
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
-	#
+
 	if collide is KinematicCollision2D and not collide == null:
-		#if collide.get_collider() != impact.get_collider():
-		impact = collide
-		print(collide)
-		%AudioStreamPlayer2D.stream = s_impact
-		%AudioStreamPlayer2D.play()
+		if not %AudioStreamPlayer2D.stream == s_impact or not is_colliding:
+			is_colliding = true
+			%AudioStreamPlayer2D.stream = s_impact
+			%AudioStreamPlayer2D.play()
+	else:
+		is_colliding = false
 
 
 func _process(_delta: float) -> void:
@@ -103,12 +111,17 @@ func hit() -> void:
 	
 	current_speed = max_speed
 	pickup_collector.enabled = true
-	
-	print("hit")
 
 
 func score() -> void:
+	var added = treasure_trail.score()
 	Scores.add_player_score(player, treasure_trail.score())
+	
+	for list_score_sound in coins_sounds:
+		if added > list_score_sound[0]:
+			%AudioStreamPlayer2D.stream = list_score_sound[1]
+			%AudioStreamPlayer2D.play()
+			break
 
 
 func add_treasure_to_trail(treasure: Treasure) -> void:
