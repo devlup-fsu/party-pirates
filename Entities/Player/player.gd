@@ -115,7 +115,7 @@ func hit() -> void:
 
 func score() -> void:
 	var added = treasure_trail.score()
-	Scores.add_player_score(player, treasure_trail.score())
+	Scores.add_player_score(player, added)
 	
 	for list_score_sound in coins_sounds:
 		if added > list_score_sound[0]:
