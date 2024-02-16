@@ -1,11 +1,13 @@
 # Inspired by https://www.youtube.com/watch?v=y8bi0_Fggn0
 class_name Rope extends Line2D
 
-var _wrap = false
+var _wrap: bool = false
+var _can_wrap: bool = true
 var _to_follow: Node2D
 var _to_follow_path: NodePath
+var _new_rope: Rope
 
-static var rope_scene = load( "res://Entities/Player/TreasureTrail/Ropes/rope.tscn")
+var _rope_scene = load( "res://Entities/Player/TreasureTrail/Ropes/rope.tscn")
 
 func set_to_follow(to_follow: Node2D):
 	_to_follow = to_follow
@@ -16,47 +18,41 @@ func set_to_follow(to_follow: Node2D):
 
 func _process(_delta):
 
-	# var pos = _to_follow.global_position
-
 	if _to_follow is TreasureTrail:
 		clear_points()
 		
-		if not is_over(_to_follow.get_parent().internal_pos):
-			add_point(_to_follow.global_position)
-		else:
-			add_point(_to_follow.get_parent().internal_pos)
-			if not _wrap:
-				wrap_rope()
-			
 		if _to_follow._trail.size() > 0:
-			var all_over = true
-			for point in _to_follow._trail:
-				if not is_over(point.internal_pos):
+			var trail = _to_follow._trail.duplicate(true)
+			var follow_pos: Vector2 = _to_follow.global_position
+
+			if _wrap:
+				trail.reverse()
+
+			follow_pos = trail[0].global_position
+			if (follow_pos - _to_follow.global_position).length() > 300:
+				if not _wrap and _can_wrap:
+					wrap_rope()
+			elif not _wrap:
+				add_point(_to_follow.global_position)
+
+			for point in trail:
+				if not (follow_pos - point.global_position).length() > 300:
 					add_point(point.global_position)
-					all_over = false
-				else:
-					add_point(point.internal_pos)
-			if all_over:
-				pass
-				# queue_free()
+					follow_pos = point.global_position
 
+			if not (follow_pos - _to_follow.global_position).length() > 300 and _wrap:
+				add_point(_to_follow.global_position)
 
-func is_over(pos):
-	var res = ModCoord.resolution * 0.9
-
-	if pos.x <= -res.x:
-		return true
-	elif pos.x >= res.x:
-		return true
-	if pos.y <= -res.y:
-		return true
-	elif pos.y >= res.y:
-		return true
-	return false
+			if get_point_count() == 0 and _wrap:
+				_new_rope._can_wrap = true
+				queue_free()
 
 
 func wrap_rope():
-		var rope := load( "res://Entities/Player/TreasureTrail/Ropes/rope.tscn").instantiate() as Rope
+	if not _wrap:
+		var rope: Rope = _rope_scene.instantiate()
 		rope.set_to_follow(_to_follow)
 		get_parent().add_child(rope)
+		rope._can_wrap = false
+		_new_rope = rope
 		_wrap = true
