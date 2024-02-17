@@ -22,7 +22,7 @@
 shader = ExtResource("2_066rc")
 shader_parameter/CurrentDirection = Vector2(0, -10)
 shader_parameter/WhirlpoolLocation = Vector2(0, 0)
-shader_parameter/Whirlpool_Scale = 0.0
+shader_parameter/Whirlpool_Scale = 1.0
 shader_parameter/Whirlpool_Speed = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7llos"]

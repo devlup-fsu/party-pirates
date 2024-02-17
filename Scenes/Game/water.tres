@@ -215,7 +215,6 @@ default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_gx5eu"]
-output_port_for_preview = 0
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6f3x3"]
 input_name = "time"
@@ -427,8 +426,17 @@ void fragment() {
 	vec2 n_out47p0 = CurrentDirection;
 
 
+// Input:6
+	float n_out6p0 = TIME;
+
+
 // VectorOp:48
-	vec2 n_out48p0 = n_out11p0 + n_out47p0;
+	vec2 n_out48p0 = n_out47p0 + vec2(n_out6p0);
+
+
+// UVFunc:5
+	vec2 n_in5p1 = vec2(1.00000, 1.00000);
+	vec2 n_out5p0 = n_out48p0 * n_in5p1 + n_out11p0;
 
 
 // FloatConstant:27
@@ -439,7 +447,7 @@ void fragment() {
 // Expression:2
 	n_out2p0 = vec4(0.0, 0.0, 0.0, 0.0);
 	{
-		float worley = worley(n_out48p0, n_out27p0, n_out27p0);
+		float worley = worley(n_out5p0, n_out27p0, n_out27p0);
 		n_out2p0 = vec4(vec3(worley), 1.0);
 	}
 
@@ -619,7 +627,7 @@ void fragment() {
 // Expression:25
 	n_out25p0 = vec4(0.0, 0.0, 0.0, 0.0);
 	{
-		float worley = worley(n_out48p0, n_out28p0, n_out28p0);
+		float worley = worley(n_out5p0, n_out28p0, n_out28p0);
 		n_out25p0 = vec4(vec3(worley), 1.0);
 	}
 
@@ -658,7 +666,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1264.2, -98.5107)
+graph_offset = Vector2(-1570.62, -36.6303)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(4000, 320)
@@ -704,7 +712,7 @@ float worley(vec2 uv, float columns, float rows) {
 	return minimum_dist;
 }"
 nodes/fragment/5/node = SubResource("VisualShaderNodeUVFunc_gx5eu")
-nodes/fragment/5/position = Vector2(-1280, 40)
+nodes/fragment/5/position = Vector2(-1240, 20)
 nodes/fragment/6/node = SubResource("VisualShaderNodeInput_6f3x3")
 nodes/fragment/6/position = Vector2(-2260, 680)
 nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_yncvg")
@@ -737,7 +745,7 @@ nodes/fragment/25/output_ports = "0,5,COLOR;"
 nodes/fragment/25/expression = "float worley = worley(UV, SCALE, SCALE);
 COLOR = vec4(vec3(worley), 1.0);"
 nodes/fragment/27/node = SubResource("VisualShaderNodeFloatConstant_arjo1")
-nodes/fragment/27/position = Vector2(-1200, 360)
+nodes/fragment/27/position = Vector2(-1080, 400)
 nodes/fragment/28/node = SubResource("VisualShaderNodeFloatConstant_nrl8u")
 nodes/fragment/28/position = Vector2(-1200, 520)
 nodes/fragment/29/node = SubResource("VisualShaderNodeColorConstant_sd4ms")
