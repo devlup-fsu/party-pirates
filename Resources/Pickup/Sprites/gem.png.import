@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcc2mdh04kpms"
-path="res://.godot/imported/booze.png-ed39ffcf499badd120530f9670e8d79f.ctex"
+uid="uid://ddr8xkyhh0hn2"
+path="res://.godot/imported/gem.png-59fbf00313f8e1a1c03aaecee6859c6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Treasure/Sprites/booze.png"
-dest_files=["res://.godot/imported/booze.png-ed39ffcf499badd120530f9670e8d79f.ctex"]
+source_file="res://Resources/Pickup/Sprites/gem.png"
+dest_files=["res://.godot/imported/gem.png-59fbf00313f8e1a1c03aaecee6859c6f.ctex"]
 
 [params]
 

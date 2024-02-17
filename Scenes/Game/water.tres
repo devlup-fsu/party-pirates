@@ -213,10 +213,9 @@ parameter_name = "CurrentDirection"
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_w7ryc"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
-operator = 2
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_gx5eu"]
-default_input_values = [1, Vector2(3.3, 1), 2, Vector2(3.98, 0)]
+output_port_for_preview = 0
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_6f3x3"]
 input_name = "time"
@@ -428,17 +427,8 @@ void fragment() {
 	vec2 n_out47p0 = CurrentDirection;
 
 
-// Input:6
-	float n_out6p0 = TIME;
-
-
 // VectorOp:48
-	vec2 n_out48p0 = n_out47p0 * vec2(n_out6p0);
-
-
-// UVFunc:5
-	vec2 n_in5p1 = vec2(3.30000, 1.00000);
-	vec2 n_out5p0 = n_out48p0 * n_in5p1 + n_out11p0;
+	vec2 n_out48p0 = n_out11p0 + n_out47p0;
 
 
 // FloatConstant:27
@@ -449,7 +439,7 @@ void fragment() {
 // Expression:2
 	n_out2p0 = vec4(0.0, 0.0, 0.0, 0.0);
 	{
-		float worley = worley(n_out5p0, n_out27p0, n_out27p0);
+		float worley = worley(n_out48p0, n_out27p0, n_out27p0);
 		n_out2p0 = vec4(vec3(worley), 1.0);
 	}
 
@@ -629,7 +619,7 @@ void fragment() {
 // Expression:25
 	n_out25p0 = vec4(0.0, 0.0, 0.0, 0.0);
 	{
-		float worley = worley(n_out5p0, n_out28p0, n_out28p0);
+		float worley = worley(n_out48p0, n_out28p0, n_out28p0);
 		n_out25p0 = vec4(vec3(worley), 1.0);
 	}
 
@@ -769,7 +759,7 @@ nodes/fragment/40/position = Vector2(3420, 220)
 nodes/fragment/45/node = SubResource("VisualShaderNodeVectorOp_h5cbk")
 nodes/fragment/45/position = Vector2(-3500, 40)
 nodes/fragment/47/node = SubResource("VisualShaderNodeVec2Parameter_pqhq1")
-nodes/fragment/47/position = Vector2(-2260, 380)
+nodes/fragment/47/position = Vector2(-2860, 460)
 nodes/fragment/48/node = SubResource("VisualShaderNodeVectorOp_w7ryc")
 nodes/fragment/48/position = Vector2(-1780, 460)
 nodes/fragment/63/node = SubResource("VisualShaderNodeVectorFunc_tj3tm")

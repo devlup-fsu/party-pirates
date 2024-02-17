@@ -1,17 +1,19 @@
-class_name Player
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var max_speed := 300.0
 @export var turn_speed := deg_to_rad(90)
 @export var strunned_speed := max_speed * 0.40
 @export var speed_degredation := 0.9
+@export var current_influence := 3.0
 
 @export var player := 0
 @export var cannon_ball_parent: Node
 @export var shoot_delay := 0.5
 
-@onready var treasure_collector: TreasureCollector = $TreasureCollector
+@onready var pickup_collector: PickupCollector = $PickupCollector
+@onready var treasure_trail: TreasureTrail = $TreasureTrail
 @onready var vulnerability_timer: Timer = $VulnerabilityTimer
+@onready var powerup_timer: Timer = $PowerupTimer
 @onready var left_cannon: Marker2D = $LeftCannon
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
 @onready var right_cannon: Marker2D = $RightCannon
@@ -19,12 +21,17 @@ extends CharacterBody2D
 
 var speed: float = 0
 var current_speed: float = max_speed 
+var internal_pos: Vector2
+
+var current_manager: Node
 
 
 func _ready() -> void:
 	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
 	
 	$AnimatedSprite2D.play("player" + str(self.player))
+	
+	internal_pos = global_position
 
 
 func _physics_process(delta: float) -> void:
@@ -33,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Vector2()
 	input_dir.x = input.get_turning()
 	input_dir.y = 1
-	
+
 	speed = clamp((input_dir.y * 30) + (speed), 0, current_speed)
 	
 	var target := Vector2(cos(rotation), sin(rotation)).rotated(input_dir.x * turn_speed * delta * (1 + speed / max_speed * 24))
@@ -43,18 +50,11 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * speed
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
-	move_and_collide(velocity * delta)
-	
-	# Loop around the screen.
-	if global_position.x <= -1190:
-		global_position.x = 1189
-	elif global_position.x >= 1190:
-		global_position.x = -1189
-	
-	if global_position.y <= -598:
-		global_position.y = 691
-	elif global_position.y >= 692:
-		global_position.y = -597
+	var last = global_position
+	move_and_collide((velocity + current_manager.current * current_influence) * delta )
+	internal_pos += global_position - last
+
+	global_position = ModCoord.get_modular_pos(internal_pos)
 
 
 func _process(_delta: float) -> void:
@@ -71,18 +71,21 @@ func _process(_delta: float) -> void:
 			right_cannon_timer.start(shoot_delay)
 
 
-func score_treasure() -> void:
-	var score = treasure_collector.score_treasure()
-	Scores.add_player_score(player, score)
-
-
 func hit() -> void:
-	treasure_collector.drop_treasure()
+	treasure_trail.drop()
 	current_speed = strunned_speed
-	treasure_collector.disable()
+	pickup_collector.enabled = false
 	
 	vulnerability_timer.start()
 	await vulnerability_timer.timeout
 	
 	current_speed = max_speed
-	treasure_collector.enable()
+	pickup_collector.enabled = true
+
+
+func score() -> void:
+	Scores.add_player_score(player, treasure_trail.score())
+
+
+func add_treasure_to_trail(treasure: Treasure) -> void:
+	treasure_trail.append(treasure)

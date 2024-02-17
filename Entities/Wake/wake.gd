@@ -15,6 +15,8 @@ var _wake_scene = load( "res://Entities/Wake/wake.tscn")
 func set_to_follow(to_follow: Node2D):
 	_to_follow = to_follow
 	_to_follow_path = to_follow.get_path()
+	
+	top_level = true
 
 
 func _process(_delta):
@@ -36,15 +38,16 @@ func _process(_delta):
 
 			for point in _queue:
 				add_point(point)
+
+		var res = ModCoord.resolution * 0.99
 		
-		# TODO: Use modularity code from PR #38 when it is merged.
-		if pos.x <= -1100:
+		if pos.x <= -res.x:
 			_wrap_wake()
-		elif pos.x >= 1100:
+		elif pos.x >= res.x:
 			_wrap_wake()
-		if pos.y <= -580:
+		if pos.y <= -res.y:
 			_wrap_wake()
-		elif pos.y >= 580:
+		elif pos.y >= res.y:
 			_wrap_wake()
 
 

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://g6kr4hr36mmi"]
+
+[ext_resource type="Script" path="res://Entities/DroppedPickup/dropped_pickup.gd" id="1_fmqwc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tyct5"]
+radius = 30.0
+
+[node name="DroppedPickup" type="Area2D"]
+script = ExtResource("1_fmqwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tyct5")

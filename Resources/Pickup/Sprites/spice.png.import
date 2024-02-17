@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hsbyrx5yp770"
-path="res://.godot/imported/spice.png-2acab2f2bc80f79522a6256db55bcefc.ctex"
+path="res://.godot/imported/spice.png-a9c7b3c76efa8c14a9080d4cb2005d09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Treasure/Sprites/spice.png"
-dest_files=["res://.godot/imported/spice.png-2acab2f2bc80f79522a6256db55bcefc.ctex"]
+source_file="res://Resources/Pickup/Sprites/spice.png"
+dest_files=["res://.godot/imported/spice.png-a9c7b3c76efa8c14a9080d4cb2005d09.ctex"]
 
 [params]
 

@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var _timer: Timer = $Timer
 @onready var _score_board = $UILayer/ScoreBoard
-@onready var _treasure_spawner: TreasureSpawner = $TreasureSpawner
 
 var _player_scene = load( "res://Entities/Player/player.tscn" )
 var _wake_scene = load( "res://Entities/Wake/wake.tscn")
@@ -11,7 +10,7 @@ var _wake_scene = load( "res://Entities/Wake/wake.tscn")
 var _time: float = 3 * 60
 
 
-func _ready():
+func _ready() -> void:
 	Scores.reset()
 	_timer.start()
 	InputManager.game_started = true
@@ -20,17 +19,16 @@ func _ready():
 		var player := _player_scene.instantiate() as Player
 		player.player = i
 		player.cannon_ball_parent = $CannonBallParent
-		add_child(player)
 		player.global_position = $SpawnPoints.get_child( i ).global_position
+		player.current_manager = $CurrentManager
+		add_child(player)
 	
-		var wake := _wake_scene.instantiate() as Wake
+		var wake: Wake = _wake_scene.instantiate()
 		wake.set_to_follow(player)
-		add_child(wake)
-	
-	_treasure_spawner.spawn_treasure(3)
+		player.add_child(wake)
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	_time -= 1
 	_score_board.update_time(_time)
 	
