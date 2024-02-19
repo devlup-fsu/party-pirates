@@ -23,7 +23,7 @@
 shader = ExtResource("2_066rc")
 shader_parameter/CurrentDirection = Vector2(0, -10)
 shader_parameter/WhirlpoolLocation = Vector2(0, 0)
-shader_parameter/Whirlpool_Scale = 1.0
+shader_parameter/Whirlpool_Scale = 0.0
 shader_parameter/Whirlpool_Speed = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7llos"]
@@ -245,9 +245,11 @@ compass_node = NodePath("../UILayer/ScoreBoard/Compass")
 [node name="CannonBallParent" type="Node" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 
-[node name="whirlpool_timer" type="Timer" parent="."]
+[node name="whirlpool_timer" type="Timer" parent="." node_paths=PackedStringArray("water_node")]
 script = ExtResource("18_w7x6a")
+water_node = NodePath("../Water")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="whirlpool_timer" to="whirlpool_timer" method="_on_timeout"]

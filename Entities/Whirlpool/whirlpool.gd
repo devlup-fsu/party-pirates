@@ -5,6 +5,7 @@ var player_list: Array[Player] = []
 
 @export var whirlpool_radius: int = 250
 
+signal done
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,12 +16,13 @@ func _ready():
 func _process(delta):
 	for player in player_list:
 		player.whirlpool_pull = player.global_position.direction_to(global_position)
-
-func _draw() -> void:
-	draw_circle(Vector2(), whirlpool_radius, Color(0, 0, 1, 0.25))
+#
+#func _draw() -> void:
+	#draw_circle(Vector2(), whirlpool_radius, Color(0, 0, 1, 0.25))
 
 
 func _on_whirlpool_timeout_timeout():
+	done.emit()
 	queue_free()
 	
 
