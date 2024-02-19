@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://eprgo5tgw6hb"]
+
+[ext_resource type="Texture2D" uid="uid://d2yjdocvhhwol" path="res://Entities/Player/TreasureTrail/Ropes/rope.png" id="1_3j2c1"]
+[ext_resource type="Script" path="res://Entities/Player/TreasureTrail/Ropes/rope.gd" id="2_ahy1q"]
+
+[node name="Rope" type="Line2D"]
+z_index = -98
+scale = Vector2(1, 1.00886)
+points = PackedVector2Array(1058, -95.1569)
+width = 25.0
+texture = ExtResource("1_3j2c1")
+texture_mode = 2
+script = ExtResource("2_ahy1q")

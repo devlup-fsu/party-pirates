@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh36jcwyl2hov"]
+[gd_scene load_steps=3 format=3 uid="uid://bh36jcwyl2hov"]
 
 [ext_resource type="Script" path="res://Entities/Player/TreasureTrail/treasure_trail.gd" id="1_emlfe"]
+[ext_resource type="PackedScene" uid="uid://eprgo5tgw6hb" path="res://Entities/Player/TreasureTrail/Ropes/rope.tscn" id="2_7p7jx"]
 
 [node name="TreasureTrail" type="Node2D"]
 script = ExtResource("1_emlfe")
+
+[node name="Rope" parent="." instance=ExtResource("2_7p7jx")]
+unique_name_in_owner = true
