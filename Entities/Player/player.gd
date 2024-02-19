@@ -7,8 +7,8 @@ class_name Player extends CharacterBody2D
 @export var current_influence := 3.0
 
 @export var player := 0
-@export var cannon_ball_parent: Node
 @export var shoot_delay := 0.5
+@export var default_shoot_behavior: ShootBehavior
 
 @onready var pickup_collector: PickupCollector = $PickupCollector
 @onready var treasure_trail: TreasureTrail = $TreasureTrail
@@ -22,14 +22,15 @@ class_name Player extends CharacterBody2D
 var speed: float = 0
 var current_speed: float = max_speed 
 var internal_pos: Vector2
+var shoot_behavior: ShootBehavior
 
 var current_manager: Node
 
 
 func _ready() -> void:
-	assert(cannon_ball_parent != null, "Player: property [cannon_parent] must not be null.")
-	
 	$AnimatedSprite2D.play("player" + str(self.player))
+	
+	shoot_behavior = default_shoot_behavior
 	
 	internal_pos = global_position
 
@@ -62,12 +63,12 @@ func _process(_delta: float) -> void:
 	
 	if input.is_shoot_left_pressed():
 		if left_cannon_timer.is_stopped():
-			CannonBall.create(cannon_ball_parent, left_cannon.global_position, Vector2.UP.rotated(rotation))
+			shoot_behavior.shoot(get_parent(), left_cannon.global_position, Vector2.UP.rotated(rotation))
 			left_cannon_timer.start(shoot_delay)
 	
 	if input.is_shoot_right_pressed():
 		if right_cannon_timer.is_stopped():
-			CannonBall.create(cannon_ball_parent, right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+			shoot_behavior.shoot(get_parent(), right_cannon.global_position, Vector2.DOWN.rotated(rotation))
 			right_cannon_timer.start(shoot_delay)
 
 
