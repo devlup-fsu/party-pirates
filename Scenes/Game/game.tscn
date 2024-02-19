@@ -21,7 +21,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibmqc"]
 shader = ExtResource("2_066rc")
-shader_parameter/CurrentDirection = Vector2(-100, 100)
+shader_parameter/CurrentDirection = Vector2(0, -10)
+shader_parameter/WhirlpoolLocation = Vector2(0, 0)
+shader_parameter/Whirlpool_Scale = 1.0
+shader_parameter/Whirlpool_Speed = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7llos"]
 width = 2527
@@ -87,7 +90,6 @@ zoom = Vector2(0.5, 0.5)
 [node name="Water" type="Sprite2D" parent="."]
 z_index = -100
 material = SubResource("ShaderMaterial_ibmqc")
-scale = Vector2(0.929634, 0.982801)
 texture = SubResource("NoiseTexture2D_7llos")
 
 [node name="IslandTileMap" parent="." instance=ExtResource("2_wdp5l")]
@@ -241,6 +243,8 @@ water_node = NodePath("../Water")
 compass_node = NodePath("../UILayer/ScoreBoard/Compass")
 
 [node name="CannonBallParent" type="Node" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
 
 [node name="whirlpool_timer" type="Timer" parent="."]
 script = ExtResource("18_w7x6a")
