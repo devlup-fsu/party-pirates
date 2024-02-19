@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3hj6qs1av7te"]
+
+[ext_resource type="Texture2D" uid="uid://d3fb8v4yfn4k5" path="res://Resources/ShootBehavior/Default/cannon_ball.png" id="1_5e38y"]
+[ext_resource type="Script" path="res://Resources/ShootBehavior/Default/default_cannon_ball.gd" id="1_ecne6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xl6od"]
+
+[node name="DefaultCannonBall" type="Area2D"]
+script = ExtResource("1_ecne6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xl6od")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("1_5e38y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

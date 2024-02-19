@@ -39,7 +39,7 @@ func _process(_delta):
 			for point in _queue:
 				add_point(point)
 
-		var res = ModCoord.resolution * 0.99
+		var res = ModCoord.resolution * 0.95
 		
 		if pos.x <= -res.x:
 			_wrap_wake()

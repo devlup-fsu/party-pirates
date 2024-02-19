@@ -15,10 +15,12 @@ class_name TreasureTrail extends Node2D
 var _dropped_pickup_scene: PackedScene = load("res://Entities/DroppedPickup/dropped_pickup.tscn")
 var _trail: Array[TrailingTreasure] = []
 
+var rope_scene = load( "res://Entities/Player/TreasureTrail/Ropes/rope.tscn")
 
 func _ready() -> void:
 	assert(_player is Player, "Parent of TreasureTrail must be of type Player.")
-
+	
+	%Rope.set_to_follow(self)
 
 func _physics_process(delta: float) -> void:
 	if _trail.is_empty():

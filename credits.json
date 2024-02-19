@@ -1,7 +1,7 @@
 [
 	{
 		"Name": "Alec Tremblay",
-		"Role": "Programmer, Shader Artist"
+		"Role": "Programmer, Shader Artist, 3D Artist"
 	},
 	{
 		"Name": "Casey W",
@@ -28,7 +28,15 @@
 		"Role": "Programmer"
 	},
 	{
+		"Name": "Robert R",
+		"Role": "Programmer"
+	},
+	{
 		"Name": "Whalen",
 		"Role": "Artist"
+	},
+	{
+		"Name": "Michael Ridgeway",
+		"Role": "Programmer"
 	}
 ]
