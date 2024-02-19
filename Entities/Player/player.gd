@@ -18,6 +18,7 @@ class_name Player extends CharacterBody2D
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
 @onready var right_cannon: Marker2D = $RightCannon
 @onready var right_cannon_timer: Timer = $RightCannon/Timer
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 static var s_cannon: AudioStream = preload("res://Sounds/cannon.mp3")
 static var s_pickup: AudioStream = preload("res://Sounds/pickup.mp3")
@@ -71,11 +72,11 @@ func _physics_process(delta: float) -> void:
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
 
-	if collide is KinematicCollision2D and not collide == null:
-		if not %AudioStreamPlayer2D.stream == s_impact or not is_colliding:
+	if collide is KinematicCollision2D:
+		if audio_stream_player.stream != s_impact or not is_colliding:
 			is_colliding = true
-			%AudioStreamPlayer2D.stream = s_impact
-			%AudioStreamPlayer2D.play()
+			audio_stream_player.stream = s_impact
+			audio_stream_player.play()
 	else:
 		is_colliding = false
 
@@ -83,25 +84,25 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	var input: InputManager.InputProxy = InputManager.get_gamepad(player)
 	
-	if input.is_shoot_left_pressed():
-		if left_cannon_timer.is_stopped():
-			shoot_behavior.shoot(get_parent(), left_cannon.global_position, Vector2.UP.rotated(rotation))
-			left_cannon_timer.start(shoot_delay)
-			
-			%AudioStreamPlayer2D.stream = s_cannon
-			%AudioStreamPlayer2D.play()
+	if input.is_shoot_left_pressed() and left_cannon_timer.is_stopped():
+		_shoot_cannon(left_cannon.global_position, Vector2.UP.rotated(rotation))
+		left_cannon_timer.start(shoot_delay)
 	
-	if input.is_shoot_right_pressed():
-		if right_cannon_timer.is_stopped():
-			shoot_behavior.shoot(get_parent(), right_cannon.global_position, Vector2.DOWN.rotated(rotation))
-			right_cannon_timer.start(shoot_delay)
-			
-			%AudioStreamPlayer2D.stream = s_cannon
-			%AudioStreamPlayer2D.play()
+	if input.is_shoot_right_pressed() and right_cannon_timer.is_stopped():
+		_shoot_cannon(right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+		right_cannon_timer.start(shoot_delay)
+
+
+func _shoot_cannon(global_pos: Vector2, direction: Vector2) -> void:
+	shoot_behavior.shoot(get_parent(), global_pos, direction)
+	
+	audio_stream_player.stream = s_cannon
+	audio_stream_player.play()
+
 
 func hit() -> void:
-	%AudioStreamPlayer2D.stream = s_hit
-	%AudioStreamPlayer2D.play()
+	audio_stream_player.stream = s_hit
+	audio_stream_player.play()
 	
 	treasure_trail.drop()
 	current_speed = strunned_speed
@@ -120,14 +121,13 @@ func score() -> void:
 	
 	for list_score_sound in coins_sounds:
 		if added > list_score_sound[0]:
-			%AudioStreamPlayer2D.stream = list_score_sound[1]
-			%AudioStreamPlayer2D.play()
+			audio_stream_player.stream = list_score_sound[1]
+			audio_stream_player.play()
 			break
 
 
 func add_treasure_to_trail(treasure: Treasure) -> void:
 	treasure_trail.append(treasure)
 
-	%AudioStreamPlayer2D.stream = s_pickup
-	%AudioStreamPlayer2D.play()
-
+	audio_stream_player.stream = s_pickup
+	audio_stream_player.play()
