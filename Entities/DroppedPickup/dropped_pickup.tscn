@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://g6kr4hr36mmi"]
+[gd_scene load_steps=5 format=3 uid="uid://g6kr4hr36mmi"]
 
 [ext_resource type="Script" path="res://Entities/DroppedPickup/dropped_pickup.gd" id="1_fmqwc"]
+[ext_resource type="Shader" uid="uid://d28kue7jkldb6" path="res://Entities/DroppedPickup/dropped_pickup.tres" id="2_jydkn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3ogs"]
+shader = ExtResource("2_jydkn")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tyct5"]
 radius = 30.0
@@ -9,6 +13,7 @@ radius = 30.0
 script = ExtResource("1_fmqwc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_c3ogs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tyct5")
