@@ -8,9 +8,6 @@ signal picked_up(dropped_pickup: DroppedPickup)
 # range is for a suitably large random offset to bobbing per object
 @onready var _time: float = RandomNumberGenerator.new().randf_range(-1000.0, 10000.0)
 
-static var _random: RandomNumberGenerator = RandomNumberGenerator.new()
-
-
 func _ready() -> void:
 	assert(pickup != null, "pickup must be set in DroppedPickup")
 	

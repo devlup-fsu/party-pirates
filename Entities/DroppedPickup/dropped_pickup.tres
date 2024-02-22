@@ -1,22 +1,7 @@
-[gd_resource type="VisualShader" load_steps=24 format=3 uid="uid://d28kue7jkldb6"]
-
-[ext_resource type="Texture2D" uid="uid://dlh160fca7fb6" path="res://Resources/Pickup/Sprites/wave_mask.png" id="1_3ry3q"]
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_30uaw"]
-input_name = "time"
-
-[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_yqlqb"]
-default_input_values = [1, Vector2(0.225, 1), 2, Vector2(1.83, 0)]
-
-[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_ka51y"]
-op_type = 0
+[gd_resource type="VisualShader" load_steps=19 format=3 uid="uid://d28kue7jkldb6"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0jna8"]
 input_name = "uv"
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_gq7in"]
-parameter_name = "Texture2DParameter"
-texture_repeat = 1
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4v4qb"]
 input_name = "texture"
@@ -25,9 +10,12 @@ input_name = "texture"
 default_input_values = [0, Quaternion(0, 0, 0, 0)]
 op_type = 2
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0lfx8"]
+load_path = "res://.godot/imported/wave_mask.png-6beae56eb7ce676e738c000b6080d59b.ctex"
+
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_e7p4g"]
 source = 5
-texture = ExtResource("1_3ry3q")
+texture = SubResource("CompressedTexture2D_0lfx8")
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2tdlu"]
 operator = 2
@@ -68,10 +56,6 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_3mb52"]
 function = 31
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_nr81r"]
-source = 5
-texture = ExtResource("1_3ry3q")
 
 [resource]
 code = "shader_type canvas_item;
@@ -161,22 +145,12 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-351.545, -27.0871)
+graph_offset = Vector2(-150.388, -90.9924)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(2020, 340)
-nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_nr81r")
-nodes/fragment/5/position = Vector2(-80, 700)
-nodes/fragment/16/node = SubResource("VisualShaderNodeInput_30uaw")
-nodes/fragment/16/position = Vector2(-1280, 840)
-nodes/fragment/17/node = SubResource("VisualShaderNodeUVFunc_yqlqb")
-nodes/fragment/17/position = Vector2(-580, 700)
-nodes/fragment/18/node = SubResource("VisualShaderNodeVectorCompose_ka51y")
-nodes/fragment/18/position = Vector2(-840, 800)
 nodes/fragment/19/node = SubResource("VisualShaderNodeInput_0jna8")
 nodes/fragment/19/position = Vector2(-1360, 520)
-nodes/fragment/20/node = SubResource("VisualShaderNodeTexture2DParameter_gq7in")
-nodes/fragment/20/position = Vector2(-580, 940)
 nodes/fragment/21/node = SubResource("VisualShaderNodeInput_4v4qb")
 nodes/fragment/21/position = Vector2(220, 80)
 nodes/fragment/22/node = SubResource("VisualShaderNodeVectorDecompose_s8ja5")
@@ -209,4 +183,4 @@ nodes/fragment/35/node = SubResource("VisualShaderNodeFloatOp_81m0w")
 nodes/fragment/35/position = Vector2(-740, 240)
 nodes/fragment/36/node = SubResource("VisualShaderNodeFloatFunc_3mb52")
 nodes/fragment/36/position = Vector2(1440, 520)
-nodes/fragment/connections = PackedInt32Array(17, 0, 5, 0, 20, 0, 5, 2, 18, 0, 17, 2, 16, 0, 18, 0, 21, 0, 23, 2, 23, 0, 22, 0, 22, 3, 24, 0, 19, 0, 26, 0, 26, 1, 27, 1, 27, 0, 28, 0, 29, 0, 25, 0, 28, 0, 30, 0, 25, 0, 31, 0, 31, 0, 32, 0, 32, 0, 27, 0, 26, 0, 33, 1, 33, 0, 29, 0, 34, 0, 35, 0, 35, 0, 33, 0, 24, 0, 0, 1, 30, 0, 36, 0, 36, 0, 24, 1)
+nodes/fragment/connections = PackedInt32Array(21, 0, 23, 2, 23, 0, 22, 0, 22, 3, 24, 0, 19, 0, 26, 0, 26, 1, 27, 1, 27, 0, 28, 0, 29, 0, 25, 0, 28, 0, 30, 0, 25, 0, 31, 0, 31, 0, 32, 0, 32, 0, 27, 0, 26, 0, 33, 1, 33, 0, 29, 0, 34, 0, 35, 0, 35, 0, 33, 0, 24, 0, 0, 1, 30, 0, 36, 0, 36, 0, 24, 1)
