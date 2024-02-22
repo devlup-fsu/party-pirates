@@ -18,20 +18,8 @@ class_name Player extends CharacterBody2D
 @onready var left_cannon_timer: Timer = $LeftCannon/Timer
 @onready var right_cannon: Marker2D = $RightCannon
 @onready var right_cannon_timer: Timer = $RightCannon/Timer
-@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-static var s_cannon: AudioStream = preload("res://Sounds/cannon.mp3")
-static var s_pickup: AudioStream = preload("res://Sounds/pickup.mp3")
-static var s_hit: AudioStream = preload("res://Sounds/hit.mp3")
-static var s_impact: AudioStream = preload("res://Sounds/hit.mp3")
-
-static var s_coins_0: AudioStream = preload("res://Sounds/coins_0.mp3")
-static var s_coins_1: AudioStream = preload("res://Sounds/coins_1.mp3")
-static var s_coins_2: AudioStream = preload("res://Sounds/coins_2.mp3")
-static var s_coins_3: AudioStream = preload("res://Sounds/coins_3.mp3")
-static var s_coins_4: AudioStream = preload("res://Sounds/coins_4.mp3")
-
-static var coins_sounds = [[10, s_coins_4], [5, s_coins_3], [3, s_coins_2], [2, s_coins_1], [0, s_coins_0]]
+static var coins_sounds = [[10, "coins_4"], [5, "coins_3"], [3, "coins_2"], [2, "coins_1"], [0, "coins_0"]]
 
 var speed: float = 0
 var current_speed: float = max_speed 
@@ -73,10 +61,9 @@ func _physics_process(delta: float) -> void:
 	global_position = ModCoord.get_modular_pos(internal_pos)
 
 	if collide is KinematicCollision2D:
-		if audio_stream_player.stream != s_impact or not is_colliding:
+		if not is_colliding:
 			is_colliding = true
-			audio_stream_player.stream = s_impact
-			audio_stream_player.play()
+			SfxManager.play("hit")
 	else:
 		is_colliding = false
 
@@ -95,14 +82,10 @@ func _process(_delta: float) -> void:
 
 func _shoot_cannon(global_pos: Vector2, direction: Vector2) -> void:
 	shoot_behavior.shoot(get_parent(), global_pos, direction)
-	
-	audio_stream_player.stream = s_cannon
-	audio_stream_player.play()
 
 
 func hit() -> void:
-	audio_stream_player.stream = s_hit
-	audio_stream_player.play()
+	SfxManager.play("hit")
 	
 	treasure_trail.drop()
 	current_speed = strunned_speed
@@ -121,13 +104,10 @@ func score() -> void:
 	
 	for list_score_sound in coins_sounds:
 		if added > list_score_sound[0]:
-			audio_stream_player.stream = list_score_sound[1]
-			audio_stream_player.play()
+			SfxManager.play(list_score_sound[1])
 			break
 
 
 func add_treasure_to_trail(treasure: Treasure) -> void:
 	treasure_trail.append(treasure)
-
-	audio_stream_player.stream = s_pickup
-	audio_stream_player.play()
+	SfxManager.play("pickup")

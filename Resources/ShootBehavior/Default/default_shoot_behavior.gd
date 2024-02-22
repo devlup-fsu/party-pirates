@@ -4,3 +4,5 @@ var _default_cannon_ball_scene: PackedScene = load("res://Resources/ShootBehavio
 
 func shoot(parent: Node, global_pos: Vector2, direction: Vector2):
 	ShootBehavior.create_cannon_ball(parent, global_pos, direction, _default_cannon_ball_scene)
+
+	SfxManager.play("cannon")

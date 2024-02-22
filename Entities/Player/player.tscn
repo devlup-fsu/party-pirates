@@ -91,6 +91,3 @@ position = Vector2(0, 25)
 
 [node name="Timer" type="Timer" parent="RightCannon"]
 one_shot = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
