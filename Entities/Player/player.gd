@@ -19,9 +19,12 @@ class_name Player extends CharacterBody2D
 @onready var right_cannon: Marker2D = $RightCannon
 @onready var right_cannon_timer: Timer = $RightCannon/Timer
 
+static var coins_sounds = [[10, "coins_4"], [5, "coins_3"], [3, "coins_2"], [2, "coins_1"], [0, "coins_0"]]
+
 var speed: float = 0
 var current_speed: float = max_speed 
 var internal_pos: Vector2
+var is_colliding: bool = false
 var shoot_behavior: ShootBehavior
 
 var current_manager: Node
@@ -52,27 +55,38 @@ func _physics_process(delta: float) -> void:
 		look_at(global_position + direction)    # Rotate the player to face the direction they are moving.
 
 	var last = global_position
-	move_and_collide((velocity + current_manager.current * current_influence) * delta )
+	var collide = move_and_collide((velocity + current_manager.current * current_influence) * delta )
 	internal_pos += global_position - last
 
 	global_position = ModCoord.get_modular_pos(internal_pos)
+
+	if collide is KinematicCollision2D:
+		if not is_colliding:
+			is_colliding = true
+			SfxManager.play("hit")
+	else:
+		is_colliding = false
 
 
 func _process(_delta: float) -> void:
 	var input: InputManager.InputProxy = InputManager.get_gamepad(player)
 	
-	if input.is_shoot_left_pressed():
-		if left_cannon_timer.is_stopped():
-			shoot_behavior.shoot(get_parent(), left_cannon.global_position, Vector2.UP.rotated(rotation))
-			left_cannon_timer.start(shoot_delay)
+	if input.is_shoot_left_pressed() and left_cannon_timer.is_stopped():
+		_shoot_cannon(left_cannon.global_position, Vector2.UP.rotated(rotation))
+		left_cannon_timer.start(shoot_delay)
 	
-	if input.is_shoot_right_pressed():
-		if right_cannon_timer.is_stopped():
-			shoot_behavior.shoot(get_parent(), right_cannon.global_position, Vector2.DOWN.rotated(rotation))
-			right_cannon_timer.start(shoot_delay)
+	if input.is_shoot_right_pressed() and right_cannon_timer.is_stopped():
+		_shoot_cannon(right_cannon.global_position, Vector2.DOWN.rotated(rotation))
+		right_cannon_timer.start(shoot_delay)
+
+
+func _shoot_cannon(global_pos: Vector2, direction: Vector2) -> void:
+	shoot_behavior.shoot(get_parent(), global_pos, direction)
 
 
 func hit() -> void:
+	SfxManager.play("hit")
+	
 	treasure_trail.drop()
 	current_speed = strunned_speed
 	pickup_collector.enabled = false
@@ -85,8 +99,15 @@ func hit() -> void:
 
 
 func score() -> void:
-	Scores.add_player_score(player, treasure_trail.score())
+	var added = treasure_trail.score()
+	Scores.add_player_score(player, added)
+	
+	for list_score_sound in coins_sounds:
+		if added > list_score_sound[0]:
+			SfxManager.play(list_score_sound[1])
+			break
 
 
 func add_treasure_to_trail(treasure: Treasure) -> void:
 	treasure_trail.append(treasure)
+	SfxManager.play("pickup")
