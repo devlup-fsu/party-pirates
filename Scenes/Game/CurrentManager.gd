@@ -5,7 +5,7 @@ extends Node2D
 
 var tot_current: Vector2
 var current: Vector2
-var time: float
+var time: float = RandomNumberGenerator.new().randf_range(0.0, 1000000.0)
 var water_mat: Material
 
 func _ready():
@@ -22,7 +22,7 @@ func _process(delta):
 	var magnitude = 50
 	current.y = sin(time / dir_speed) * magnitude
 	current.x = cos(time / dir_speed) * magnitude
-	current *= clamp(sin(time / gust_duration) / 2 + 0.5, 0, 1)
+	current *= clamp(cos(time / gust_duration) / 2 + 0.5, 0, 1)
 
 	tot_current += current * -delta
 	water_node.material.set_shader_parameter("CurrentDirection", tot_current)
