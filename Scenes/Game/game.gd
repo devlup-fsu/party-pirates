@@ -20,6 +20,7 @@ func _ready() -> void:
 		player.player = i
 		player.global_position = $SpawnPoints.get_child( i ).global_position
 		player.current_manager = $CurrentManager
+		player.look_at(Vector2.ZERO)
 		add_child(player)
 	
 		var wake: Wake = _wake_scene.instantiate()
