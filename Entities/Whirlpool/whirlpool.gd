@@ -5,13 +5,15 @@ var player_list: Array[Player] = []
 
 var max_radius: int = 400
 @export var whirlpool_radius: float = 1
+var timeout_min = 10
+var timeout_max = 20
 
 signal done
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CollisionShape2D.shape.radius = whirlpool_radius*max_radius
-	$whirlpool_timeout.start(randi_range(10, 20))
+	$whirlpool_timeout.start(randi_range(timeout_min, timeout_max))
 
 func _process(delta):
 	for player in player_list:
