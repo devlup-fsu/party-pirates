@@ -82,6 +82,10 @@ func _process(_delta: float) -> void:
 
 func _shoot_cannon(global_pos: Vector2, direction: Vector2) -> void:
 	shoot_behavior.shoot(get_parent(), global_pos, direction)
+	
+	# workaround to discourage spamming powerup weapons
+	if not shoot_behavior is DefaultShootBehavior:
+		powerup_timer.start( clamp(powerup_timer.time_left - 2, 0.1, 100 ) )
 
 
 func hit() -> void:
